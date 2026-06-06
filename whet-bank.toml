@@ -1,4 +1,4 @@
 [bank]
 name = "whet-cpp-bank"
 schema_version = 1
-description = "C++ basic syntax question bank — 200 easy questions covering core language features."
+description = "现代 C++ 中文题库，2000+ 题覆盖语法到工程实战 / 大厂面经 / 标准库源码 / 性能微架构 / 代码品味，全部含解析与来源。"
