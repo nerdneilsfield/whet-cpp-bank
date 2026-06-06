@@ -20,6 +20,6 @@ B. `std::rotate` 要求容器是双向链表
 C. 中间参数指定要保留在头部的元素个数
 D. 中间参数 `new_first` 指定旋转后**成为新首元素**的位置，相当于循环左移 `(new_first - first)` 位
 
-## 解析
+## Explanation
 
 正确答案是 D：std::rotate(first, new_first, last) 会让 new_first 指向的元素成为旋转后的首元素。示例中 v.begin()+2 指向 3，因此结果是 3 4 5 1 2，相当于循环左移 2 位。误区是把 rotate 理解成 reverse；reverse 是整体反转，语义完全不同。

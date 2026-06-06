@@ -14,7 +14,7 @@ rubric:
 
 # `placement new` 是什么？何时使用？如何正确销毁？
 
-## 参考答案
+## Explanation
 
 ### 什么是 placement new
 

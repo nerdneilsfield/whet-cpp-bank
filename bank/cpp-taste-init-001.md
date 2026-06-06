@@ -52,3 +52,9 @@ D. D — 拷贝初始化语义最直白，类型出现两次也最不容易误�
 `{}` 在 C++11 被设计为 "uniform initialization"——一统江湖的初始化。但 `vector` 这种 STL 容器为 initializer_list 重载了构造函数，导致 `{}` 在它们身上**反而不统一**。这是历史包袱，不是新人能避开的，只能记。
 
 **来源：** 手写题。背景见 Scott Meyers *Effective Modern C++* Item 7 "Distinguish between () and {} when creating objects"；AAA 风格见 Herb Sutter "GotW #94: AAA Style"。
+
+## Explanation
+
+正确答案是 D。这是 C++ 自 1998 年起就正确的写法，不会被 `{}` 的歧义咬到。
+这是 `vector` 的 `initializer_list` 构造函数优先于一般构造函数的著名陷阱（Scott Meyers *Effective Modern C++* Item 7）。
+四个写法里只有 C 是错的——`std::vector<int> v{n}` 不是"长度 n 的 vector"，而是 "含一个值为 n 的元素的 vector"。

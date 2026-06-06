@@ -31,7 +31,7 @@ D. 编译错误
 
 ---
 
-## 解析
+## Explanation
 
 `vector` 同时有 `vector(size_t count, T value)` 和 `vector(initializer_list<T>)` 两个构造，**花括号永远优先匹配 initializer_list 重载**。
 

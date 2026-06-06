@@ -38,6 +38,6 @@ static 局部变量 current 仅在第一次进入函数时初始化（start 默�
 输出：1 2 3。
 -->
 
-## 解析
+## Explanation
 
 A 正确：`static int current = start` 只在第一次调用时初始化，当时 `start` 为默认值 1。后续调用即使传入 100，也不会重新初始化 `current`，只继续自增。关键误区是认为每次调用都会重新执行 static 局部变量的初始化表达式。

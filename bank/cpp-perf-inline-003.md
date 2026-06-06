@@ -73,3 +73,7 @@ A 优于 B 不在性能（一样）而在**避免不必要的抽象**——一�
 - A 的"直接写"在循环规模 N 大时，仍是最优解；只有重复多次相同模式时才提取抽象
 
 **来源：** Chandler Carruth, "There Are No Zero-cost Abstractions", CppCon 2019；Sean Parent, "C++ Seasoning", GoingNative 2013（"no raw loops" 与 "no unnecessary abstraction" 的张力）；Kent Beck, "Smalltalk Best Practice Patterns"（"Inline" pattern）.
+
+## Explanation
+
+正确答案应把小而频繁调用的逻辑放在编译器可见的位置。头文件模板、constexpr 或普通内联函数能保留零成本抽象；跨翻译单元且没有 LTO 时，优化器往往看不到函数体。误区是为“封装”把热循环中的微操作藏到无法内联的接口后面。

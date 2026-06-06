@@ -15,6 +15,6 @@ B. 在运行时安全地将基类指针向下转型为派生类指针
 C. 去除函数参数的 `const` 限定以传给旧接口
 D. 在多重继承中进行侧向转型（cross-cast）
 
-## 解析
+## Explanation
 
 正确答案是 B、D。`dynamic_cast` 的价值在于基于 RTTI 做运行时检查，适合多态基类指针/引用的安全向下转型，也适合多重继承中的侧向转型。普通数值转换用 `static_cast`，去 const 用 `const_cast`。

@@ -50,3 +50,10 @@ public:
 注意：在构造函数中调用 `shared_from_this()` 会抛 `bad_weak_ptr`，因为此时 weak_ptr 还未初始化。
 
 **来源：** 卡码笔记 C++ enable_shared_from_this 专题 / Effective Modern C++ Item 19
+
+## Explanation
+
+正确答案是 C。
+std::shared_ptr<Bad>(this) 创建了一个全新的控制块，不知道 sp1 已经有一个；析构时两个控制块都会 delete 同一个 this 指针 → double free。
+正确用法： enable_shared_from_this 内部有一个 weak_ptr<T>，当对象首次被 shared_ptr 管理时，这个 weak_ptr 被初始化；shared_from_this() 通过 weak_ptr.lock() 返回与原 shared_ptr 共享控制块的新 shared_ptr。
+注意：在构造函数中调用 shared_from_this() 会抛 bad_weak_ptr，因为此时 weak_ptr 还未初始化。

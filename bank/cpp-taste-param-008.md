@@ -42,7 +42,7 @@ B. B 段：`const&` 接 `shared_ptr`，避免引用计数原子操作，又能�
 C. C 段：`&&` 表达"我可能要 sink"，最有未来扩展性。
 D. D 段：函数只查看不存储，直接传 `const Texture&`，与所有权解耦。
 
-## 解析
+## Explanation
 
 正确答案是 **D**。
 

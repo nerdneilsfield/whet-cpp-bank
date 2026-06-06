@@ -26,7 +26,7 @@ B. 两者效果相同，因为 `reinterpret_cast` 等价于 `static_cast`
 C. 都是 UB
 D. ② 是 UB 但 ① 也会失败，因为 `D` 是私有继承
 
-## 解析
+## Explanation
 
 多重非虚继承下的对象布局：`D` = `[A 子对象][B 子对象][D 自身成员]`（声明顺序）。从 `D*` 转到 `A*`：偏移 0；转到 `B*`：偏移 `sizeof(A)`。`static_cast`（包括隐式转换）在继承层次内**自动插入这种指针调整**。所以 `static_cast<A*>(static_cast<D*>(pb))` 正确还原为 `A*`。
 

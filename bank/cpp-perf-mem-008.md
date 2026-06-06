@@ -62,3 +62,7 @@ D. D — 在 A 上加 ivdep 告诉编译器循环可向量化
 - 分块是缓存敏感算法（GEMM、卷积、转置、FFT）的通用武器
 
 **来源：** Goto & van de Geijn, "Anatomy of High-Performance Matrix Multiplication", ACM TOMS 2008；Drepper, "What Every Programmer Should Know About Memory", §6.2.1；Intel Optimization Reference Manual, §11.6 "Tiling".
+
+## Explanation
+
+选 C，因为矩阵转置必然有一端跨行访问，分块能把读写两端的工作集放进缓存。32×32 块使 A 和 B 的局部子矩阵反复命中 L1/L2，大幅减少 cache miss。误区是只调换 i/j 循环或加 pragma；它们不能消除跨行访问的内存局部性问题。

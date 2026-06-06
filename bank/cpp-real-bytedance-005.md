@@ -64,3 +64,10 @@ auto [x, y] = p;
 **D 错：** structured binding 是编译期语法糖，与线程安全无关。
 
 **来源：** 字节 C++17 面试（参考：cppreference structured bindings、Bjarne Stroustrup《The C++ Programming Language》）
+
+## Explanation
+
+正确答案是 A。
+*2. 原生数组： *3. 聚合类型（aggregate）： 所有非静态数据成员都 public、无用户提供的构造函数、无虚函数、无私有/受保护非静态成员等。
+*注意点： auto [a, b] = expr; 拷贝；auto& [a, b] = expr; 引用；const auto& [a, b] = expr; 只读引用 名字不是"引用"——它们是匿名 unnamed object 的成员的别名（对于 tuple-like 是 reference，对 aggregate 实质相同） C++20 可在 lambda 捕获列表里用 [a, b, c] *。
+D 错： structured binding 是编译期语法糖，与线程安全无关。

@@ -68,3 +68,9 @@ D. D — out-parameter + bool 返回值是 C 风格 API 中最稳的模式
 C 时代用 `int errno + T* out` 是因为 C 没有 sum type；C++17 给了 optional / variant / expected（C++23）三件套，**应该用就用**。`optional<T>` 用了之后的代码读起来像是"我返回的就是'可能有可能没有的 User'"——这种类型即文档的体验是现代 C++ 的核心 selling point。
 
 **来源：** 手写题。`std::optional` 见 ISO/IEC 14882:2017 §23.6 [optional]；理念见 P0091r3 提案及 Andrzej Krzemienski 的 "Efficient optional values" 系列文章；Tony Hoare 的 null mistake 见 his "Null References: The Billion Dollar Mistake" talk (QCon London 2009)。
+
+## Explanation
+
+正确答案是 B。这道题考 "用类型表达可空，而不是用约定/魔法值/堆指针/输出参数"。
+`unique_ptr` 表达的是 "唯一所有权 + 可空 + 大对象/多态/PIMPL" 这套组合，单纯为了"可空"用它是误配工具。
+这道题考 "用类型表达可空，而不是用约定/魔法值/堆指针/输出参数"。

@@ -53,3 +53,10 @@ C 错：那是 `std::move` 而不是 `forward`。`move` 无条件转右值，`fo
 D 错：虽然是语法糖，但关键是引用折叠的部分。
 
 **来源：** 字节 C++ 模板面试题 / Effective Modern C++ Item 28
+
+## Explanation
+
+正确答案是 A。
+完美转发的核心是引用折叠（reference collapsing）： 对于 forward，当传进来的参数是左值时 T 推导为 X&（引用折叠后 T&& = X&），forward 中的 static_cast<T&&> 展开为 static_cast<X&>，保持左值。
+当传进来的参数是右值时 T 推导为 X，forward 中的 static_cast<T&&> 展开为 static_cast<X&&>，返回右值引用。
+B 错：全部是编译期确定，无运行时开销。

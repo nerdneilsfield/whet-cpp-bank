@@ -46,6 +46,6 @@ describe() 是 virtual，Animal* 指向 Snake 对象时动态分派到 Snake::de
 Snake::describe() 读取 legs（此时为 0），输出 "Snake legs=0"。
 -->
 
-## 解析
+## Explanation
 
 C 正确：`Snake` 可以访问并修改继承来的 `protected` 成员 `legs`，构造时把它设为 0。`describe` 是虚函数，`Animal*` 指向 `Snake` 时动态分派到 `Snake::describe`。关键误区是认为 `protected` 成员派生类不能访问，或忽略虚函数分派。

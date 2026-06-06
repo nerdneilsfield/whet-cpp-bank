@@ -14,7 +14,7 @@ rubric:
 
 # Q: `shared_ptr` 是线程安全的吗？引用计数本身 vs 管理的对象？
 
-## 参考答案
+## Explanation
 
 `shared_ptr` 的线程安全性分三个层次，必须分开讨论：
 

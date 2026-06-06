@@ -64,3 +64,7 @@ D 是 *loop fusion* 原则的教科书例子：每多扫一遍数据就多付一
 - 当处理数据 > L3 size 时，**少扫一遍 = 数量级的差异**
 
 **来源：** Eric Niebler, "Ranges for the Standard Library", CppCon 2015；Sean Parent, "C++ Seasoning", GoingNative 2013（"no raw loops"vs"循环融合"的张力）；Drepper, "What Every Programmer Should Know About Memory", §3.3 "Cache implementations".
+
+## Explanation
+
+选 D，因为一个循环完成过滤、变换和累加，内存只扫描一次且没有临时容器。A 拆成多遍会增加分配和内存流量，ranges 虽惰性但当前实现不一定能完全消除迭代器和分支开销，`accumulate` 又保留左折叠依赖。误区是把流水线式写法等同于循环融合；实际性能要看是否真的少扫数据。

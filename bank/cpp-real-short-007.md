@@ -71,3 +71,7 @@ struct ParallelismExample {
 但通常现代多核场景**并发任务自然有更多机会变成并行**。
 
 **来源：** 百度 C++ 面试（参考：Rob Pike Concurrency Is Not Parallelism（talk）、《C++ Concurrency in Action》第 1 章）
+
+## Explanation
+
+本题评分重点是区分并发和并行：并发是任务在同一时间段内交替推进的程序结构，单核也能实现；并行是多个任务在同一时刻真正运行，通常依赖多核。好的例子应能说明事件循环处理多个连接属于并发，而多个 CPU 核同时跑计算任务属于并行。C++ 的 thread、async 可表达并发，是否并行取决于调度和硬件。常见误区是把“开了多个线程”直接等同于“并行执行”。

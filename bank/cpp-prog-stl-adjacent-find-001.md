@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-adjacent-find-001/
 
 约束：0 <= nums.size() <= 10^5。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,11 +20,15 @@ tests_dir: tests/cpp-prog-stl-adjacent-find-001/
 int first_adjacent_dup(const std::vector<int>& nums);
 ```
 
-## 示例
+### 示例
 ```
 [1,2,3,3,4] => 2
 [1,2,3,4]   => -1
 ```
 
-## 提示
+### 提示
 - 在 skeleton/solution.hpp 中实现函数。
+
+## Explanation
+
+使用 `std::adjacent_find(nums.begin(), nums.end())` 找到第一对相邻相等元素的前一个迭代器。若返回 `end()`，说明不存在，返回 -1；否则用 `std::distance` 或迭代器相减得到下标。注意空数组和单元素数组都不会有相邻重复。

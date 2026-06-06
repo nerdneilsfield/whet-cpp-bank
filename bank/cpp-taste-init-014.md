@@ -75,3 +75,9 @@ Herb Sutter "GotW #93: Auto Variables, Part 2" 的口诀：
 > **Use `const auto&` by default; `auto&` when you need to modify; `auto` when you need a copy; `auto&&` when you write generic code.**
 
 **来源：** 手写题。forwarding reference 见 Scott Meyers *Effective Modern C++* Item 24-25；range-for 引用形态见 Herb Sutter "GotW #93"、Item 7 of *Effective Modern C++*；`vector<bool>` proxy 问题见 Item 6。
+
+## Explanation
+
+正确答案是 C。这道题考 `auto`/`auto&`/`const auto&`/`auto&&` 四种 range-for 引用形态对应的语义选择，新人和老手都常混淆。
+工程上要理解现代 C++ 语法背后的推导、重载和生命周期规则，而不是只按表面写法判断。
+也容易被误用：以后维护者读到 `auto& x` 会以为 "改 x 是预期行为"，可能真就改了。

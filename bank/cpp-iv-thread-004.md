@@ -14,7 +14,7 @@ rubric:
 
 # `std::condition_variable` 的用法？wait 为什么需要 predicate lambda？
 
-## 参考答案
+## Explanation
 
 ### 基本用法
 

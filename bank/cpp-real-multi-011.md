@@ -82,3 +82,8 @@ move ctor     // (4)
 - 没有 move 时 → fall back to copy
 
 **来源：** 跨厂 C++ 移动语义经典题（参考：Effective Modern C++ Item 25）
+
+## Explanation
+
+正确答案：A、B、D。
+D 正确： 如果 Widget 没有定义移动构造（也没有删除），且有拷贝构造： std::move(a) 把 a 转为 xvalue 重载决议查找匹配 → 找不到移动构造 → 回退到 Widget(const Widget&)（const 引用可绑定 rvalue） → 调用拷贝构造 题目中 Widget 定义了 移动构造（"move ctor"），所以实际 (2) 输出 "move ctor"。但题干 D 提的是"假如没有移动构造"的情况，此时确实退化为拷贝；E 错误： C++17 mandatory copy elision： makeWidget() 返回一个 prvalue（实际上返回值 NRVO 也常被优化） Widget d = makeWidget(); 直接物化 prvalue 到 d 不调用任何拷贝/移动构造 注意：makeWidget() 内部 return w; 是返回具名局部变量 w → NRVO（C++17 仍是可选优化，但通常发生）→ 即便不发生 NRVO，也调用 move（不是 copy） *完整输出（假设 C++17 + NRVO 发生）： *记忆要点： 按值传 lvalue → copy 按值传 rvalue → move NRVO/copy-elision → 既不 copy 也不 move 没有 move 时 → fall back to copy。

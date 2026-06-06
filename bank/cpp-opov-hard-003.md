@@ -30,7 +30,7 @@ B. ② 通常更快：函数指针 `by_value` 经类型擦除后调用是间接�
 C. 二者性能相同，编译器会做同等优化
 D. 必须用 lambda 才能内联
 
-## 解析
+## Explanation
 
 `std::sort` 是模板，比较器作为模板参数 `Compare`。当传入函数对象类型 `ByValue` 时，`Compare = ByValue` 是已知类型，`operator()` 内调用完全可被内联（实际上编译器经常把整个比较内联到 `sort` 内部）。
 

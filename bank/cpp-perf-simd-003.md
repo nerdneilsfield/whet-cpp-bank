@@ -55,3 +55,7 @@ B 的关键不是性能技巧而是**API 语义**：`std::reduce` 用类型系�
 - 选 API 时看语义是否给了优化许可，不只是看输入输出
 
 **来源：** C++17 标准 [reduce]/[accumulate]；P0024 "The Parallelism TS"；Bryce Adelstein-Lelbach, "The C++17 Parallel Algorithms Library", CppCon 2016；Agner Fog, "Optimizing software in C++", §8 "Reductions".
+
+## Explanation
+
+选 B，因为 `std::reduce` 语义允许重新结合，`unseq` 还明确允许无序向量化执行。`std::accumulate` 和朴素单累加器保持严格左折叠，浮点加法不能随意重排，因此形成长依赖链。误区是只看结果近似相同，忽略 API 语义是否授权编译器改变求和顺序。

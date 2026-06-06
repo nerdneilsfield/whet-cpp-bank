@@ -67,3 +67,9 @@ memory_order 选择有个简单口诀：
 A 选了 relaxed 不是"为了快"——是**精确表达"我只需要计数、不需要顺序"这个语义**。relaxed 不是"不安全的弱选项"，是**和需求严格匹配的精确选项**。把"宁选最强"当品味是误读——选过强等于声明了一个不存在的不变式，对读者是噪音，对编译器是优化阻碍。
 
 **来源：** 手写题。Memory order 选择见 Herb Sutter "atomic Weapons" (C++ and Beyond 2012, 共 3 小时 talk)；relaxed 计数器示例见 ISO/IEC 14882:2017 §32.4 [atomics.order] 的 example 1；Anthony Williams *C++ Concurrency in Action* 2e §5.3.3 详细对比了各内存序的开销。
+
+## Explanation
+
+正确答案是 A。写和读用不同 memory_order 是正确的细分。
+逐一品味： B / D：`+= 1` 和 `++n_d` 是 `atomic` 重载的运算符，默认 `memory_order_seq_cst`。
+语法糖看起来友好，但隐藏了内存序选择——读者看不出作者是不是有意要 seq_cst、还是只是图省事。

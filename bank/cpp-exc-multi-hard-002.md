@@ -34,3 +34,7 @@ B 正确：C++17 的 `std::uncaught_exceptions()` 返回当前活跃异常数（
 C 错误：即便析构函数内 try/catch 看似安全，但若**异常逃出析构函数**（catch 后又 rethrow，或异常类型不匹配）仍会触发 terminate 风险；更重要的是，析构函数默认是 `noexcept`，逃逸异常直接 terminate，并非"无任何风险"。
 
 D 正确：C++11 起隐式规则——析构函数默认是 `noexcept(true)`（除非基类/成员析构非 noexcept，或显式标注 `noexcept(false)`），从析构中抛异常会直接 terminate，是 C++11 的重大变更。
+
+## Explanation
+
+A、B、D 正确：栈展开期间如果析构函数又让新异常逃逸，运行时会调用 `std::terminate`。`std::uncaught_exceptions()` 可用于识别当前是否处于异常展开中，但更好的设计是析构函数不抛出。常见误区是认为析构里局部 try/catch 就完全安全；只要异常逃出默认 `noexcept` 析构，仍会终止程序。

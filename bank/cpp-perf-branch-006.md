@@ -74,3 +74,7 @@ A 在现代编译器下是最好的选择：① 代码简洁；② 自动跟随�
 - 手写优化的隐性成本：精度变化、跨编译器行为差异、阻碍未来的更好优化
 
 **来源：** Chandler Carruth, "Tuning C++: Benchmarks, and CPUs, and Compilers!", CppCon 2015；Agner Fog, "Optimizing software in C++", §8.3 "Loop unrolling"；Intel Optimization Reference Manual, §3.5.2.1 "Loop Unrolling".
+
+## Explanation
+
+这题关注短路逻辑与条件顺序：应先判断便宜且更可能排除的条件，让常见路径尽早结束。条件顺序不只是可读性问题，也影响分支预测、加载次数和异常路径是否进入热循环。误区是把布尔表达式视为数学交换律，忘了 C++ 的短路求值有执行顺序和性能后果。

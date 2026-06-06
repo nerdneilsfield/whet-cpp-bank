@@ -29,7 +29,7 @@ D. 应在函数前加 `noexcept` 提升性能
 
 ---
 
-## 解析
+## Explanation
 
 `catch(...)` 后返回"unknown error"是把**结构化异常信息（类型、消息、堆栈）压扁成单一字符串**的反模式，俗称 "exception swallowing"。后果：
 - 排查问题时丢失关键信息（哪种异常？在哪一步？）

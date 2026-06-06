@@ -50,3 +50,9 @@ D 对：每个派生类实例化一次基类（代码膨胀）；无法异构容
 设计上：CRTP 优势在性能（无 vtable）和编译期检查；劣势是不能放进 `vector<Base*>`。
 
 **来源：** 阿里秋招 C++ 设计模式面试题 / Modern C++ Design
+
+## Explanation
+
+正确答案是 [A, B, D]。
+A 对：编译期 static_cast<Derived*>(this) 把基类指针转回派生类，调用 implementation() 是静态绑定（编译期解析），无虚函数开销，可被内联；B 对：CRTP 的典型应用： std::enable_shared_from_this<T>：经典 CRTP 表达式模板（Eigen 库）：消除临时对象 mixin（混入）：复用代码无需虚函数 C 错：CRTP 没有动态多态。Base<A> 和 Base<B> 是两个不同的类型，无法用同一个基类指针处理。
+D 对：每个派生类实例化一次基类（代码膨胀）；无法异构容器（这点与 D 一致是 CRTP 的根本限制）。需要异构时仍需要虚函数。

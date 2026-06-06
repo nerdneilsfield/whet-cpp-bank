@@ -47,7 +47,7 @@ D. 缺少 `max_size()`，编译失败
 
 ---
 
-## 解析
+## Explanation
 
 **C++17 起**，`std::allocator_traits` 提供了所有可选操作的默认实现。但 **`rebind` 的等价机制** 是关键差异所在：
 

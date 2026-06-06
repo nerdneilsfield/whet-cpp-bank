@@ -19,6 +19,6 @@ B. `[new_end, old_end)` 区间的元素值处于"有效但未指定"状态
 C. `std::remove` 要求容器为 `vector`
 D. C++20 引入 `std::erase(container, value)` 简化此惯用法
 
-## 解析
+## Explanation
 
 正确选项是 A、B、D。std::remove 是通用算法，只重排元素并返回逻辑末尾，尾部元素有效但值未指定，容器大小不变。它不要求 vector；C++20 的 std::erase/std::erase_if 正是对 erase-remove 惯用法的简化。

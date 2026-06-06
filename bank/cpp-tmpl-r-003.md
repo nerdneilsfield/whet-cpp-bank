@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: B
 ---
 
-## 题目
+### 题目
 
 下面代码输出是什么？
 
@@ -36,10 +36,9 @@ B. 输出：`42` 和 `hello`
 C. 输出：`42` 和 `0`
 D. 输出：`0` 和 `hello`
 
-## 答案
+## Explanation
 
 B
 
-## 解析
 
 `Box<int>` 和 `Box<std::string>` 是同一类模板的两个独立实例化，分别生成针对 `int` 和 `std::string` 的具体类。`a.show()` 输出 `42`，`b.show()` 输出 `hello`。类模板实例化后的两个类型完全独立，`Box<int>` 和 `Box<std::string>` 之间没有任何继承或转换关系。

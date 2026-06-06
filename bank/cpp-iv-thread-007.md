@@ -14,7 +14,7 @@ rubric:
 
 # `volatile` 和 `atomic` 的区别？为什么多线程中不能用 `volatile` 代替 `atomic`？
 
-## 参考答案
+## Explanation
 
 ### volatile 的实际语义
 

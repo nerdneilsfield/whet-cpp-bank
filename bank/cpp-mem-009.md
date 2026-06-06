@@ -20,6 +20,6 @@ ______;   // 正确释放数组内存
 new[] 对应 delete[]。答案：delete[] arr
 -->
 
-## 解析
+## Explanation
 
 应填写 `delete[] arr`，因为 `arr` 来自 `new int[100]`，释放形式必须匹配数组 new。写成 `delete arr` 会造成未定义行为，而只调用析构相关工具也不会释放底层内存。现代代码中更推荐用 `std::vector<int>` 或智能指针避免手写 `new[]/delete[]`。

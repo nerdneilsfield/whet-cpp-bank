@@ -66,3 +66,9 @@ D. D — 抛异常，让调用方的栈展开时能知道连接出了问题
 B 的写法也展示了 self-defensive："日志 API 本身也可能抛异常（比如磁盘满）怎么办？"——外层 catch(...) 吞掉它，宁可日志丢了也不让日志抛导致 terminate。**这种"连日志的异常都防住了"的写法才是真正理解了析构函数异常安全的边界**。
 
 **来源：** 手写题。"Destructors that throw or you die" 见 Herb Sutter *Exceptional C++* Item 13；ISO/IEC 14882:2017 §15.2/2；C++ Core Guidelines E.16, C.40；Scott Meyers *Effective C++* 3e Item 8 "Prevent exceptions from leaving destructors"。
+
+## Explanation
+
+正确答案是 B。C：`abort` 可能正确——如果 flush 失败意味着数据库状态已经不一致、继续运行只会制造更大的破坏（比如金融交易）。
+析构函数在栈展开期间（stack unwinding）被调用时，如果抛第二个异常，调用 `std::terminate()`。
+这道题考 "析构函数里检测到错误的黄金法则：不抛、不忽略、记录日志是最底线"。

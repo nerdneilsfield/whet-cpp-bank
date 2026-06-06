@@ -73,3 +73,7 @@ D. D — std::mutex，让 OS/libstdc++ 处理
 - 现代 `std::mutex` 的 futex 实现：无竞争 ≈ 自旋锁，有竞争自动 sleep，不要怕用
 
 **来源：** Anthony Williams, "C++ Concurrency in Action" 2nd ed., §5.4；Intel Optimization Reference Manual, §11.4.2 "Spin-wait Loops"；Ulrich Drepper, "Futexes Are Tricky"；Paul McKenney, "Is Parallel Programming Hard, And, If So, What Can You Do About It?", §6.
+
+## Explanation
+
+这题关键在于减少共享写和锁竞争。把工作拆到线程本地，最后一次性归并，通常比多个线程反复更新同一共享状态更快。误区是只增加线程数；如果瓶颈是共享数据争用，线程越多可能越慢。

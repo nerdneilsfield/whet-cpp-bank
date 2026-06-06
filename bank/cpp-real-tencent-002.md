@@ -69,3 +69,9 @@ D. 没有支持 make_shared
 A 错，int 完全足够（实际很少超过 2^31）。B 错，reset 是辅助方法，不是核心缺陷。D 错，make_shared 是性能优化，缺失它不是缺陷。
 
 **来源：** 腾讯 / 字节 C++ 面试常考手写题（参考：libstdc++、libc++ shared_ptr 实现）
+
+## Explanation
+
+正确答案是 C。
+B 错，reset 是辅助方法，不是核心缺陷；D 错，make_shared 是性能优化，缺失它不是缺陷。
+注意 shared_ptr 的"线程安全"是有限的： 控制块的引用计数线程安全 所指对象本身的访问需要用户加锁 同一 shared_ptr 实例的并发读写（如同时 reset）不安全 不同 shared_ptr 实例指向同一对象的并发操作是安全的 A 错，int 完全足够（实际很少超过 2^31）。

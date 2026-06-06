@@ -28,3 +28,7 @@ A 正确：标准明确规定，joinable 的 `std::thread` 在析构时调用 `s
 B 正确：detach 后线程独立运行，无法再 join，访问已死栈对象或进程退出未结束都是 UB。常见 detach 滥用导致难调试的崩溃。
 C 错误：`std::thread` 是 move-only 的——拷贝构造与拷贝赋值都被 delete，避免两个对象同时管理同一线程。可以 move 转移所有权但不能拷贝。
 D 正确：POSIX 有 `pthread_cancel`，但 C++ 标准刻意没有强制取消机制（因 unwind 安全性极难保证）；推荐协作式 stop flag，C++20 的 `jthread` 内置了 `stop_token` 接口并在析构时自动 request_stop+join。
+
+## Explanation
+
+A、B、D 正确：`std::thread` 对象析构时若仍 joinable，标准要求调用 `std::terminate`，因此必须显式 `join` 或 `detach`。`detach` 只放弃管理权，不解决被访问对象的生命周期问题。常见误区是认为线程对象离开作用域会自动后台运行；若需要自动协作停止和 join，C++20 的 `std::jthread` 更合适。

@@ -72,3 +72,9 @@ D. D — reserve + insert + sort，内存最优
 - 需要去重合并 → `set_union`
 - 需要找共同元素 → `set_intersection`
 - 这些 set-algorithms 都假设输入有序
+
+## Explanation
+
+正确答案是 D。`std::merge` 是专门为"将两个有序范围合并为一个有序范围"设计的 algorithm。
+逐一品味为什么其他版本不好： A 和 D：插入完再 `sort`，复杂度 O(n log n)。
+而且手动计算偏移量 `c.begin() + b.size()`，容易写错还不安全。

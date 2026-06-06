@@ -36,3 +36,10 @@ D. 编译错误（`s` 不是合法后缀）
 - `1s` → `std::chrono::seconds`（在 chrono_literals 命名空间下）
 
 **来源：** C++14 [lex.ext]；C++17 standard library [basic.string]
+
+## Explanation
+
+正确答案是 B。
+(1) "hello" 是字符串字面值，类型 const char[6]，auto 推导时数组退化为指针 → const char*。
+(2) "hello"s 是 C++14 引入的用户自定义字面值（[lex.ext]）。需要 using namespace std::string_literals; 或 std::literals 才能识别，类型是 std::string。
+后缀对照： "x"s → std::string "x"sv → std::string_view（C++17） 1s → std::chrono::seconds（在 chrono_literals 命名空间下）。

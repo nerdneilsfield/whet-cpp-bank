@@ -30,7 +30,7 @@ D. 编译器会拒绝编译：`noexcept` 函数内不允许调用可能抛异常
 
 ---
 
-## 解析
+## Explanation
 
 - `make_unique` 底层调用 `new`，可以抛出 `std::bad_alloc`，这与函数签名中的 `noexcept` **无关**——编译器不会禁止此组合，也不会静默替换。
 - 若异常确实从 `noexcept` 函数中传播出去，C++ 标准规定运行时直接调用 `std::terminate()`，程序终止。

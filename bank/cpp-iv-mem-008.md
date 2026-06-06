@@ -14,7 +14,7 @@ rubric:
 
 # `operator new` 和 `malloc` 的关系？如何重载 `operator new`？
 
-## 参考答案
+## Explanation
 
 ### 默认实现关系
 

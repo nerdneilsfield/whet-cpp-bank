@@ -47,3 +47,9 @@ String(const String& other) {
 深拷贝发生在：**动态资源**（分配新内存再复制内容）
 
 **来源：** 阿里 C++ 面试考察（参考：cs-offer / Effective C++ Item 5-6）
+
+## Explanation
+
+正确答案是 B。
+选 B。这道题考察浅拷贝（shallow copy）vs 深拷贝（deep copy） 的本质区别。
+浅拷贝发生在：简单类型、指针（直接复制值） 深拷贝发生在：动态资源（分配新内存再复制内容）。

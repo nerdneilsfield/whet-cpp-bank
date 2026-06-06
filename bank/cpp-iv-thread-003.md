@@ -14,7 +14,7 @@ rubric:
 
 # 什么是数据竞争（data race）？如何检测（ThreadSanitizer）？
 
-## 参考答案
+## Explanation
 
 ### 定义
 

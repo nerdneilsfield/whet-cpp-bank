@@ -9,7 +9,7 @@ tests_dir: tests/cpp-prog-move-vector-001/
 ---
 实现最小化 Vector：构造、析构、拷贝构造/赋值、移动构造/赋值、push_back、size、operator[]。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -35,9 +35,9 @@ private:
 };
 ```
 
-## 提示
+### 提示
 - 不要修改 tests/ 下的文件
 - 在 skeleton/solution.hpp 中实现函数
 
-## 解析
+## Explanation
 维护 `data_`、`size_`、`cap_` 三个不变量：容量足够时直接写入，否则扩容并搬迁旧元素。拷贝构造/赋值要分配新数组并复制元素，移动构造/赋值转移指针与大小容量后把源对象清空。`push_back` 常用容量翻倍策略，空容量时先扩到 1；下标访问按签名返回引用。

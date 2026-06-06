@@ -45,3 +45,9 @@ std::string s2 = std::move(s1);  // 这里 std::move 只产生右值引用
 - 把 move 用在返回语句 `return std::move(local)` 通常会**禁止 NRVO**，反而变慢
 
 **来源：** 字节 C++11 面试题 / Effective Modern C++ Item 23
+
+## Explanation
+
+正确答案是 B。
+关键是说明正确选项成立的 C++ 规则，以及其他选项忽略的边界条件。
+常见误区是只记结论，不解释代码行为、编译行为或复杂度前提。

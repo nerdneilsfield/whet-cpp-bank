@@ -71,3 +71,7 @@ string(string&& other) noexcept {
 - `unique_ptr` 只能移动不能拷贝 → 明确的所有权转移
 
 **来源：** 字节/腾讯 C++11 移动语义高频题（参考：Effective Modern C++ Item 25、cppreference move semantics）
+
+## Explanation
+
+本题评分重点是解释移动语义用资源转移代替深拷贝，T&& 表示可绑定右值，std::move 只是把表达式转换成右值引用并不真正移动。以 vector 扩容为例，新存储分配后，若元素移动构造为 noexcept，旧元素可被移动到新位置，避免昂贵的深拷贝。noexcept 很关键，因为标准库常用 move_if_noexcept 在异常安全和性能之间选择。常见误区是 return 或 push_back 中无条件 std::move，反而可能破坏 NRVO 或触发不必要转换。

@@ -44,7 +44,7 @@ B. B 段：init-capture 把 `w` 移动进 lambda，lambda 活得比调用帧久�
 C. C 段：`[=]` 按值捕获，语义明确。
 D. D 段：init-capture 自构造或者从外部 move 进来，lambda 拥有所有权。
 
-## 解析
+## Explanation
 
 正确答案是 **D**。
 

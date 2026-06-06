@@ -21,6 +21,6 @@ B. `10 10.5`，`sum1` 类型是 `int`（由初始值类型决定）
 C. `10 10`，两者都截断为 int
 D. `10.5 10.5`
 
-## 解析
+## Explanation
 
 正确答案是 B：std::accumulate 的累加器类型由初始值 init 的类型决定。sum1 使用 int 初值 0，所以类型是 int；sum2 使用 double 初值 0.5，所以得到 10.5。常见误区是在 vector<double> 上传 0，导致精度被截断。

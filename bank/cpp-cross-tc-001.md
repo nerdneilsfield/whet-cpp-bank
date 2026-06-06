@@ -41,6 +41,6 @@ D. `a b \n1 2 3 \n`（顺序相反）
 T 只要支持 operator<< 即可实例化，std::string 满足条件。
 -->
 
-## 解析
+## Explanation
 
 B 正确：函数模板会分别为 `std::vector<int>` 和 `std::vector<std::string>` 实例化。两个类型都支持输出到 `std::cout`，因此依次打印整数行和字符串行。关键误区是认为模板只能处理数值类型；模板约束来自函数体中实际使用的操作。

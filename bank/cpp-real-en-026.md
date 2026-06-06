@@ -36,3 +36,10 @@ class Circle : public Shape {
 ```
 
 **来源：** GeeksforGeeks "Abstract Class in C++"
+
+## Explanation
+
+正确答案是 C。
+抽象类：包含至少一个纯虚函数的类；纯虚函数形式为 virtual void func() = 0;。
+不能实例化：抽象类不能创建对象；派生类必须实现所有纯虚函数才能被实例化，否则也是抽象类。
+不能实例化：抽象类不能创建对象。

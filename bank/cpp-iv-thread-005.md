@@ -14,7 +14,7 @@ rubric:
 
 # 读写锁（`std::shared_mutex`）适用场景？vs `std::mutex` 的优缺点？
 
-## 参考答案
+## Explanation
 
 ### 核心语义
 

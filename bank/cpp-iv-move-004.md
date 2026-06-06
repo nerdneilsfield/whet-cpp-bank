@@ -14,7 +14,7 @@ rubric:
 
 # 什么是转发引用（forwarding reference）？和右值引用 `T&&` 如何区分？
 
-## 参考答案
+## Explanation
 
 ### 右值引用（rvalue reference）
 

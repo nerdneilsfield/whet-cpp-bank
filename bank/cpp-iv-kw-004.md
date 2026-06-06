@@ -14,11 +14,11 @@ rubric:
 
 # `volatile` 关键字的作用与 `atomic` 的区别
 
-## 题目
+### 题目
 
 `volatile` 关键字的作用是什么？它能替代 `std::atomic` 实现线程安全吗？请说明两者的本质区别。
 
-## 参考答案
+## Explanation
 
 ### volatile 的作用
 

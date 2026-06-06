@@ -78,3 +78,9 @@ C++17 的 mandatory copy elision 让 A vs D 的性能差异消失，区别全在
 特别注意：lifetime extension **不**会跨越函数边界。如果你写 `const T& f() { return some_temp; }`，返回的 const reference 在调用方手里**仍然是悬空**——extension 只发生在直接初始化时，不发生在 return 时。这是经常被忽略的细节。
 
 **来源：** 手写题。生命周期延长规则见 ISO/IEC 14882 §6.7.7 [class.temporary]/6；mandatory copy elision (C++17) 见 §12.8/31；Herb Sutter "GotW #88: A Candidate For the 'Most Important const'"。
+
+## Explanation
+
+正确答案是 A。这道题考 "绑定到 `const T&` 的临时对象，生命周期延长到引用的作用域" —— 这是 C++ 一条非常特殊的规则，而 `auto&` 和 `T&&` 的行为微妙不同。
+这道题考 "绑定到 `const T&` 的临时对象，生命周期延长到引用的作用域" —— 这是 C++ 一条非常特殊的规则，而 `auto&` 和 `T&&` 的行为微妙不同。
+`make_long_string()` 返回的是 prvalue（纯右值），不能绑定到非 const lvalue 引用。

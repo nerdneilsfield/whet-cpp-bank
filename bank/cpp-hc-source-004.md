@@ -77,3 +77,9 @@ if (atomic_dec(&count, memory_order_release) == 1) {
 B 不准确——拷贝时确实不访问对象，但论证不完整；析构需要同步是因为 happens-before 链，不是"析构函数本身"需要。C 是流言——relaxed 比 acq_rel 在 x86 上完全一样（都是 mov），在 ARM 上 acquire 只多一个 dmb ish 指令，差别远没 10x。D 是回避问题。
 
 **来源：** 手写题，源参考 libstdc++ `bits/shared_ptr_base.h::_M_add_ref_copy` 与 `_M_release`；Peter Dimov 在 boost mailing list 的论证（2008）和 Hans Boehm 的 paper "Atomic Operations Library"。
+
+## Explanation
+
+正确答案是 A。这是 boost::shared_ptr 的作者 Peter Dimov 在 2008 年的经典论证，后来被所有主流实现采用。
+要持有 a 必然之前已经通过某种同步（构造、赋值、参数传递）建立了 happens-before 关系。
+B 不准确——拷贝时确实不访问对象，但论证不完整；析构需要同步是因为 happens-before 链，不是"析构函数本身"需要。

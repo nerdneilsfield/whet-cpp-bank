@@ -43,3 +43,9 @@ note: 'S::S()' is implicitly deleted because the default definition would be ill
 含引用成员的情况完全一样。
 
 **来源：** C++ Brain Teasers；C++17 [class.default.ctor]/2.2
+
+## Explanation
+
+正确答案是 C。
+[class.default.ctor]：如果类含有 const 非静态数据成员且没有 brace-or-equal initializer，编译器隐式声明的默认构造函数是 deleted 的——因为没法把一个 const 成员构造成"未初始化"状态。
+S s; 是 default-initialization，会去找隐式默认构造函数，但它已被 deleted，编译错误： 修复办法： 写 S s{42};（聚合初始化） 类内默认值：const int x = 42; 显式提供构造函数 含引用成员的情况完全一样。

@@ -81,3 +81,9 @@ D. D — `std::optional` 显式 lazy + mutex 守护，最直观
 注意：magic statics 解决"**当前函数被首次调用时构造**"——它**不解决** "static initialization order fiasco"（不同 TU 全局对象的构造顺序），那是另一个问题，用 "Construct On First Use" idiom 解（也是 magic statics）或 C++20 的 `constinit`（题5）。
 
 **来源：** 手写题。magic statics 见 ISO/IEC 14882:2011 §6.7/4；DCLP 历史见 Scott Meyers & Andrei Alexandrescu "C++ and the Perils of Double-Checked Locking" (Dr. Dobb's, 2004)；C++11 之后的正解见 Herb Sutter "Use Lambdas for Private Implementation Details" / Meyers *Effective Modern C++* Item 16。
+
+## Explanation
+
+正确答案是 C。这道题考 "函数内 `static` 局部变量（magic statics）在 C++11 起就是线程安全的延迟初始化" ——这条规则改变了一切，但很多人没跟上。
+这道题考 "函数内 `static` 局部变量（magic statics）在 C++11 起就是线程安全的延迟初始化" ——这条规则改变了一切，但很多人没跟上。
+即使加 `volatile` 也不够——`volatile` 在 C++ 里不是内存屏障。

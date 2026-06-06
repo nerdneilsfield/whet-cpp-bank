@@ -78,3 +78,9 @@ A 错——`operator->` 在 optional 上重载了，可以直接调成员。B �
 记忆：**`optional` 像 `unique_ptr`，不像 `expected`**。后者（C++23）的取值方式默认更严格。
 
 **来源：** 手写题。前置条件参见 ISO/IEC 14882:2017 §23.6.3.5 [optional.observe]；设计动机见 P0220R1 "Adopt Library Fundamentals V1 TS Components"。
+
+## Explanation
+
+正确答案是 D。`std::optional` 的设计是"零开销抽象"——`operator->` 和 `operator*` 故意不检查 has_value。
+A 错——`operator->` 在 optional 上重载了，可以直接调成员。
+B 错——`n->size()` 是字符串的 size，不是 optional 的。

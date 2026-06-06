@@ -86,3 +86,7 @@ f = &add;                                   // fn_ = 函数指针
 - `std::shared_ptr` 的 deleter（deleter 类型在构造时擦除）
 
 **来源：** 腾讯/字节 std::function 原理题（参考：libstdc++ / libc++ 源码、Sean Parent "Inheritance Is The Base Class of Evil"）
+
+## Explanation
+
+本题评分重点是解释 std::function 的类型擦除：对外只保留统一调用签名，对内用模板构造函数为每种可调用对象生成具体包装类型。包装类型继承统一的抽象调用接口，operator() 通过虚函数或等价机制分发到真实 lambda、函数指针或仿函数。完整实现还会考虑小对象优化、拷贝/移动、空状态和 target 查询。常见误区是以为 std::function 只是函数指针；它能保存带状态 lambda，因此通常需要存储对象而不只是地址。

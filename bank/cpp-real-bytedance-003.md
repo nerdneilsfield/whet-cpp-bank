@@ -55,3 +55,10 @@ int (*pf)(int) = f;   // OK
 **D 错误：** lambda 类型是**翻译单元内唯一**的。两个翻译单元里的同源码 lambda 是**不同类型**。这就是为什么 `std::function<R(Args...)>` 这样的类型擦除被广泛使用——它能存放任何匹配签名的可调用对象。
 
 **来源：** 字节 C++ 面试（参考：cppreference、Scott Meyers EMC++ Item 31-34）
+
+## Explanation
+
+正确答案是 D。
+选 D（说法错误）。
+*lambda 本质：编译器生成的匿名 closure 类型。
+每个 lambda 表达式生成一个唯一的匿名类（class），同源代码、同捕获列表、同函数体也是不同类型。这就是为什么： auto 是写 lambda 的唯一方式（你不知道类型名） 不能在函数签名中写 lambda 类型 不同 lambda 即使签名相同也不能相互赋值 *A 正确： 捕获列表确实变成 closure 类的成员变量。

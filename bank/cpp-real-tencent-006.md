@@ -59,3 +59,9 @@ D. C++17 删除了拷贝/移动构造的概念
 A 错：表述近似正确但"RVO 是强制的"不准确。准确说法是 prvalue 物化机制是强制的，NRVO 不是。
 
 **来源：** 腾讯 / 字节 C++ 高级面试（参考：cppreference Copy elision、C++17 标准 P0135R1）
+
+## Explanation
+
+正确答案是 C。
+选 C。这道题考察 C++17 引入的 mandatory copy elision（强制省略）。
+A 错：表述近似正确但"RVO 是强制的"不准确。准确说法是 prvalue 物化机制是强制的，NRVO 不是。

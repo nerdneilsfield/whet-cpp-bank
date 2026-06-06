@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: B
 ---
 
-## 题目
+### 题目
 
 下面代码的输出是什么？
 
@@ -31,10 +31,9 @@ B. int: 42
 C. unknown
 D. 编译错误
 
-## 答案
+## Explanation
 
 B
 
-## 解析
 
 `throw 42` 抛出一个 `int` 类型的异常。C++ 异常匹配**不做隐式类型转换**（与函数调用不同），`catch (double)` 不能匹配 `int` 异常，因此跳过。`catch (int i)` 精确匹配，输出 `int: 42`。`catch (...)` 是兜底子句，只有前面所有子句都不匹配时才执行。

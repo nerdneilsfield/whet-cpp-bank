@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-clamp-001/
 
 约束：0 <= nums.size() <= 10^5；lo <= hi。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,11 +20,15 @@ tests_dir: tests/cpp-prog-stl-clamp-001/
 std::vector<int> clamp_all(const std::vector<int>& nums, int lo, int hi);
 ```
 
-## 示例
+### 示例
 ```
 [1,5,8,12,-3], lo=0, hi=10 => [1,5,8,10,0]
 [],            lo=0, hi=1  => []
 ```
 
-## 提示
+### 提示
 - 在 skeleton/solution.hpp 中实现函数。
+
+## Explanation
+
+先创建与输入等长的结果 vector，再用 `std::transform` 对每个元素应用 `std::clamp(x, lo, hi)`。`clamp` 会把小于下界的值提升到 lo，大于上界的值降到 hi，其余保持不变。注意题目保证 `lo <= hi`，空数组应返回空结果。

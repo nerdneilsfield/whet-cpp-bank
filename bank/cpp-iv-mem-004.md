@@ -14,7 +14,7 @@ rubric:
 
 # 内存对齐是什么？为什么需要？`alignas`/`alignof` 怎么用？
 
-## 参考答案
+## Explanation
 
 ### 什么是内存对齐
 

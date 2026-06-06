@@ -79,3 +79,9 @@ C 的核心信条：**多态对象必须按引用或指针传递；当无 null �
 - 智能指针参数 → 表达所有权转移（unique_ptr）或共享所有权（shared_ptr）
 
 **来源：** 手写题。Scott Meyers "Effective C++" Item 20: "Prefer pass-by-reference-to-const to pass-by-value"；C++ Core Guidelines C.145: "Access polymorphic objects through pointers and references"。
+
+## Explanation
+
+正确答案是 C（B 和 C 在签名上相同——选 C 因为它明示了调用方式，强调了"按引用传值类型"是正确的）。
+工程上应让特殊成员函数、所有权和移动后的状态保持一致，避免把可编译误当成可维护。
+但 B 没说明调用方怎么用，可能让读者误以为有什么特别之处。

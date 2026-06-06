@@ -32,7 +32,7 @@ C. 1、2、3、4 全部都有问题，因为 vector<bool> 是 specialization 不
 D. 都正常
 ---
 
-## 解析
+## Explanation
 
 `std::vector<bool>` 是 STL 历史遗留的**特化**——内部按位打包存储（1 字节 8 个 bool），导致它**不是 Container 概念的真正容器**：
 

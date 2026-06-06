@@ -37,3 +37,9 @@ D 对：C++20 `std::jthread` 解决 A 的问题：
 - 替代 `std::thread` 在大部分场景
 
 **来源：** 阿里秋招 C++ 并发面试题 / cppreference thread
+
+## Explanation
+
+正确答案是 [A, B, D]。
+A 对：C++11 thread 的"要么 join 要么 detach 要么 terminate"规则是 C++ 线程设计的痛点之一；B 对：hardware_concurrency() 返回硬件支持的并行线程数（通常是核心数），0 表示信息不可用。
+C 错：STL 容器不是线程安全的。多个线程同时写（或一个写同时一个读）std::vector 是数据竞争，导致未定义行为。但多个线程同时读（无写操作）是安全的；D 对：C++20 std::jthread 解决 A 的问题： 析构时自动 request_stop() + join() 内置 std::stop_token 机制，取消协作方便 替代 std::thread 在大部分场景。

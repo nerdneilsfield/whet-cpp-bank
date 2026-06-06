@@ -46,7 +46,7 @@ B. B 段：按值接每个参数，再无脑 `std::move`，省掉了引用折叠
 C. C 段：`const&` 既不会拷贝也最安全，构造函数能自己决定要不要 move。
 D. D 段：`Args&&` 已经是右值引用，直接 `std::move` 比 `std::forward` 更简洁。
 
-## 解析
+## Explanation
 
 正确答案是 **A**。
 

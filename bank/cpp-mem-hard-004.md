@@ -21,6 +21,6 @@ B. `polymorphic_allocator` 通过模板参数静态选择资源，与 `allocator
 C. `polymorphic_allocator` 通过**类型擦除**指向 `memory_resource` 基类指针，运行期分发；容器在传播分配器时只复制指针，可让不同后备资源的同类型容器共存
 D. 标准要求 `polymorphic_allocator` 的 `allocate` 必须使用 `malloc`
 
-## 解析
+## Explanation
 
 `std::allocator` 是静态多态的最小分配器，所有同类型 `vector<int>` 共享同一分配策略；不同分配器模板参数的容器是不同类型，不可直接赋值。`polymorphic_allocator` 持有 `memory_resource*`，`allocate` 经虚函数转发到具体资源（`monotonic_buffer_resource`、`unsynchronized_pool_resource` 等）。这带来运行期开销，但所有 `pmr::vector<int>` **是同一类型**，可以互相赋值、按值传参，仅在构造时绑定不同 `memory_resource`，灵活性远高于传统 allocator。A 错误：不同分配器类型容器不互换；B 与 C 矛盾，且不正确；D 标准未规定具体上游。

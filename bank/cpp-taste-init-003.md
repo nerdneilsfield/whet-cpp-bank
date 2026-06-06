@@ -63,3 +63,9 @@ D. D — `{}` 是现代 C++ 推荐的统一初始化
 `{}` 在 C++11 设计时被宣传为 "uniform initialization"，但它的"统一"是有代价的——**vector 的劫持**（题1）、**narrowing 禁止**（本题）、**explicit 构造函数行为差异**——使它没成为真正的统一。Bjarne 本人后来承认这是 C++11 的设计妥协之一。
 
 **来源：** 手写题。narrowing 规则见 ISO/IEC 14882 §8.5.4 [dcl.init.list]/7；C++ Core Guidelines ES.46 "Avoid lossy (narrowing, truncating) arithmetic conversions"、ES.49 "If you must use a cast, use a named cast"。
+
+## Explanation
+
+正确答案是 B。如果作者真要走 `{}` 路线表达截断意图，正确写法是 `int n{static_cast<int>(r)};`——但那时 `{}` 就只是装饰了，意图全靠 `static_cast` 承担。
+"函数风格转换"是 C 风格强转的语法糖，没比 A 多任何安全性，反而因为长得像构造函数让读者更难判断意图。
+这道题考 "`{}` 防 narrowing 但不防错用，`static_cast` 才是表达截断意图的正确工具"。

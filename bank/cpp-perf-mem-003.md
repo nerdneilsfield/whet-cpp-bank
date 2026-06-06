@@ -61,3 +61,7 @@ D. D — forward_list 单链，开销更小，等价于精简版 A
 - `reserve` 之后 `push_back` 等价于裸指针写，是建容器的标准姿势
 
 **来源：** Stroustrup, "Why you should avoid Linked Lists", GoingNative 2012；Chandler Carruth, "Efficiency with Algorithms, Performance with Data Structures", CppCon 2014；Bjarne Stroustrup, "The C++ Programming Language" 4th ed., §31.4.
+
+## Explanation
+
+正确答案应避免在循环中频繁分配和释放小对象。预分配、对象池或连续容器能降低 allocator 开销、碎片和缓存失效。常见误区是认为 new/delete 只是常数时间；在百万级循环和多线程下，分配器元数据与锁竞争会非常明显。

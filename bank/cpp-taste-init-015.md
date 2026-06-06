@@ -89,3 +89,9 @@ D. D — `reserve(8) + push_back` 最贴"逐步生成"的语义
 一句话总结：**编译期已知大小 → `std::array`；运行时大小 → `std::vector`；C 数组只在和 C API 互操作时出现**。
 
 **来源：** 手写题。`std::array` 见 ISO/IEC 14882:2011 §23.3.2 [array]；C++ Core Guidelines SL.con.1 "Prefer using STL `array` or `vector` instead of a C array"；Scott Meyers *Effective Modern C++* Item 12 / Item 13 中提到 `std::array` 在 size-known 场景下的优势。
+
+## Explanation
+
+正确答案是 B。这道题考 "`std::array` 在编译期大小固定场景下是 `vector` 和 C 数组的双重替代品" —— `array` 是 C++11 引入的、被严重低估的工具。
+工程上要理解现代 C++ 语法背后的推导、重载和生命周期规则，而不是只按表面写法判断。
+常见误区是把新语法等同于直觉糖，忽略 `auto`、列表初始化、lambda 捕获和重载决议的特殊规则。

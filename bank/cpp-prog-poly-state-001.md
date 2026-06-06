@@ -9,7 +9,7 @@ tests_dir: tests/cpp-prog-poly-state-001/
 ---
 TrafficLight 状态机使用多态 State。三个状态 Red -> Green -> Yellow -> Red。每个 State 有 duration() 和 next()。
 
-## 函数签名
+### 函数签名
 ```cpp
 #pragma once
 #include <memory>
@@ -55,6 +55,10 @@ private:
 };
 ```
 
-## 提示
+### 提示
 - 不要修改 tests/ 下的文件
 - 在 skeleton/solution.hpp 中实现函数
+
+## Explanation
+
+每个状态类实现自己的颜色、持续时间和 `next()`，`TrafficLight` 持有当前 `unique_ptr<State>`。`advance()` 用当前状态的 `next()` 替换状态指针，实现 Red、Green、Yellow 循环。注意 `next()` 要返回新对象而不是返回指向临时对象的裸指针。

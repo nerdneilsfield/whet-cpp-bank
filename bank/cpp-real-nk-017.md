@@ -37,3 +37,10 @@ unique_ptr 的核心机制就是利用 RAII：栈上对象的析构函数自动�
 shared_ptr 同理：智能指针对象的存储位置由声明位置决定（栈/堆/全局），被管理对象通常在堆上（除非使用 `make_shared`，则对象与控制块同块堆内存）。
 
 **来源：** 卡码笔记 C++ 智能指针专题 / huihut/interview
+
+## Explanation
+
+正确答案是 A。
+智能指针是普通对象，遵循 C++ 对象的存储期规则： up 作为函数局部变量，存储在栈（自动存储期） int(42) 通过 new 分配，存储在堆（动态存储期） unique_ptr 的核心机制就是利用 RAII：栈上对象的析构函数自动执行，析构函数中调用 delete 释放堆内存。
+如果 unique_ptr 本身也在堆上（如 new unique_ptr<int>(...)），就需要手动 delete 这个 unique_ptr，违背了 RAII 初衷。
+shared_ptr 同理：智能指针对象的存储位置由声明位置决定（栈/堆/全局），被管理对象通常在堆上（除非使用 make_shared，则对象与控制块同块堆内存）。

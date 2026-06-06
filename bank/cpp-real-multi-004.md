@@ -40,3 +40,10 @@ E. noexcept(true) 比 noexcept(false) 函数执行速度快 10 倍
 **E 错误：** noexcept 不直接提升运行时性能，主要是**让编译器和库进行优化决策**（如 move_if_noexcept、不生成异常表代码）。具体效果因实现而异。
 
 **来源：** 跨厂 C++ noexcept 深入考点（参考：cppreference、Effective Modern C++ Item 14、ISO C++ N4659）
+
+## Explanation
+
+正确答案：A、B、D。
+A 正确： noexcept 函数抛出异常 → 直接 std::terminate()；B 正确： 这是 C++11 的关键设计——std::move_if_noexcept 在 vector 扩容时检查移动构造是否 noexcept，若不 noexcept 退化为拷贝（保证强异常安全）。
+C 正确（但本题选项 D 优先）： C++11 起，析构函数默认是 noexcept（除非基类析构是 noexcept(false) 或成员析构非 noexcept）。
+注意不做栈展开（实现允许做或不做），与 throw() 行为相同。

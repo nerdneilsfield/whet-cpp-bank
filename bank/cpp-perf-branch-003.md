@@ -74,3 +74,7 @@ D. D — std::map 提供 .at 的边界检查，最安全
 - 一条 L1 load ~4 cycles，比任何分支链都便宜
 
 **来源：** Agner Fog, "Optimizing software in C++", §7.3 "Branches and switches"；Mike Acton, "Data-Oriented Design", CppCon 2014（"table lookup vs branch"）；Andrei Alexandrescu, "Fastware", code::dive 2015.
+
+## Explanation
+
+正确答案依赖数据分布：对随机条件，消除分支或批量处理通常比逐元素 if 更稳。分支预测器擅长规律模式，不擅长接近 50/50 的随机模式。常见误区是把“少写一次计算”当成必然更快，但省下的计算可能抵不过错误预测成本。

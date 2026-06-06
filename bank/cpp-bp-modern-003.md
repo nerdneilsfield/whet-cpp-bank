@@ -44,7 +44,7 @@ D. D
 
 ---
 
-## 解析
+## Explanation
 
 C++17 引入 **if-init statement**：
 

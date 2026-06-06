@@ -29,3 +29,9 @@ A 正确：`string_view` 是非所有者视图，`s` 离开作用域后视图悬
 B 正确：`string_view` 不会延长临时对象生命周期，临时 `std::string` 在表达式结束时销毁，`sv` 即刻悬空。
 C 错误：`string_view` 是**非拥有**的（non-owning），只持有指针和长度，调用方需自行保证底层数据存活，这正是其主要使用陷阱。
 D 正确：`string_view` 表示的可能是某个更长字符串的子串，`data()` 后没有保证的 `'\0'`。需要 C 字符串时必须先拷贝到 `std::string`。
+
+## Explanation
+
+正确答案是 [A, B, D]。A 正确：`string_view` 是非所有者视图，`s` 离开作用域后视图悬空，访问是 UB。
+B 正确：`string_view` 不会延长临时对象生命周期，临时 `std::string` 在表达式结束时销毁，`sv` 即刻悬空。
+C 错误：`string_view` 是非拥有的（non-owning），只持有指针和长度，调用方需自行保证底层数据存活，这正是其主要使用陷阱。

@@ -44,7 +44,7 @@ D. 程序崩溃，无输出
 
 ---
 
-## 解析
+## Explanation
 
 `unique_ptr` 是 RAII 对象，存储在栈上。
 `foo()` 抛出异常时，C++ 运行时进行**栈展开**（stack unwinding），`foo()` 的所有栈帧局部变量被销毁，`p` 的析构函数在控制流离开 `foo()` 之前被调用。

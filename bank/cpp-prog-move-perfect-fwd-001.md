@@ -9,7 +9,7 @@ tests_dir: tests/cpp-prog-move-perfect-fwd-001/
 ---
 实现 wrapper(Func&& f, Args&&... args) 完美转发参数到 f。返回值和异常传递。测试时验证左值/右值/const 引用分类被保留。
 
-## 函数签名
+### 函数签名
 ```cpp
 #pragma once
 #include <utility>
@@ -18,6 +18,10 @@ template <typename Func, typename... Args>
 decltype(auto) wrapper(Func&& f, Args&&... args);
 ```
 
-## 提示
+### 提示
 - 不要修改 tests/ 下的文件
 - 在 skeleton/solution.hpp 中实现函数
+
+## Explanation
+
+`wrapper` 应把可调用对象和所有参数都作为转发引用接收，并用 `std::forward<Func>(f)(std::forward<Args>(args)...)` 调用。返回类型用 `decltype(auto)`，才能保留引用返回值并正确传递 void 或值类型结果。不要把参数先存为普通局部变量，否则左值、右值和 const 分类会被破坏。

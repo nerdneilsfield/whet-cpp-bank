@@ -38,3 +38,7 @@ A 正确：普通 try 块不能包裹初始化列表，[member initializer list 
 B 错误：函数 try 块（尤其是构造函数）的 catch 块结尾**隐式 rethrow**原异常，不能静默"忽略"异常后继续正常返回。如果 catch 块执行完毕（无显式 throw），等价于 `catch { ... throw; }`。
 C 正确：函数 try 块（构造/析构）的 catch 块中若没有显式 rethrow 原异常，则隐式 rethrow；如果在此 catch 中抛出一个**不同**的异常（非原异常），行为是调用 `std::terminate`。
 D 正确：析构函数的函数 try 块语法合法，可以捕获析构体中的异常，但规则与构造函数类似——catch 块结束后会隐式 rethrow。
+
+## Explanation
+
+A、C、D 正确：构造函数的函数 try 块能覆盖基类和成员初始化列表，这是普通函数体内 try 块做不到的。构造/析构函数 try 块的 catch 结束后不能假装恢复成功，异常会继续传播，相关规则非常受限。常见误区是把它当成普通 try/catch 使用；构造失败的对象不能通过 catch 块“修好后返回”。

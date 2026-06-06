@@ -35,6 +35,6 @@ D. `Derived Base `
 
 这就是为什么需要多态行为时**必须**用引用或指针传递基类，按值传递会静默地丢掉派生部分。`-Wsuggest-final-types`/`-Wpessimizing-move` 不会警告这种切片，得靠 code review 或显式禁用基类复制构造来防御。
 
-## 解析
+## Explanation
 
 正确答案是 A，对应“Base Derived ”。本题考查继承中的访问控制、构造析构顺序、虚函数或多继承规则，关键是区分静态类型限制和运行期动态绑定。其他选项容易混淆相关概念：B 项“Derived Derived ”不满足题干要求；C 项“Base Base ”不满足题干要求；D 项“Derived Base ”不满足题干要求。常见误区是只凭关键字判断，而没有结合完整声明、表达式求值结果或 C++ 语义限制。

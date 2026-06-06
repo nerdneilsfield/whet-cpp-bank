@@ -35,7 +35,7 @@ D. D：整数减法可能溢出 UB
 
 ---
 
-## 解析
+## Explanation
 
 `noexcept` 的语义是**承诺不抛异常**。若标注 `noexcept` 的函数实际抛出，**立刻调用 `std::terminate`**（不展开栈，不调析构），程序直接死亡。
 

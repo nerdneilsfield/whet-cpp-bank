@@ -32,7 +32,7 @@ B. `std::string_view` 隐式转换到 `MyKey` 即可
 C. 透明比较器要求两个操作数必须为同一类型，因此不适用
 D. 透明比较器利用 `is_transparent` 作为标签（tag trait），激活 `set::find` 的**泛型版本**（而非 `find(const Key&)`），该版本以任何类型作为传入参数直接调用 `Comp::operator()(a, b)`。只要 `Comp` 提供跨类型的比较操作符（如 `(MyKey, string_view)` 等），就不需构造 `MyKey` 临时对象
 
-## 解析
+## Explanation
 
 C++14 引入"透明比较器"通过 `using is_transparent = void;` 标记。对于关联容器 `set` / `map` / `multiset` / `multimap`，若比较器定义了 `is_transparent`，容器会开放泛型重载的查找方法 `find` / `lower_bound` / `equal_range` / `count` 等。
 

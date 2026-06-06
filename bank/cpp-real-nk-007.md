@@ -45,3 +45,10 @@ std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
 这是面试高频"考你是否真的写过"的题目。
 
 **来源：** 牛客网 C++ STL 高频面试题 / cppreference
+
+## Explanation
+
+正确答案是 A。
+std::priority_queue 的反直觉之处： 默认比较器是 std::less，但行为是大顶堆。
+原因：堆的"父节点优先级 > 子节点"中的"优先级 >"用 Compare(parent, child) == false（即 parent 不小于 child）来判断。less<int>{}(3, 5) 返回 true，所以 3 应作为子节点，5 浮上去成为 top。
+如果要小顶堆，需要： 这是面试高频"考你是否真的写过"的题目。

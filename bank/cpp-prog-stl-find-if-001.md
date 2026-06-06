@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-find-if-001/
 
 约束：0 <= nums.size() <= 10^5。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,11 +20,15 @@ tests_dir: tests/cpp-prog-stl-find-if-001/
 int first_negative_index(const std::vector<int>& nums);
 ```
 
-## 示例
+### 示例
 ```
 [3,5,-1,7,-2] => 2
 [1,2,3]       => -1
 ```
 
-## 提示
+### 提示
 - 在 skeleton/solution.hpp 中实现函数。
+
+## Explanation
+
+调用 `std::find_if` 查找第一个满足 `x < 0` 的元素。若迭代器等于 `end()` 返回 -1，否则返回它与 `begin()` 的距离。注意只返回第一个负数，不能继续扫描后覆盖答案。

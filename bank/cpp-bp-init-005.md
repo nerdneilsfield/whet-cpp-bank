@@ -31,7 +31,7 @@ D. 输出依赖编译器/链接器对 TU 的初始化顺序，可能是 "42 0" �
 
 ---
 
-## 解析
+## Explanation
 
 **Static Initialization Order Fiasco（静态初始化顺序问题）**：
 

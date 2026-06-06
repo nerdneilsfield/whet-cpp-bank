@@ -32,3 +32,8 @@ C++ 迭代器按能力从弱到强分为 5 种类别（注意 Output Iterator �
 容器对应：`vector` / `deque` → Random Access；`list` / `set` / `map` → Bidirectional；`forward_list` → Forward；`istream_iterator` → Input；`ostream_iterator` → Output。
 
 **来源：** InterviewBit "C++ Interview Questions" — Iterators
+
+## Explanation
+
+正确答案是 A。
+C++ 迭代器按能力从弱到强分为 5 种类别（注意 Output Iterator 是一个并列分支，而非层级）： 容器对应：vector / deque → Random Access；list / set / map → Bidirectional；forward_list → Forward；istream_iterator → Input；ostream_iterator → Output。

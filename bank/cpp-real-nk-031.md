@@ -35,3 +35,9 @@ C++11 atomic 的 6 种 memory_order，按"严格程度"递增大致：
 x86 上 acquire/release 几乎是免费的（强内存模型），但 seq_cst 需要 mfence。ARM 上各种 order 开销差异显著。
 
 **来源：** 字节并发面试题 / cppreference memory_order
+
+## Explanation
+
+正确答案是 C。
+关键是说明正确选项成立的 C++ 规则，以及其他选项忽略的边界条件。
+常见误区是只记结论，不解释代码行为、编译行为或复杂度前提。

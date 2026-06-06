@@ -14,11 +14,11 @@ rubric:
 
 # 迭代器失效规则：`vector` / `map` / `list` 各在什么操作后失效？
 
-## 问题
+### 问题
 
 C++ STL 中不同容器的迭代器失效（iterator invalidation）规则不同。请分别说明 `vector`、`map`（及 `unordered_map`）、`list` 在插入和删除操作后迭代器的失效情况，并给出一个常见 bug 示例。
 
-## 参考答案
+## Explanation
 
 ### `std::vector`
 

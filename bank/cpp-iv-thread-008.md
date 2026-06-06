@@ -14,7 +14,7 @@ rubric:
 
 # 无锁编程（lock-free）的优缺点？CAS 操作和 ABA 问题？
 
-## 参考答案
+## Explanation
 
 ### Lock-Free 的定义
 

@@ -23,6 +23,6 @@ B. p=`1 3 6 10`, e=`0 1 3 6`, i=`0 1 3 6`
 C. p=`1 3 6 10`, e=`0 1 3 6`, i=`1 3 6 10`
 D. 全部相等
 
-## 解析
+## Explanation
 
 正确答案是 C：partial_sum 和 inclusive_scan 都包含当前元素，所以结果都是 1 3 6 10。exclusive_scan 不包含当前元素，并从初值 0 开始，因此是 0 1 3 6。误区是把 inclusive 与 exclusive 的边界含义混淆。

@@ -30,7 +30,7 @@ D. 多线程缓存一致性问题
 
 ---
 
-## 解析
+## Explanation
 
 `std::vector` 容量增长策略一般是几何增长（GCC libstdc++ 是 2 倍，Clang libc++ 是 2 倍，MSVC 是 1.5 倍）。push 100 万次需要约 log2(1M) ≈ 20 次扩容。每次扩容：
 1. 分配新内存（大约是当前 size 的 2 倍）

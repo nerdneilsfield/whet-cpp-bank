@@ -57,3 +57,9 @@ auto_ptr<int> x = v[0];  // v[0] 被清空！
 A 错，是缺点之一但不是根本。B 错，auto_ptr 只有一个指针大小。D 错，定制 deleter 是次要因素。
 
 **来源：** 字节 C++ 面试常考（参考：Effective Modern C++ Item 18、cppreference）
+
+## Explanation
+
+正确答案是 C。
+A 错，是缺点之一但不是根本；B 错，auto_ptr 只有一个指针大小。
+D 错，定制 deleter 是次要因素。

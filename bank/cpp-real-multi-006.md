@@ -58,3 +58,8 @@ ref.speak();         // "Woof" - 引用不切片
 **总结：** 多态 = virtual + 指针/引用。少一个都不行。
 
 **来源：** 跨厂 C++ 基础考点（参考：cppreference、《C++ Primer》第 15 章）
+
+## Explanation
+
+正确答案：A、B。
+B 正确： 必须通过基类指针或引用调用： Animal* p = new Dog; p->speak(); → 动态绑定 → "Woof" Animal a = Dog(); a.speak(); → 对象切片（slicing）！只保留 Animal 部分 → 静态绑定 → "..." *C 不完全正确： 派生类函数签名必须与基类严格匹配（参数类型、个数、const 限定符、ref 限定符），返回类型可以协变（covariant return type）。如果不匹配，是"隐藏"而不是"重写"——但题目说"必须完全相同"语气太绝对（协变返回是例外）。

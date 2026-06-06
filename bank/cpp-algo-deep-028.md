@@ -20,6 +20,6 @@ B. `auto it = s.find(key); // O(log n)`
 C. `auto it = std::binary_search(s.begin(), s.end(), key); // 返回 iterator`
 D. 两种都一样快，`std::find` 在 set 上会自动用二分
 
-## 解析
+## Explanation
 
 正确答案是 B：std::set::find 会利用红黑树结构，时间复杂度 O(log n)。通用 std::find 只做线性扫描，不会自动利用 set 的有序结构。binary_search 返回 bool 而不是迭代器，也不是最优成员查找方式。

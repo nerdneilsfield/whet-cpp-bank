@@ -48,3 +48,7 @@ class D : public B, public C {};
 使用 `virtual` 继承后，D 中只有**一份**共享的 A 子对象。由最派生类（D）直接负责构造该共享子对象。代价是额外 vtable 开销和访问 A 成员时多一次间接寻址。
 
 **来源：** InterviewBit "C++ Interview Questions" — Diamond Problem / Virtual Inheritance
+
+## Explanation
+
+本题评分重点是描述菱形继承：D 同时经 B 和 C 继承 A，普通继承会让 D 中出现两份 A 子对象，访问 A 成员时产生二义性。虚继承通过 class B : virtual public A 让最终派生类共享一份 A 子对象，并由最派生类负责构造它。代价是对象布局更复杂，访问虚基类通常需要额外间接寻址。常见误区是以为 virtual 写在函数上能解决菱形继承；这里需要的是虚继承。

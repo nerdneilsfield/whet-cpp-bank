@@ -74,3 +74,9 @@ C 胜出的理由很关键：**`std::function<int()>` 作为接口比类接口�
 - "类型擦除" 是在真的需要 type-erased container 时的方案，不是默认选择
 
 **来源：** 手写题。Sean Parent "Inheritance Is The Base Class of Evil" (C++Now 2013) 关于类型擦除的讨论；C++ Core Guidelines I.5: "Prefer compile-time polymorphism to run-time polymorphism"。
+
+## Explanation
+
+正确答案是 C。`virtual ~Sortable()` 必须正确（否则多态 delete UB），派生类必须公开继承——这是用大炮打蚊子。
+除非你真的需要在同一个容器里存 A 类型和 B 类型（它们全是不同的类但都 `.key()`），否则这个复杂度不必要。
+而且 `Sortable` 现在是模板别名而非类型，不能用在运行期多态容器中。

@@ -69,3 +69,7 @@ B 优于 D 的关键不是性能（一样），而是**意图明确性**：B 一
 - 一个看不到的 alias 假设能杀掉向量化的整数倍收益
 
 **来源：** Chandler Carruth, "Tuning C++: Benchmarks, and CPUs, and Compilers!", CppCon 2015；Agner Fog, "Optimizing software in C++", §8 "Loop optimizations"；GCC manual, `__restrict__`.
+
+## Explanation
+
+正确选择应减少循环内难预测分支，并让循环体保持简单。排序、分桶或先过滤再处理有时能把随机分支变成连续批处理，换取更好的预测和缓存行为。常见误区是只看算法大 O，而忽略同为 O(n) 时分支模式会造成数量级常数差异。

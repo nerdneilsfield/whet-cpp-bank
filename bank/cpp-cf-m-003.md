@@ -13,6 +13,6 @@ B. `switch` 的条件表达式可以是浮点型（`double`）
 C. `default` 分支不是必须的，可以省略
 D. 多个 `case` 标签可以共用同一段代码体
 
-## 解析
+## Explanation
 
 正确答案是 A、C、D。`switch` 中缺少 `break` 会发生 fall-through，`default` 可以省略，多个 `case` 标签也可以共享一段语句。`switch` 条件不能是浮点型，只能是整型、枚举型或可转换到这些类型的表达式。

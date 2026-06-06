@@ -14,7 +14,7 @@ rubric:
 
 # 写一个 `make_unique<T>(args...)` 的简化实现，正确使用完美转发。
 
-## 参考答案
+## Explanation
 
 ### 实现
 

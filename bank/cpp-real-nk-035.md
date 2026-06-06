@@ -35,3 +35,9 @@ A **不是 RAII**：裸指针需要手动 `delete`，没有使用 RAII 管理。
 RAII 也应用于：`std::thread`（join on destruct）、`std::shared_ptr`（引用计数自动递减）、`std::vector`（析构时释放内部数组）、数据库连接等。
 
 **来源：** 阿里云 C++ 面试题 / CSDN 八股
+
+## Explanation
+
+正确答案是 A。
+RAII 核心思想：将资源的生命周期绑定到栈上对象的生命周期上。
+资源在构造时获取（或赋值获取） 在析构时释放 保证无论正常返回还是抛异常，资源都能正确释放 A 不是 RAII：裸指针需要手动 delete，没有使用 RAII 管理。正确做法是用 unique_ptr 或 shared_ptr。

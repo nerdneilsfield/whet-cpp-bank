@@ -33,3 +33,7 @@ A 正确：未加同步的指针读写在弱内存模型上可重排，DCLP 的�
 B 正确：用原子指针配合 release-acquire 是合法 DCLP 实现：写线程 release 完成构造与赋值；读线程 acquire 看到非 nullptr 时，构造已完成。
 C 错误：`volatile` 在 C++ 中**不是同步原语**，只阻止编译器优化但不强制 CPU 内存屏障，不能解决跨线程可见性与重排问题（Java 的 `volatile` 才有 acquire/release 语义，C++ 没有）。
 D 正确：C++11 [stmt.dcl]/4 保证函数局部 static 的初始化是线程安全的（"magic statics"），Meyers' Singleton 是最简洁且正确的方案，且零开销（首次后无锁）。
+
+## Explanation
+
+A、B、D 正确：坏的双重检查锁定可能让其他线程看到非空指针但对象尚未构造完成。正确实现需要原子指针配合 release/acquire，或更简单地使用 C++11 保证线程安全初始化的局部 static。常见误区是把 C++ 的 `volatile` 当成同步原语；它不提供跨线程 happens-before。

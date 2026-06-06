@@ -40,7 +40,7 @@ D. D：返回引用，零开销
 
 ---
 
-## 解析
+## Explanation
 
 C++17 把 RVO（具体是 prvalue copy elision）从"允许优化"升级为"**强制要求**"。`return Image(w, h);` 中临时对象直接构造在调用者预留的位置，**没有拷贝、没有 move、没有额外析构**。在过去 C++11/14 中这是优化；C++17 起这是语言规则，连 move ctor 都可以是 deleted。
 

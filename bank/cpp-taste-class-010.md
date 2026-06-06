@@ -79,3 +79,9 @@ C++ Core Guidelines C.2: "Use `class` if the class has an invariant; use `struct
 - 返回引用的 getter 等于 = 公有字段（绕了大圈）
 
 **来源：** 手写题。C++ Core Guidelines C.2 和 C.131: "Avoid trivial getters and setters"。
+
+## Explanation
+
+正确答案是 A。这道题考的是"封装" 不是教条，识别"纯数据类型"和"行为类型"是基本功。
+没有任何隐藏的复杂度：构造、拷贝、移动、聚合初始化 `{1.0, 2.0}` 全部正确。
+这道题考的是"封装" 不是教条，识别"纯数据类型"和"行为类型"是基本功。

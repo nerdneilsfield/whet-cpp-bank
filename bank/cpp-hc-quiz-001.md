@@ -62,3 +62,9 @@ std::string s2{10, 'x'};      // 两字符：'\n' 和 'x' (因为 10 是 char �
 C 和 A 是把两种结果搞反或一致化。D 错——两种语法都合法，没有歧义。
 
 **来源：** 手写题。规则参见 ISO/IEC 14882:2017 §16.3.1.7 [over.match.list]；Scott Meyers, *Effective Modern C++*, Item 7。
+
+## Explanation
+
+正确答案是 B。这是 `{}` vs `()` 在容器构造上最常踩的坑。
+这是 `{}` vs `()` 在容器构造上最常踩的坑。
+D 错——两种语法都合法，没有歧义。

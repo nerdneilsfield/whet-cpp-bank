@@ -37,3 +37,9 @@ C 对：
 D **错**：`const_cast` 去除 const 后，**只有当原对象本身不是 const 时**才能安全修改。如果对真正的 const 对象 `const T x;` 用 const_cast 去 const 后修改是**未定义行为**。const_cast 主要用于兼容老 API 或 const/非 const 重载共享实现。
 
 **来源：** 牛客网 C++ 类型转换面试题 / cppreference
+
+## Explanation
+
+正确答案是 [A, B, C]。
+A 对： static_cast<int>(3.14) → 3 static_cast<Base*>(derivedPtr) 上行转换 static_cast<Derived*>(basePtr) 下行转换（编译通过但无运行时检查，需自行保证正确性）；B 对： dynamic_cast<Derived*>(basePtr) 失败返回 nullptr dynamic_cast<Derived&>(baseRef) 失败抛 std::bad_cast 要求基类有虚函数（否则无 RTTI 信息）。
+C 对： reinterpret_cast<int>(ptr) 把指针当整数 reinterpret_cast<float*>(intPtr) 不相关指针重解释 通常违反严格别名规则（strict aliasing），可能 UB；D 错：const_cast 去除 const 后，只有当原对象本身不是 const 时才能安全修改。如果对真正的 const 对象 const T x; 用 const_cast 去 const 后修改是未定义行为。const_cast 主要用于兼容老 API 或 const/非 const 重载共享实现。

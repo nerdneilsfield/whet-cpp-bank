@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: B
 ---
 
-## 题目
+### 题目
 
 下面代码能否通过编译？运行结果如何？
 
@@ -35,10 +35,9 @@ B. 编译通过，无输出（不匹配任何 case，直接退出）
 C. 编译通过，但运行时崩溃
 D. 编译通过，输出 `Spades`
 
-## 答案
+## Explanation
 
 B
 
-## 解析
 
 C++ 编译器对 `enum class` 的 `switch` 遗漏枚举值通常只产生**警告**（如 `-Wswitch`），而非错误。代码可以正常编译并运行。当 `s == Suit::Spades` 时没有匹配的 `case`，也没有 `default`，控制流直接跳过整个 switch，函数正常返回，无任何输出。

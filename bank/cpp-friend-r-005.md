@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: "A"
 ---
 
-## 题目
+### 题目
 
 阅读以下代码，程序输出是什么？
 
@@ -45,6 +45,6 @@ B. `100`
 C. 编译错误：只有部分成员函数可以访问 private
 D. `80`
 
-## 解析
+## Explanation
 
 `Bank` 被声明为 `Wallet` 的 friend 类，因此 `Bank` 的**所有成员函数**都可以访问 `Wallet` 的 private 成员 `balance`。初始值 100，存入 50 后为 150，取出 30 后为 120，输出 `120`。friend 类授权是整体的，不区分成员函数。

@@ -29,3 +29,7 @@ A 正确：标准 [class.copy.elision] 规定，当 return 表达式是一个引
 B 错误：`return std::move(b)` 会**阻止 NRVO**（因为 return 表达式不再是简单的 id-expression），强制至少一次 move；而 `return b;` 在能 NRVO 时是零成本。所以 (1) 通常比 (3) 更优，加 `std::move` 反而是负优化（典型反模式）。
 C 正确：C++11 起函数形参也算作合格的局部对象（具备自动存储期），同样享受隐式 move 规则；但形参由于已经构造在调用者栈帧中，无法 NRVO，但可以 move。
 D 正确：引用形参指向的对象不属于该函数的局部对象（生命周期不归本函数所有），不能视为右值，因此 `return b;` 走拷贝构造，这也是 Effective Modern C++ 中明确提到的规则。
+
+## Explanation
+
+A、C、D 正确：返回局部非 `volatile` 对象时会先尝试拷贝省略，不能省略时才按右值进行隐式移动。函数形参也可隐式移动，但引用形参引用的是外部对象，不满足局部对象条件。常见误区是在 `return b;` 中手写 `std::move(b)`，这反而破坏 NRVO，通常是负优化。

@@ -44,3 +44,8 @@ D. 行为未定义
 `try/catch` 完全没机会运行——`f` 抛出的瞬间程序就死了。
 
 **来源：** C++17 [except.spec]/5
+
+## Explanation
+
+正确答案是 B。
+注意： noexcept 不阻止你在函数体里写 throw（不是编译错误，编译器顶多给警告） 它是个承诺，违反承诺 = terminate，没有第二次机会让外层 catch 接住 try/catch 完全没机会运行——f 抛出的瞬间程序就死了。

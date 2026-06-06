@@ -40,6 +40,6 @@ D. 编译报错，`std::move` 不能作用于左值
 
 选 C。
 
-## 解析
+## Explanation
 
 正确答案是 C，`std::move(arg)` 无条件把 `arg` 转为右值，即使原始调用传入的是左值 `s`。若 `target` 接受并移动该对象，调用者的 `s` 就会进入有效但未指定的移后状态。完美转发中应使用 `std::forward<T>(arg)`，而不是统一使用 `std::move`。

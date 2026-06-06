@@ -41,6 +41,6 @@ buf 指向的堆内存未被释放 → 资源泄漏。
 修复：将 Base 的析构函数声明为 virtual。
 -->
 
-## 解析
+## Explanation
 
 B 正确：通过 `Base*` 删除实际为 `Derived` 的对象，但 `Base` 析构函数不是 virtual，标准上是未定义行为。常见表现是只调用 `~Base`，`~Derived` 不执行，`buf` 泄漏。关键误区是只看输出而忽略 UB；正确设计是给多态基类虚析构函数。

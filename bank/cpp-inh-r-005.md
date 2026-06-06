@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: "D"
 ---
 
-## 题目
+### 题目
 
 阅读以下代码，程序输出是什么？
 
@@ -37,6 +37,6 @@ B. (1) 输出 `Base::foo(int) 1`，(2) 输出 `Derived::foo(int) 1`
 C. 编译错误：`foo` 有歧义
 D. (1) 输出 `Derived::foo(int) 1`，(2) 输出 `Base::foo(double) 1.5`
 
-## 解析
+## Explanation
 
 `using Base::foo` 将 `Base` 的两个 `foo` 重载引入 `Derived` 的作用域，与 `Derived::foo(int)` 共同形成重载集。(1) `d.foo(1)` 精确匹配 `Derived::foo(int)`；(2) `d.foo(1.5)` 精确匹配 `Base::foo(double)`，因为 `Derived` 没有 `foo(double)` 重载。若没有 `using` 声明，`Base::foo` 会被隐藏，(2) 将转换为 `int` 调用 `Derived::foo(int)`。

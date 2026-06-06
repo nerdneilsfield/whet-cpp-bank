@@ -73,3 +73,9 @@ D. D — 支持多个 handler，更灵活
 - 多回调需求 → 通常是 Observer/Signal 模式，不是组件内 vector
 
 **来源：** 手写题。`std::function` 的设计哲学；Sean Parent "Inheritance Is The Base Class of Evil" 中关于 callable 类型擦除的讨论。
+
+## Explanation
+
+正确答案是 B。这道题考的是接口需求与抽象工具的对齐。
+性能上确实最小（一个指针），但接口能力严重受限。
+但对 GUI Button 这种低频事件，可忽略。

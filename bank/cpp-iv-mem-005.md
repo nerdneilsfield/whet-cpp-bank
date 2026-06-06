@@ -14,7 +14,7 @@ rubric:
 
 # RAII 原则是什么？举一个完整代码示例。
 
-## 参考答案
+## Explanation
 
 ### 定义
 

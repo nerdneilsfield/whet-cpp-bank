@@ -62,3 +62,7 @@ B 的妙处在于它没改算法、没改循环体，只是**预处理数据**�
 - 一次分支误判代价 ~15–20 cycles，循环很大时这是数倍的差异
 
 **来源：** Stack Overflow 经典问答 "Why is processing a sorted array faster than processing an unsorted array?"；Agner Fog, "The microarchitecture of Intel, AMD and VIA CPUs", §3 "Branch prediction"；Intel Optimization Reference Manual, §3.4 "Branch Prediction".
+
+## Explanation
+
+选项核心在于分支预测：如果条件分布稳定且可预测，普通 if 往往已经很快；如果数据随机，分支错误会让流水线反复清空。正确答案选择能减少不可预测分支或让编译器生成条件移动/向量化的写法。常见误区是只数语句数量，忽略一次 mispredict 的代价远高于几条整数指令。

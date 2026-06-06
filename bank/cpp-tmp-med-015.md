@@ -31,6 +31,6 @@ std::conditional_t<(sizeof(int) < sizeof(long)), int, long>  // 结果类型：_
 
 `std::conditional<B, T, F>::type`：B 为 true 时等于 T，false 时等于 F。`conditional_t` 是 C++14 引入的别名模板，省去 `::type`。
 
-## 解析
+## Explanation
 
 填入 `int`，因为题目要求的是该规则下的精确表达或标准名称。大小相关题要分清 C++ 标准保证、平台 ABI 约定和对象表示；`sizeof` 结果以字节计，类型为 `size_t`。 常见误区是写出近似说法、旧式写法或省略必要的命名空间/符号，导致与答案含义不完全一致。

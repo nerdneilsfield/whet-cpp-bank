@@ -32,3 +32,10 @@ void print(Args... args) {
 ```
 
 **来源：** InterviewBit "C++ Interview Questions" — Templates
+
+## Explanation
+
+正确答案是 ["A", "C", "E"]。
+函数模板：如 template<typename T> T max(T a, T b)，编译器根据调用参数类型生成具体版本。
+类模板：如 template<typename T> class Vector { }。
+模板特化：分为全特化（full specialization）和部分特化（partial specialization）。全特化后接 template<>；部分特化只能在命名空间作用域声明。

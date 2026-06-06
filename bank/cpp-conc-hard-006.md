@@ -26,6 +26,6 @@ bool ok = val.compare_exchange_strong(expected, 1);
 // ok == false 则说明真正的竞争失败，无需循环
 ```
 
-## 解析
+## Explanation
 
 正确答案是 C。CAS 会比较当前值与 `expected`，相等才写入新值；失败时通常会更新 `expected`。选项 C 的表述“｀weak｀ 版本在值确实匹配时也可能返回 ｀false｀（伪失败），适合用在循环中；｀strong｀ 版本不会伪失败，适合只执行一次的场合”正好符合该规则。A、B、D 的问题通常在于把相近概念混同、忽略默认行为，或把运行期现象误认为编译期/标准规定。

@@ -18,7 +18,7 @@ B. SSO 阈值由 `std::char_traits::length` 的编译期决定，所有实现都
 C. SSO 的实现细节是未指定的，但 libstdc++ 和 libc++ 都使用内嵌缓冲区（如 `union`），阈值通常为 15（GCC libstdc++）或 22 字节（Clang libc++）；超出该长度才堆分配
 D. SSO 只在 C++17 后可用
 
-## 解析
+## Explanation
 
 SSO（Small String Optimization）是 C++11 起各标准库的优选实现策略（标准不要求但实践中广泛采用）。核心设计：`std::string` 在栈上维护一个 `union`，内含指针、长度、容量以及一个"内嵌字符缓冲区"——当字符串长度 ≤ 预设阈值时，直接存在栈缓冲区中，避免堆分配。阈值因实现而异：
 - libstdc++（GCC）：通常 15 字节（加上 `\0` 用满 16 字节对齐的栈空间）

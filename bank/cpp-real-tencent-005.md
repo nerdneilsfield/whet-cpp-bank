@@ -61,3 +61,9 @@ Widget(Widget&& other) noexcept : data_(other.data_) { other.data_ = nullptr; }
 B 错，noexcept 主要是异常安全语义，性能影响有限。C 错，标准没有强制。D 错，与传参方式无关。
 
 **来源：** 腾讯 / 字节 C++11 面试（参考：Effective Modern C++ Item 14、Item 18）
+
+## Explanation
+
+正确答案是 A。
+B 错，noexcept 主要是异常安全语义，性能影响有限；C 错，标准没有强制。
+D 错，与传参方式无关。

@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-copy-if-001/
 
 约束：0 <= nums.size() <= 10^5。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,11 +20,15 @@ tests_dir: tests/cpp-prog-stl-copy-if-001/
 std::vector<int> filter_positive(const std::vector<int>& nums);
 ```
 
-## 示例
+### 示例
 ```
 [-2,3,0,5,-1,8] => [3,5,8]
 []              => []
 ```
 
-## 提示
+### 提示
 - 在 skeleton/solution.hpp 中实现函数。
+
+## Explanation
+
+用 `std::copy_if` 从输入复制满足 `x > 0` 的元素到结果 vector，可以配合 `std::back_inserter` 追加。算法会保持原始相对顺序。注意 0 不是正数，空输入返回空 vector。

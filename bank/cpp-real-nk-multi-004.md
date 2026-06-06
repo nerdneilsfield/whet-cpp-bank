@@ -53,3 +53,8 @@ int Foo::count = 0;  // 必须类外定义
 - 可作为函数指针/回调使用（无 this 限制）
 
 **来源：** 牛客网 C++ static 高频面试题 / huihut/interview
+
+## Explanation
+
+正确答案是 [A, B, C, D]。
+static 的四种用法： *1. 静态局部变量： C++11 起线程安全（Magic Statics） 用于实现 Meyers Singleton *2. 静态全局变量/函数： 替代 C 的 file scope C++ 推荐用匿名 namespace 替代 *3. 静态成员变量： 所有对象共享 在类外分配（除非是 inline static int count = 0; C++17） *4. 静态成员函数： 无 this 指针，因此不能访问非静态成员 不能是 virtual / const / volatile 可作为函数指针/回调使用（无 this 限制）。

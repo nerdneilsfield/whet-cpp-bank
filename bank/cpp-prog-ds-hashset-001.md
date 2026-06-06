@@ -13,3 +13,7 @@ tests_dir: tests/cpp-prog-ds-hashset-001/
 #include <string>
 int lengthOfLongestSubstring(const std::string& s);
 ```
+
+## Explanation
+
+用滑动窗口维护当前无重复字符区间，右端扩展时若字符已存在，就移动左端并从集合删除直到冲突消失。每个字符最多进出集合一次，因此总复杂度 O(n)。注意更新答案的位置应在插入当前字符之后，空串结果为 0。

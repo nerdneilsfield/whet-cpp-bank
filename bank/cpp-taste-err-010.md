@@ -101,3 +101,9 @@ C++ 异常规范（Stroustrup / Sutter）有一条共同的原则：**异常应�
 Stroustrup 的原话（ *TC++PL* §13.1.4 ）：**"Do not use exceptions as an alternative to ordinary flow control. Exceptions are for exceptional situations."** A、B、C 把"路径穷尽"、"容量满"、"超出范围"这三个**完全可预测**的事件当异常，错的正是这一步。
 
 **来源：** 手写题。异常 vs 控制流见 Bjarne Stroustrup *The C++ Programming Language* 4e §13.1.4；C++ Core Guidelines E.3, E.6；Herb Sutter "When and how to use exceptions" (C++ and Beyond 2012) 中"99% of uses of catch are wrong"的经典判断。
+
+## Explanation
+
+正确答案是 D。正确的做法是：if (buf_.size() >= cap_)在 push 前检查、或利用 reserve 在 fill 开始时留够空间、或使用 return bool 表达"满了推不进去"。
+这道题考 "异常何时可以被接受用于控制流"的精确边界。
+C++ 异常规范（Stroustrup / Sutter）有一条共同的原则：异常应该用于"把控制流转移到当前上下文无法处理的错误"，即常见的 *"transfer control to a context that can handle it"*。

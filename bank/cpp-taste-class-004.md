@@ -91,3 +91,9 @@ D. D — exchange + noexcept，既简洁又标准
 - 移动构造后源对象必须处于**可析构**（不一定空）状态，置空是最简单的满足方式
 
 **来源：** 手写题。Scott Meyers "Effective Modern C++" Item 14: "Declare functions noexcept if they won't emit exceptions"。
+
+## Explanation
+
+正确答案是 D。逐一品味： A：功能完全正确，但手动 3 个赋值 + 3 个置空 = 6 行。
+B：用 `std::exchange` 一行完成"读旧值 + 写新值"——这是移动构造的标准惯用法。
+常见误区是把 `std::move` 当成必然搬走对象，忽略它只是转换值类别，真正行为由重载和类型决定。

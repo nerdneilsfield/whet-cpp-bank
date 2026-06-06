@@ -38,7 +38,7 @@ D. D
 
 ---
 
-## 解析
+## Explanation
 
 C++ 对齐规则：
 - 每个类型有 `alignof(T)` 要求，通常等于 `sizeof(T)`（对基本类型）

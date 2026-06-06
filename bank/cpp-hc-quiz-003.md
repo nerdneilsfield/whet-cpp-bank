@@ -65,3 +65,9 @@ A 把 `e` 也算成 b 的值，没看出 e 是 a 的引用。B 是反过来错�
 这个区别在 C++ 元编程里至关重要——返回类型推导 (`decltype(auto)` vs `auto`)、completeness check、forwarding wrapper 都用到它。
 
 **来源：** 手写题。逗号运算符见 ISO/IEC 14882:2017 §8.20 [expr.comma]；decltype 规则见 §10.1.7.2 [dcl.type.decltype]。
+
+## Explanation
+
+正确答案是 C。本题用了 `decltype((a, b))` 双层括号，所以正确解析。
+工程上应选择语义清楚、复杂度和资源行为可预期的写法，而不是依赖偶然可行的细节。
+所以： 行 (1)：`c = (a, b)` → `c = b = 2` 行 (2)：`auto d = (a, b)` → `d = b = 2` *`decltype` 与括号**：这是关键陷阱。

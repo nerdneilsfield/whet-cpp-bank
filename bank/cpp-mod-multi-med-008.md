@@ -27,3 +27,9 @@ A 正确：`vector<bool>` 的迭代器解引用得到的是 `reference` 代理�
 B 正确：范围 for 内部用 `auto&& __range = range_expr;` 绑定，引用绑定到右值会延长其生命周期到 `__range` 作用域结束（即整个循环）。
 C 错误：只要类型满足"有 `begin()`/`end()` 成员，或可被 ADL 找到自由函数 `begin/end`"即可，C 数组、自定义类型、`std::initializer_list` 都行。
 D 正确：这是标准规定的范围 for 等价展开式（C++17 之前 begin/end 必须同类型；C++17 起允许 sentinel 不同类型）。
+
+## Explanation
+
+正确答案是 [A, B, D]。A 正确：`vector<bool>` 的迭代器解引用得到的是 `reference` 代理对象（非真正的 `bool&`），无法绑定到 `bool&`。
+A 正确：`vector<bool>` 的迭代器解引用得到的是 `reference` 代理对象（非真正的 `bool&`），无法绑定到 `bool&`。
+C 错误：只要类型满足"有 `begin()`/`end()` 成员，或可被 ADL 找到自由函数 `begin/end`"即可，C 数组、自定义类型、`std::initializer_list` 都行。

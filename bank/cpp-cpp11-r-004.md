@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: "A"
 ---
 
-## 题目
+### 题目
 
 阅读以下代码，`arr` 的大小在编译期能否确定，程序输出是什么？
 
@@ -29,6 +29,6 @@ B. 编译通过，输出 `4`
 C. 编译错误：`square` 不能在常量表达式中调用
 D. 运行时错误：VLA 不合法
 
-## 解析
+## Explanation
 
 `constexpr` 函数在参数为常量时于编译期求值。`square(4)` 返回编译期常量 `16`，`sz` 为 `constexpr int`，可用作数组大小（非 VLA）。`sizeof(arr)/sizeof(int) = 16*4/4 = 16`。输出 `16`。

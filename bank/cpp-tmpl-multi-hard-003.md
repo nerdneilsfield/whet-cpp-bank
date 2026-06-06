@@ -30,3 +30,7 @@ A 正确：CRTP 将派生类型作为模板参数传给基类，基类在编译�
 B 正确：由于模板成员函数是 lazy instantiation（只有被使用时才实例化），若 `Derived` 不含 `impl()`，只要不调用 `interface()` 就不会报错；调用时实例化才报错并定位到错误。
 C 错误：`static_cast<Derived*>(this)` 安全的前提是该对象确实通过 `Derived` 构造（而非 `Base<OtherDerived>`），这是 CRTP 的语义约定；但此 cast 是纯编译期零开销操作，不存在 dynamic_cast 的运行时类型检查或 vtable 查询开销。
 D 正确：EBO（Empty Base Optimization）允许空基类不占用对象空间；CRTP 中若 `Derived` 为空，`Base<Derived>` 作为空类同样可被 EBO 消除，这是 CRTP 在 small buffer optimization 等场景中常用的技巧。
+
+## Explanation
+
+A、B、D 正确：CRTP 通过把派生类类型作为模板参数传回基类，在编译期完成静态分派，不需要虚表。缺少派生类接口时通常到相关模板成员被实例化才报错，这体现了模板的延迟实例化。常见误区是把 `static_cast<Derived*>(this)` 当作运行时类型检查；它没有 `dynamic_cast` 的 RTTI 开销，但依赖 CRTP 结构本身正确。

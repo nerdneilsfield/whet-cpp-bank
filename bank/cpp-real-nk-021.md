@@ -42,3 +42,9 @@ D. 通过 `p` 找到对象首部的 **vptr**，从 vptr 指向的 **vtable** 中
 不是 RTTI：RTTI（typeid/dynamic_cast）是另一套机制，虚函数调用不依赖 typeid。
 
 **来源：** CSDN/阿里云 C++ 多态原理 / 《深度探索 C++ 对象模型》
+
+## Explanation
+
+正确答案是 D。
+性能开销：相比直接 call 多了一次内存访问（取 vptr）和一次间接调用，禁止内联。
+不是 RTTI：RTTI（typeid/dynamic_cast）是另一套机制，虚函数调用不依赖 typeid。

@@ -48,7 +48,7 @@ B. B 段：`const std::string&` 统一，调用方有 string 时无转换，类�
 C. C 段：`string_view` 两端都用，能接 `string`、`const char*`、字面量、子串，零分配。
 D. D 段：混合 string + const char*，比两端 string_view 更"务实"。
 
-## 解析
+## Explanation
 
 正确答案是 **C**。
 

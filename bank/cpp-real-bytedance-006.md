@@ -71,3 +71,8 @@ unique_ptr<T> make_unique(Args&&... args) {
 A 错，forward 是条件的。C 错，forward 通常用在调用其他函数时传参。D 错，与引用计数无关。
 
 **来源：** 字节 C++11/14/17 高级面试（参考：Effective Modern C++ Item 23、25）
+
+## Explanation
+
+正确答案是 B。
+选 B。这是 C++11 完美转发的核心机制。

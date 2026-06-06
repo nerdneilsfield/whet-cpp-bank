@@ -69,3 +69,9 @@ D. D — 临时 `thread` 对象 + `detach`，最简洁，连变量名都省了
 A 这种"看起来代码量和 B 差不多但行为安全得多"的写法，正是 RAII 哲学被推到极致的样子：资源管理对象本身保证不变式，不让用户有"忘记 join"的可能。
 
 **来源：** 手写题。`std::terminate` 析构陷阱见 ISO/IEC 14882:2017 §33.4.3 [thread.thread.destr]；`std::jthread` 设计动机见 N4673 (Howard Hinnant) "A Cooperatively Interruptible Joining Thread"；C++ Core Guidelines CP.24, CP.26。
+
+## Explanation
+
+正确答案是 A。这道题考 "`std::thread` 析构陷阱"以及 "C++20 的 `jthread` 怎么修这个坑"。
+这导致 `std::thread t(...)` 后稍微一个分支提前 return、或者中间抛异常，整个程序就崩。
+这道题考 "`std::thread` 析构陷阱"以及 "C++20 的 `jthread` 怎么修这个坑"。

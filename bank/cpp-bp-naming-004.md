@@ -36,7 +36,7 @@ D. 总是调友元版本
 
 ---
 
-## 解析
+## Explanation
 
 **friend injection（Koenig friend）** 是一种有用但易误用的 C++ 特性：在类内 `friend` 定义的函数，**只在类相关的命名空间通过 ADL 可见**，不参与常规查找。
 

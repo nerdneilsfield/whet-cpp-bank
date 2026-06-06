@@ -55,3 +55,10 @@ if (std::is_nothrow_move_constructible_v<T>) {
 **实用建议**：所有自定义类的移动构造和移动赋值都应该标 `noexcept`，否则使用 vector 时性能可能莫名其妙地差。
 
 **来源：** 字节 C++ 移动语义面试题 / Effective Modern C++ Item 14
+
+## Explanation
+
+正确答案是 B。
+vector 的扩容（grow）需要把旧元素移到新内存： *强异常安全保证：操作要么完全成功，要么状态完全不变（commit-or-rollback）。
+如果用非 noexcept 的移动： 假设移动到一半第 50 个元素抛异常 已移动的前 49 个对象状态不确定 旧内存的对应位置已经被掏空，无法回滚 vector 进入无效状态，违反强异常保证 所以 vector 实现做了选择：若 noexcept，则用 move（性能优先）；否则用 copy（安全优先）。
+*实用建议：所有自定义类的移动构造和移动赋值都应该标 noexcept，否则使用 vector 时性能可能莫名其妙地差。

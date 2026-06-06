@@ -61,3 +61,12 @@ A(A&& o) /* no noexcept */ : data(std::move(o.data)) { std::cout << "move\n"; }
 **结论：** 写移动构造一定要加 `noexcept`，否则 vector 扩容时白写了。
 
 **来源：** 字节 C++11 高级面试（参考：Effective Modern C++ Item 14）
+
+## Explanation
+
+正确答案是 B。
+选 B。这道题考察的是 std::move_if_noexcept 在 vector 扩容时的行为。
+*对比： 如果去掉 noexcept： 则扩容时会输出 copy
+copy
+ → 性能损失！
+*结论： 写移动构造一定要加 noexcept，否则 vector 扩容时白写了。

@@ -44,6 +44,6 @@ NRVO（Named Return Value Optimization）允许编译器直接在调用方的存
 几乎所有主流编译器的默认行为（-O0 下 GCC/Clang 仍应用 NRVO for named returns）。
 -->
 
-## 解析
+## Explanation
 
 A 正确：在启用 NRVO 的常见编译器默认设置下，局部对象 `h` 直接构造在调用方 `obj` 的存储中。没有拷贝或移动，因此只打印一次 `ctor`，程序结束时打印一次 `dtor`。关键误区是以为 `return h` 必然移动；返回值优化可省略这一步。

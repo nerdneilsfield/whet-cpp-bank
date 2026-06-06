@@ -49,3 +49,9 @@ error: cannot take the address of a bit-field 'p.Packed::a'
 这就是为什么位域不能用普通 `T*`/`T&` 抽象，也不能放进容器（迭代器解引用通常返回 T&）。`std::vector<bool>` 用代理类 `vector<bool>::reference` 模拟这种语义就是这个原因。
 
 **来源：** C++17 [class.bit]/3
+
+## Explanation
+
+正确答案是 B。
+关键是说明正确选项成立的 C++ 规则，以及其他选项忽略的边界条件。
+常见误区是只记结论，不解释代码行为、编译行为或复杂度前提。

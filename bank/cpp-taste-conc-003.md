@@ -104,3 +104,9 @@ B 的关键品味在三处：
 把"被保护的数据 + 保护它的锁"作为一个**封装单元**是 Herb Sutter 反复提的设计原则——锁不是性能装饰，是数据不变式的物理边界。
 
 **来源：** 手写题。结构性绑定原则见 Herb Sutter "Prefer to make member functions of classes that have mutable state thread-safe by default"；C++ Core Guidelines CP.20、CP.22；Anthony Williams *C++ Concurrency in Action* 2e §3.2 "Protecting shared data with mutexes"。
+
+## Explanation
+
+正确答案是 B。这道题考 "被保护数据应该和锁结构性绑定，且不向外泄露"。
+这道题考 "被保护数据应该和锁结构性绑定，且不向外泄露"。
+常见误区是把一次运行结果当成同步保证，忽略数据竞争、锁顺序、条件变量谓词或线程生命周期。

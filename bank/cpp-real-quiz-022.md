@@ -41,3 +41,8 @@ note: in 'operator()' of '[x]() {...}', which is 'const'
 注意：即使是 mutable lambda，修改的也只是闭包内部的副本，外层的 x 并不会变。
 
 **来源：** C++ Brain Teasers；C++17 [expr.prim.lambda.closure]/4
+
+## Explanation
+
+正确答案是 C。
+[expr.prim.lambda.closure]：lambda 默认生成的 operator() 是 const 成员函数。[x] 按值捕获 x 为闭包类的数据成员，在 const 成员函数内不能修改非 mutable 成员 → 编译错误： 修正方法： [x]() mutable { x = 42; return x; } —— 关掉 const 通过引用捕获：[&x]() { x = 42; return x; } 注意：即使是 mutable lambda，修改的也只是闭包内部的副本，外层的 x 并不会变。

@@ -32,7 +32,7 @@ B. ① 不会被执行，因为成员初始化的异常不能由 function-try-bl
 C. 编译错误，构造函数不能使用 function-try-block
 D. ① 捕获 `1`，但**构造函数的 function-try-block 在 catch 子句末尾会自动重新抛出**，无法吞掉异常；因此 ② 仍捕获到该异常
 
-## 解析
+## Explanation
 
 C++ 的**function-try-block** 允许把整个函数体作为 try 块，并能捕获成员初始化列表中的异常——这是它独有的能力，普通 try 块做不到。语法：
 

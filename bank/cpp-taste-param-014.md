@@ -51,7 +51,7 @@ B. B 段：返回 `shared_ptr<Shape>`，调用方立即能有共享语义，最�
 C. C 段：按值返回 Shape 是走切片（slicing），但用异常处理未知类型。
 D. D 段：out 指针 + int 返回码，调用方能自己管理状态。
 
-## 解析
+## Explanation
 
 正确答案是 **A**。
 

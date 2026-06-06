@@ -72,3 +72,9 @@ D. D — 编译器隐式生成的已经正确，没必要写多余的
 - 值参数接之后 `make_unique` 的方案→ 破坏多态性
 
 **来源：** 手写题。C++ Core Guidelines C.63: "Move-only types should have `=default` move operations"。
+
+## Explanation
+
+正确答案是 D。`unique_ptr` 的移动操作是 noexcept 且正确的，`= default` 移动完全够用。
+Rule of Five 的"三/五/零"在这里结合成隐式移动 + 显式删除拷贝——但也不需要，因为 unique_ptr 已经帮你做了。
+`unique_ptr` 不是可拷贝的 → 拷贝操作自动 `= delete`。

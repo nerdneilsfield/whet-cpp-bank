@@ -90,3 +90,9 @@ D. D — 不用锁，让用户自己负责并发安全
 注意 B 的另一处品味：reader 拿到 `it->second` 后**返回 by value（拷贝）**，没有把引用泄露给外部——如果返回 `const std::string&`，调用方持有引用期间另一个线程写入触发 rehash 就崩了。这是一个隐藏品味点。
 
 **来源：** 手写题。`shared_mutex` 适用场景见 C++ Core Guidelines CP.50；Anthony Williams *C++ Concurrency in Action* 2e §3.3.2；性能权衡见 Filip Pizlo "Locking in WebKit"。
+
+## Explanation
+
+正确答案是 B。这道题考 "`shared_mutex` 的正确使用姿势 + 它适用的场景判断"。
+C：这是把 `shared_mutex` 当 `mutex` 用的反面教材——用了一个比 `mutex` 更重的锁、却没享受任何并发读的好处，纯负优化。
+注意：在写多读少 / 临界区极短的场景里，`mutex` 反而比 `shared_mutex` 更快（`shared_mutex` 内部计数+条件变量的开销不便宜）——所以 A 不是"错"，是"用错了场景"。

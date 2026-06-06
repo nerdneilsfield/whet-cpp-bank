@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: "D"
 ---
 
-## 题目
+### 题目
 
 阅读以下代码，存在什么问题？
 
@@ -30,6 +30,6 @@ B. 正常输出 `Hello, World!`
 C. 输出空字符串
 D. 未定义行为：`string_view` 引用已销毁的局部变量
 
-## 解析
+## Explanation
 
 `std::string_view` 是**非拥有**视图，内部持有指向字符串数据的指针。函数返回时局部 `std::string s` 被销毁，内存释放，但返回的 `string_view` 仍持有指向该内存的悬空指针。行 A 访问该指针是未定义行为（可能崩溃、输出乱码或"看似正常"）。`string_view` 的生命周期必须不超过其所指向的字符串。

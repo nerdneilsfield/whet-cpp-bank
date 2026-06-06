@@ -106,3 +106,9 @@ B 是手工 RAII 的正确写法。手写资源管理的关键是：
 - 简单整数 id + 自定义释放 → 直接手写类，不要包 smart pointer
 
 **来源：** 手写题。C++ Core Guidelines C.21: "If you define any default operation, define all"；R.5: "Prefer scoped objects"。
+
+## Explanation
+
+正确答案是 B。正确的 unique_ptr 方案应该是用 stateless functor 或 deleter 类作为模板参数，避免 function 的开销。
+这道题考的是"自然资源"（非 new/delete）需要手写完整 RAII 五件套。
+C：`shared_ptr<GLuint>` + 自定义 deleter——能 work 但语义错配。

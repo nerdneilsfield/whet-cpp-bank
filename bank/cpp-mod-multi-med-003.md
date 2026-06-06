@@ -20,3 +20,9 @@ A 正确：`optional<T>` 的二态语义等价于 `variant<monostate, T>`，但 
 B 错误：`std::variant<int, int>` 是**合法的**，只是不能通过类型访问（`get<int>` 会编译失败），必须用下标 `get<0>`/`get<1>`。
 C 正确：两者都用对应的异常类型表达"访问错误状态"。
 D 正确：两者的存储都使用对齐的内嵌缓冲区，不需要堆分配（区别于 `unique_ptr`、`any` 的小对象优化策略）。
+
+## Explanation
+
+正确答案是 [A, C, D]。A 正确：`optional<T>` 的二态语义等价于 `variant<monostate, T>`，但 `optional` 在 API 设计上更轻量、专门化。
+C 正确：两者都用对应的异常类型表达"访问错误状态"。
+B 错误：`std::variant<int, int>` 是合法的，只是不能通过类型访问（`get<int>` 会编译失败），必须用下标 `get<0>`/`get<1>`。

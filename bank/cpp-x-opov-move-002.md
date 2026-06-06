@@ -39,7 +39,7 @@ D. 两次都是移动构造
 
 ---
 
-## 解析
+## Explanation
 
 **copy-and-swap 惯用法** 的核心思想：`operator=` 接受 **按值** 的参数，然后与 `*this` 交换内容。
 

@@ -19,6 +19,6 @@ B. `cmp(a, a) == false`（反自反性 / irreflexivity）
 C. `cmp(a, b) && cmp(b, c) ⇒ cmp(a, c)`（传递性）
 D. 必须返回 `std::strong_ordering`
 
-## 解析
+## Explanation
 
 正确选项是 B、C。严格弱序要求反自反性和传递性，还要求 cmp(a,b) 为真时 cmp(b,a) 不能同时为真；A 写成了对称性，方向正好错误。std::sort 的比较器只需可转换为 bool，不要求返回 std::strong_ordering；违反这些性质会导致排序行为不可靠。

@@ -14,7 +14,7 @@ rubric:
 
 # Q: `shared_ptr` 的引用计数如何实现？控制块（control block）里有什么？
 
-## 参考答案
+## Explanation
 
 `shared_ptr` 并不在指针对象本身内部存储引用计数，而是维护一个**堆上的控制块（control block）**，`shared_ptr` 实例内部持有两个指针：
 

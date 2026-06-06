@@ -66,3 +66,7 @@ A 在编译期把"f 是什么"具象化，编译器看见整个调用链，**抽
 - 高性能循环里调用 lambda：用模板参数；只是配置/回调注册才用 std::function
 
 **来源：** Chandler Carruth, "Efficiency with Algorithms, Performance with Data Structures", CppCon 2014；Andrei Alexandrescu, "Type Erasure", code::dive；Stepanov & McJones, "Elements of Programming"（关于 STL 设计的注脚）.
+
+## Explanation
+
+选 A，因为模板可调用对象让 lambda 类型在编译期可见，循环里的调用可完全内联并继续向量化。`std::function`、函数指针和虚函数都会引入间接调用，阻断内联和常量传播。误区是只追求统一接口，却把热路径上的零成本抽象变成运行时分派。

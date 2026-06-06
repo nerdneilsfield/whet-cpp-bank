@@ -17,6 +17,6 @@ rubric:
 
 变参模板用 `template<typename... Args>` 声明参数包，接收数量与类型都可变的模板参数。展开通常有两种方式：传统递归（一个处理首参的重载 + 一个终止重载），或者 C++17 的折叠表达式如 `(std::cout << ... << args)`。`sizeof...(Args)` 可在编译期获取参数个数。典型用途包括 `std::make_unique`、`std::tuple`、完美转发包装器、类型安全的 `printf` 替代等。
 
-## 解析
+## Explanation
 
 作答应覆盖：解释 variadic template 接受任意数量、任意类型的模板参数（parameter pack）；说明展开方式（递归终止重载或 C++17 折叠表达式）；给出至少一个典型应用（make_unique/forward/tuple/printf 替代等）。大小相关题要分清 C++ 标准保证、平台 ABI 约定和对象表示；`sizeof` 结果以字节计，类型为 `size_t`。 简答题不只要求给结论，还要说明为什么这些规则成立以及错误用法会造成什么后果。常见失分点是只背术语，没有联系代码场景或边界条件。

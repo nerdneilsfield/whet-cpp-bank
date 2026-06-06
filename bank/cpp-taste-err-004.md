@@ -89,3 +89,9 @@ A 通过抛异常恪守这条约定：构造失败 = 异常抛出 = **对象根�
 A 的另一处品味在 `: sock_(connect(host))` 用 member initializer 而非 ctor body 赋值——这让 `sock_` 一次到位构造，而不是先默认构造再赋值。B 和 C 都先默认构造 `sock_` 再覆盖，**反映出对"对象生命周期从 member-init list 就开始"的不熟悉**。
 
 **来源：** 手写题。"Constructor failure = throw" 见 Bjarne Stroustrup *The C++ Programming Language* 4e §17.4；C++ FAQ "How can I handle a constructor that fails?"；C++ Core Guidelines C.40, C.41, C.42；流类的两阶段设计批评见 Herb Sutter "GotW #66: Constructor Failures"。
+
+## Explanation
+
+正确答案是 A。这道题考 "C++ 对象构造的二元论：构造成功 = 对象存在 = 不变式成立"。
+这道题考 "C++ 对象构造的二元论：构造成功 = 对象存在 = 不变式成立"。
+逐一品味： B：`ifstream` 风格的"半成品对象"——确实是标准库的历史选择，但这是 C++98 异常机制不成熟时代的妥协，不是好榜样。

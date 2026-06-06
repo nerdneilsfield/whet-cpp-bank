@@ -43,7 +43,7 @@ D. `b = a` → (ii)；`b = BigInt{}` → (i)
 
 ---
 
-## 解析
+## Explanation
 
 C++ 重载决议根据 **实参的值类别**（lvalue/rvalue）选择最佳匹配：
 

@@ -69,3 +69,9 @@ D. D — init-capture 把 `prefix` move 进 lambda，零拷贝且无悬空
 `std::function` 的存在让 lambda 的生命周期问题被放大——只要你看到 lambda 进入 `std::function`、`std::any`、容器、`std::async`、线程、协程，立刻按"逃出当前作用域"处理。
 
 **来源：** 手写题。init-capture 见 ISO/IEC 14882:2014 §5.1.2 [expr.prim.lambda]/14；最佳实践见 Scott Meyers *Effective Modern C++* Item 31 "Avoid default capture modes"、Item 32 "Use init capture to move objects into closures"；C++ Core Guidelines F.54。
+
+## Explanation
+
+正确答案是 D。它做了三件正确的事： Move 而不是 copy：`prefix` 反正要在函数返回时被销毁，把它的内容直接 move 进 lambda 的成员变量 `p`，零堆分配。
+这道题考 "lambda 离开当前作用域时，捕获变量的生命周期" ——A、B、C 各踩一个坑，D 是 C++14 的正解。
+它做了三件正确的事： Move 而不是 copy：`prefix` 反正要在函数返回时被销毁，把它的内容直接 move 进 lambda 的成员变量 `p`，零堆分配。

@@ -28,3 +28,9 @@ C **错**：容器可以在模板参数中指定配置器，不同容器可以�
 D **对**：是具体实现机制。`allocator::allocate` 调用 `::operator new` 获取原始内存，`allocator::construct` （C++20 前）使用 `placement new` 在内存上构造对象。C++20 起配置器的 `construct`/`destroy` 已被废弃（改用 `std::allocator_traits`）。
 
 **来源：** 牛客网 C++ STL 高频面试题 / 《STL 源码剖析》侯捷
+
+## Explanation
+
+正确答案是 D。
+A 错：STL 配置器设计将内存分配（allocate/deallocate）和对象构造（construct/destroy）分开；B 错（细节）：标准实现（GCC libstdc++）默认通过 ::operator new 分配内存（非直接 malloc）。
+C 错：容器可以在模板参数中指定配置器，不同容器可以用不同类型。

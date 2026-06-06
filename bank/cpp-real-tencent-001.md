@@ -52,3 +52,10 @@ D. malloc 在小内存使用 brk 系统调用，大内存使用 mmap；new 完�
 A、B、C 都是正确表述。
 
 **来源：** 腾讯 C++ 后端面试（参考：glibc malloc 源码、《C++ Primer》、cs-offer）
+
+## Explanation
+
+正确答案是 D。
+选 D（说法错误的项）；正确的本质区别： 为什么 D 错？。
+new 的底层通常调用 operator new，而 operator new 默认实现是调用 malloc；所以 new 间接也走 brk/mmap。
+选 D（说法错误的项）。

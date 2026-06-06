@@ -34,7 +34,7 @@ D. 编译器自动生成正确的移动构造：`b.data_` 接管 `a.data_`，`a.
 
 ---
 
-## 解析
+## Explanation
 
 [class.copy.ctor]/8 的隐式生成规则：
 

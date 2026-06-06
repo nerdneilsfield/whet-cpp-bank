@@ -27,6 +27,6 @@ B. `4`，因为通过引用调用会动态分派
 C. 未定义行为，应当返回 `4` 但实现相关
 D. 编译错误，因为 `Base::operator=` 已被 `virtual ~Base()` 隐式删除
 
-## 解析
+## Explanation
 
 这是**赋值切片（assignment slicing）**。`dst = src` 在 `Base&` 上调用，名字查找绑定到 `Base::operator=`（默认合成）——拷贝赋值运算符**不是**虚函数（即使设为虚，签名也会因协变问题难以匹配派生类），所以只复制 `Base` 子对象 `b`，`d1.d` 保持 `2`。D 错：虚析构不会删除合成赋值；B 错：拷贝赋值默认非虚。要在多态层次中安全赋值，常见模式是禁止 `Base` 的拷贝赋值（`= delete`）并提供 `virtual clone()`/`virtual assign()` 等显式接口。

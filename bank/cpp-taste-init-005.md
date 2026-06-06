@@ -75,3 +75,9 @@ D. D — `constinit const` 静态初始化 + 不可变，最贴需求
 老一辈 C++ 程序员习惯把 SIOF 用 "Construct On First Use" idiom（函数内 static 局部变量）解决——但那要付出每次调用一次 `if (initialized)` 的代价。`constinit` 把这个问题从运行时检查推到编译期保证，是 C++20 一个安静但根本性的改善。
 
 **来源：** 手写题。`constinit` 见 ISO/IEC 14882:2020 §9.2.9.4 [dcl.constinit]；SIOF 经典讨论见 Scott Meyers *Effective C++* Item 4 "Make sure objects are initialized before they're used"；C++ Core Guidelines I.22 "Avoid complex initialization of global objects"。
+
+## Explanation
+
+正确答案是 D。写得现代化不等于初始化时机正确。
+在多 TU 场景下触发经典的 static initialization order fiasco：另一个 TU 的全局对象在构造时若读 `table`，可能读到全零（未初始化）。
+这道题考 "`const` / `constexpr` / `constinit` 三个关键字描述的是不同维度的约束"，新人常以为它们是同义词的强弱版本。

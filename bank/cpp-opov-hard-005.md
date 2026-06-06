@@ -27,7 +27,7 @@ B. 失败：运算符重载必须显式 `using namespace`
 C. 成功：运算符 `+` 的查找采用普通查找 + **ADL**——`x` 和 `y` 的类型 `nsa::A` 属于 `nsa`，编译器自动把 `nsa` 加入查找作用域，找到 `nsa::operator+`。这是为何 `<<`、`==` 等运算符跨命名空间能"开箱即用"的原因
 D. 仅当 `using namespace nsa;` 时才能使用
 
-## 解析
+## Explanation
 
 ADL（Koenig Lookup / Argument-Dependent Lookup）是 C++ 中名字查找的重要扩展：当查找非成员函数时，除常规作用域外，编译器还会在**实参类型所属的命名空间**中查找。运算符重载是 ADL 最常见的用例——这正是为什么自定义类型的 `operator<<` 放在类型自己的命名空间里，用户在任意位置写 `std::cout << myObj` 都能找到。
 

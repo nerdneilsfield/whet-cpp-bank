@@ -14,7 +14,7 @@ rubric:
 
 # 编译的四个阶段是什么？各产生什么文件？
 
-## 参考答案
+## Explanation
 
 以 `gcc hello.c -o hello` 为例，完整流程分四个阶段：
 

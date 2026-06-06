@@ -21,6 +21,6 @@ B. 编译失败，`std::vector` 有两个模板参数，与 `template<typename>`
 C. 编译成功但仅当 `T` 推导为 `int*` 时
 D. 模板模板参数已被弃用，标准库不再使用
 
-## 解析
+## Explanation
 
 `std::vector<T, Allocator = std::allocator<T>>` 有两个模板参数。C++17 之前，模板模板参数匹配规则要求**形参数量精确一致**，因此 `template<typename> class` 无法匹配 `vector`。C++17 修复了这一痛点：允许"模板形参列表与提供模板的形参列表通过默认参数对齐"。所以 C++17+ 直接编译成功。若需兼容更早标准，可写为 `template<typename...> class Container` —— 可变参数模板模板参数最为通用（可匹配 `map<K, V, …>` 等）。D 错：标准库自身（如 `scoped_allocator_adaptor`）仍在用。

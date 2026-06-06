@@ -60,3 +60,9 @@ libstdc++ 实际实现里，会把 `s._M_local_buf` 显式置为 `"\0\0..."`，�
 A 错：`std::move` 是真正的强制类型转换为右值引用，但**之后的移动构造确实会执行**，不只是"标记"。B 错：把 heap 模式的语义错误套到 SSO 上。C 错：表面看起来是这样，但标准不保证内容，是 UB 而非 "保证为空"。
 
 **来源：** 手写题，参考 libstdc++ `bits/basic_string.h` 的 `__sso_capacity`、move ctor 实现；陷阱出处见 P0608R3、Howard Hinnant 关于 string move 语义的文章。
+
+## Explanation
+
+正确答案是 D。正确做法：永远不要在 move 之后使用指向源 string 内部的指针/引用/迭代器。
+这是 SSO 最阴险的陷阱——SSO 下 move 退化为拷贝 + 源置空。
+但这是实现行为，不是标准保证。

@@ -36,6 +36,6 @@ auto sp2 = sp->shared_from_this();   // 安全
 
 `shared_from_this()` 的类型是 `shared_ptr<T>`，而非 `T*`（A 错，有前提条件）。C 是错误描述——它返回的是与现有控制块关联的 `shared_ptr`。D 中继承访问权限可以非 `public`（实现只在内部写 `weak_ptr` 成员），但要求 `T` 是 `enable_shared_from_this` 的直接或间接派生类。
 
-## 解析
+## Explanation
 
 正确答案是 B，`enable_shared_from_this` 依赖对象已经被某个 `shared_ptr` 的控制块接管，内部弱引用才会被初始化。若在对象尚未由 `shared_ptr` 持有时调用 `shared_from_this()`，会抛出 `std::bad_weak_ptr`。它不是绕过控制块创建新控制块，否则会产生两个控制块和重复释放风险。

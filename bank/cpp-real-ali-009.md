@@ -34,3 +34,8 @@ C 错：static_cast 或 reinterpret_cast 都可以（后者更"明显表示不�
 D 错：const_cast 才是做这个的。
 
 **来源：** 阿里 C++ 后端面试追问（参考：Effective C++ Item 27、cppreference）
+
+## Explanation
+
+正确答案是 A。
+A 错：基类没有虚函数，dynamic_cast 编译错误。

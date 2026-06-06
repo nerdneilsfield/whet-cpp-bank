@@ -72,3 +72,7 @@ D. D — else if 套额外条件，双重否定防误读
 - 把 if 的热路径放在函数末尾（cold 代码 inline 到热路径里 rematerialize）之类的高级话术，实际收益极难超过 1%
 
 **来源：** C++20 标准 [dcl.attr.likelihood]；GCC 手册 `__builtin_expect` 及 `-fguess-branch-probability`；Chandler Carruth, "Understanding Compiler Optimization", CppCon 2015。
+
+## Explanation
+
+这题考查把热路径写成预测更容易命中的形态。正确写法通常让常见情况走直线代码，把少见情况放到分支外侧或慢路径中，从而降低错误预测和指令缓存压力。误区是认为所有 if 成本相同；真正昂贵的是不可预测分支和混杂的冷热代码。

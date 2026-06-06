@@ -48,3 +48,9 @@ if (cond) p = &x;
 这种"time travel"优化让 UB 成为难以追查的 bug 源。
 
 **来源：** 跨厂 C++ UB 高频陷阱（参考：cppreference、John Regehr《A Guide to Undefined Behavior in C and C++》）
+
+## Explanation
+
+正确答案：A、C、D。
+B 错误（implementation-defined）： sizeof(int) 由实现定义，必须文档化为某个固定值；C 正确（UB）： 有符号整型溢出是 UB！。
+编译器在优化时可以假设这不会发生——这就是为什么 if (p == nullptr) { /.../ } p; 中条件分支可能被优化掉。

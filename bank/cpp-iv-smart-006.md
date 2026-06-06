@@ -14,7 +14,7 @@ rubric:
 
 # Q: 如何给 `unique_ptr` 设置自定义删除器？应用场景（文件句柄、互斥锁）？
 
-## 参考答案
+## Explanation
 
 ### 语法：Deleter 作第二模板参数
 

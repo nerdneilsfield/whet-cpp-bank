@@ -80,3 +80,7 @@ D. D — copy ctor 加 noexcept，强保证拷贝不会抛
 - 简单类型的 move（指针+size 字段交换）几乎不可能抛——把 noexcept 标上去是免费的性能
 
 **来源：** Scott Meyers, "Effective Modern C++", Item 14 "Declare functions noexcept if they won't emit exceptions"；C++11 标准 [vector.modifiers]、[utility]；Howard Hinnant, "noexcept and move constructors" blog post.
+
+## Explanation
+
+选 B，因为 `std::vector` 扩容时会优先使用 `noexcept` 的移动构造来维持异常安全。移动构造未标 `noexcept` 时，vector 可能退回深拷贝，导致重分配成本暴涨。误区是给拷贝构造标 `noexcept` 或使用过时的 `throw()`，这不是现代容器选择移动的正确信号。

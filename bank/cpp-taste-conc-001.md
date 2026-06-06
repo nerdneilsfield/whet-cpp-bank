@@ -72,3 +72,9 @@ A 选项的"用最新的就对"是典型的新人误判——C++ 的工具选择
 B 选项的"以后扩展方便"是"过度灵活"的典型借口——**等真要扩展时再改成 `unique_lock` 是分分钟的事**，提前埋下不必要的开销才是味道差。
 
 **来源：** 手写题。语义区分见 ISO/IEC 14882:2017 §33.4.4 [thread.lock]；Herb Sutter "GotW #59: Using the Standard Library"；Anthony Williams *C++ Concurrency in Action* 2e 第 3 章。
+
+## Explanation
+
+正确答案是 C。这道题考的是 "用语义最窄的工具表达最窄的意图"。
+`lock_guard` 自 C++11 就是为"作用域内持有一把锁、不需要任何额外能力"这件事专门设计的：构造即 lock、析构即 unlock，没有移动、没有延迟、没有 try_lock、没有条件变量配合。
+把 `scoped_lock` 当作"`lock_guard` 2.0"是常见的错读。

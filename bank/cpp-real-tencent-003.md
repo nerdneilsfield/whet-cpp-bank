@@ -50,3 +50,8 @@ D. weak_ptr 和 shared_ptr 互斥，一个对象不能同时被两者引用
 A 错，weak_ptr 不增加 ref_count（这是它的全部价值）。C 错，weak_ptr 内部仍持有 control block 指针，不是 raw pointer。D 错，weak_ptr 必须从 shared_ptr 构造。
 
 **来源：** 腾讯后端 C++ 面试（参考：cppreference、Effective Modern C++ Item 20）
+
+## Explanation
+
+正确答案是 B。
+选 B。weak_ptr 是解决 shared_ptr 循环引用的关键工具。

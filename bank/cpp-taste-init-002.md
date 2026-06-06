@@ -79,3 +79,9 @@ D. D — 在声明处给默认成员初始化器 + 列表里再覆盖，最安�
 成员初始化列表不是"风格选择"，是 **C++ 对象模型的强制语法**：const 成员、引用成员、没有默认构造函数的成员，**必须**在列表里初始化。把列表当作可选优化是新人最常见的误读。
 
 **来源：** 手写题。语言规则见 ISO/IEC 14882 §12.6.2 [class.base.init]；sink parameter 见 Scott Meyers *Effective Modern C++* Item 41；`const_cast` 写 const 对象的 UB 见 [dcl.type.cv]/4。
+
+## Explanation
+
+正确答案是 C。这道题考 "成员初始化列表 vs 函数体赋值" 的基本品味，但用 `const` 成员把刀架在脖子上。
+这道题考 "成员初始化列表 vs 函数体赋值" 的基本品味，但用 `const` 成员把刀架在脖子上。
+`const int id_` 不能在函数体里被赋值——`id_` 已经被默认初始化（`int` 在类内是 indeterminate value），然后 `id_ = id` 违反 const。

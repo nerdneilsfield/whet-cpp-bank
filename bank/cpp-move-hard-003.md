@@ -27,7 +27,7 @@ B. `int&&`, `int&&`, `const int&&`, `int&&`
 C. `int`, `int&`, `const int&`, `int&&`
 D. `int&`, `int&`, `const int&`, `int`
 
-## 解析
+## Explanation
 
 这是 Scott Meyers 经典 T&& 推导（也叫 forwarding reference / universal reference）。规则为：
 

@@ -33,7 +33,7 @@ D. 全部正常
 
 ---
 
-## 解析
+## Explanation
 
 **`std::vector<bool>` 是一个特殊模板特化**（[vector.bool]）：为了节省空间，它将每个 `bool` 压缩为 1 bit 存储。这导致它 **不满足 `vector` 的通用契约**：
 

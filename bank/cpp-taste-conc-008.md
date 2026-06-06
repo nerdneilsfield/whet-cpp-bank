@@ -82,3 +82,9 @@ C++11 起 [stmt.dcl] 明确规定：**function-local static 变量的初始化�
 C++11 这条 [stmt.dcl] 保证（俗称 "magic statics"）是标准给单例模式的官方解决方案——所有 C++ 教材在讲单例时都会提，但工程师圈仍有大量"我觉得不安全所以自己加锁"的过度防卫式代码。**信任标准、读标准**是味道的根。
 
 **来源：** 手写题。Magic statics 见 ISO/IEC 14882:2011 §6.7/4；DCLP 历史见 Meyers & Alexandrescu "C++ and the Perils of Double-Checked Locking" (Dr. Dobb's 2004)；Meyers Singleton 见 Scott Meyers *Effective C++* 3e Item 4。
+
+## Explanation
+
+正确答案是 B。"我会写 DCLP"在 C++11 之后是炫技不是品味——标准已经免费给你正确的实现，没必要自己再造。
+C++11 起 [stmt.dcl] 明确规定：function-local static 变量的初始化是线程安全的——如果多个线程同时进入 `get_b()` 第一次，编译器保证只有一个线程执行构造、其他线程等待；后续调用直接返回引用，零同步开销（fast path 只是一次原子标志位读取，被分支预测吃掉）。
+逐一品味： A：`call_once` 设计目标确实是"恰好执行一次"，本身没错。

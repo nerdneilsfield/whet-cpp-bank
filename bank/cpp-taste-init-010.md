@@ -75,3 +75,9 @@ std::vector<int> v{tokens, tokens + 3};  // 不是迭代器构造！
 题 1（001）和题 10（010）是从两个方向打 `{}` vs `()` 的问题：001 是 `vector<int> v{n}`（你以为长度，实际 single element），010 是 `vector<string> v{a, b, c}`（虽然没错，但和 iterator 构造语义不同），根本都在 initializer_list 构造函数无条件压倒一切。
 
 **来源：** 手写题。initializer_list 构造 vs 其他构造的优先级见 ISO/IEC 14882 §16.3.5 [over.match.best]/2.8；Scott Meyers *Effective Modern C++* Item 7 "Distinguish between () and {} when creating objects"。
+
+## Explanation
+
+正确答案是 D 的理由最终落在：用 `()` 区间构造是表达"从一个范围复制元素到新容器"的最忠实的语法。
+逐一品味： A / C `std::vector<std::string>{tokens[0], tokens[1], tokens[2]}` ：这里三个元素全是 `std::string`，所以 `initializer_list<std::string>` 构造一切正常，看起来是"安全的"。
+这道题的陷阱不在 `vector{3,5}` 那个众所周知的坑——它考的是 "3 个同类型参数的 `{}` 看起来不会出 initializer_list 问题？

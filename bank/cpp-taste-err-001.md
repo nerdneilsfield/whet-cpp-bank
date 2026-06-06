@@ -83,3 +83,9 @@ A 三行代码：`ifstream` 析构关文件、`vector` 析构释放内存——*
 A 的写法不是"少打了字"，而是**把"资源 = 对象"这个等式贯彻到底**——文件不是 `FILE*`，是 `ifstream`；缓冲不是 `char*`，是 `vector<char>`。每个资源都有一个负责它整个生命周期的对象，异常路径自动正确。Bjarne Stroustrup 设计 C++ 异常时说过的 "RAII is the most important technique for managing resources in C++"——这道题的 A 就是它的字面体现。
 
 **来源：** 手写题。RAII 原理见 Bjarne Stroustrup *The C++ Programming Language* 4e §13.3；C++ Core Guidelines E.6, E.8, R.1；Linus Torvalds 在内核邮件列表上多次声明 goto cleanup 是 C 项目的"穷人 RAII"。
+
+## Explanation
+
+正确答案是 A。每个资源都有一个负责它整个生命周期的对象，异常路径自动正确。
+这道题考 "RAII = 让构造-析构而不是 try/catch 负责清理" 的核心品味。
+C：`goto cleanup` 是 Linux 内核风格——内核不能用 C++ 异常、也不能用 RAII，goto 是它们的"最 RAII"。

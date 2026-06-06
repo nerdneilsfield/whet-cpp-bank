@@ -9,7 +9,7 @@ tests_dir: tests/cpp-prog-move-string-001/
 ---
 实现简化 String（无 SSO）：构造自 const char*、析构、深拷贝、移动构造/赋值、size、c_str。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -34,9 +34,9 @@ private:
 };
 ```
 
-## 提示
+### 提示
 - 不要修改 tests/ 下的文件
 - 在 skeleton/solution.hpp 中实现函数
 
-## 解析
+## Explanation
 字符串对象需要维护以 `\0` 结尾的动态字符数组和长度。构造自 `const char*` 时处理空指针或空串边界，拷贝构造/赋值做深拷贝，移动构造/赋值转移指针并让源对象变成有效空串状态。赋值时注意自赋值和旧内存释放，`c_str()` 应始终返回可用的 C 字符串。

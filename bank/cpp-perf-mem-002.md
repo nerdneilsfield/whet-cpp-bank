@@ -61,3 +61,7 @@ D. D — 提前算好所有下标存起来，循环体里没分支
 - 一条 64B cache line 装 8 个 double：内层迭代步长是 8B 就 100% 利用，是 32KB 就 0%
 
 **来源：** Drepper, "What Every Programmer Should Know About Memory", §3.3；Intel Optimization Reference Manual, §3.6 "Prefetching"；Hennessy & Patterson, "Computer Architecture: A Quantitative Approach", §2.3.
+
+## Explanation
+
+这题关注 AoS 与 SoA 的取舍：如果热循环只读少数字段，分离热字段可减少无用 cache line 载入。结构体数组会把冷字段一起带进缓存，浪费带宽。误区是认为对象布局越贴近业务越好；性能敏感路径应按访问模式组织数据。

@@ -27,3 +27,9 @@ A 正确：`std::tuple`、`std::pair` 实现了 `tuple_size`/`tuple_element`/`ge
 B 正确：聚合类（无用户提供的构造函数、无私有/受保护非静态成员、无虚基类等）可直接按声明顺序绑定数据成员。
 C 正确：固定长度的 C 数组可按元素绑定，元素个数必须与绑定列表数量一致。
 D 错误：`std::map<K,V>::value_type` 是 `std::pair<const K, V>`，因此 `k` 实际上是 `const int&`，不能通过它修改键。
+
+## Explanation
+
+正确答案是 [A, B, C]。A 正确：`std::tuple`、`std::pair` 实现了 `tuple_size`/`tuple_element`/`get`，是结构化绑定的标准三种来源之一。
+B 正确：聚合类（无用户提供的构造函数、无私有/受保护非静态成员、无虚基类等）可直接按声明顺序绑定数据成员。
+D 错误：`std::map<K,V>::value_type` 是 `std::pair<const K, V>`，因此 `k` 实际上是 `const int&`，不能通过它修改键。

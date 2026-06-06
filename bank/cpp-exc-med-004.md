@@ -27,6 +27,6 @@ Abrahams 三级异常安全保证由弱到强：
 
 排序为 basic < strong < nothrow，所以 B 正确。理解这条层级是设计异常安全 API 的基础：强保证不是越多越好——它常需要额外副本或事务日志，而 nothrow 又对实现限制最严。
 
-## 解析
+## Explanation
 
 正确答案是 B。`noexcept` 是不抛异常承诺；异常若逃出该函数会调用 `std::terminate`。选项 B 的表述“基本保证（basic）→ 强保证（strong）→ 不抛保证（nothrow）”正好符合该规则。A、C、D 的问题通常在于把相近概念混同、忽略默认行为，或把运行期现象误认为编译期/标准规定。

@@ -62,3 +62,8 @@ while (!flag.load(std::memory_order_acquire)) {}
 **结论：** Java 的 volatile 和 C++ 的 volatile 完全不同。Java volatile 包含 happens-before 语义（类似 C++ atomic）；C++ volatile 没有这些保证。**C++ 多线程绝不要用 volatile 做同步。**
 
 **来源：** 腾讯后端 C++ 面试（参考：cppreference volatile、Herb Sutter "Volatile vs Volatile"）
+
+## Explanation
+
+正确答案是 B。
+选 B。volatile 是 C++ 中最被误用的关键字之一。

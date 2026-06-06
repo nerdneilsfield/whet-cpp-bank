@@ -77,3 +77,7 @@ void Widget::doSomething() { pImpl_->helper(); }
 4. 间接访问成员（pImpl_->data）→ 多一层指针解引用
 
 **来源：** 阿里云 C++ 架构面试（参考：Effective C++ Item 31、C++ Core Guidelines I.12）
+
+## Explanation
+
+本题评分重点是说明 Pimpl 的结构：头文件只暴露接口和前向声明的 Impl 指针，具体成员和重依赖放到 .cpp 中定义。这样修改实现细节不会迫使所有包含头文件的用户重新编译，也能隐藏实现并减少头文件依赖。使用 unique_ptr<Impl> 时析构函数通常要在 .cpp 中定义，因为 delete Impl 需要看到完整类型。常见误区是把析构函数直接 default 在头文件里，导致不完全类型处实例化 unique_ptr 析构失败。

@@ -30,6 +30,6 @@ B. ② 中 `T` 推导为 `int`，`arg` 是 `int&&`，`std::forward<int>` 返回 
 C. ② 真正的问题是：`forwarder(inner, 42)` 中 `T = int`，`arg` 类型为 `int&&`——这可以通过右值引用绑定左值引用的上下文创建实际临时，但 `forward<int>(arg)` 返回 `int&&`，而 `inner(int&)` 不接受右值引用，因此编译失败。这是完美转发处理纯右值时常见但易被编码者忽视的问题
 D. 二者都正常，`std::forward` 会自动转换为左值引用
 
-## 解析
+## Explanation
 
 完美转发（perfect forwarding）的关键是 `T&& + std::forward<T>`。`f(x)` 中 `T = int&`，`forward<int&>(arg)` 返回 `int&`；`f(42)` 中 `T = int`，`arg` 是 `int&&` ——但 `std::forward<int>(arg)` 返回 `int&&`（右值引用），而 `inner(int&)` 不能绑定右值引用。所以代码在 ② 处编译失败。解决办法包括：配合 `std::ref`、或使用 lambda、或修改 `inner` 签名接受 `const int&`（若可行）。完美转发的陷阱是：它只保证"以和传入时一样的值类别传入"——并不保证函数一定能用那个值类别调用。

@@ -76,3 +76,7 @@ A/D 都对，取 A 作为标准答案。重点是**不要拒绝 std::string**—
 - 1e7 次 `new` 是百毫秒级开销，1e7 次 SSO 是十毫秒级——一个量级差距
 
 **来源：** Nicolai Josuttis, "The Nightmare of Move Semantics for Trivial Classes", CppCon 2017；libstdc++/libc++ basic_string 实现（_M_local_data）；Bjarne Stroustrup, "The C++ Programming Language" 4th ed., §19.3.3.
+
+## Explanation
+
+选 A，因为短字符串能利用 `std::string` 的 SSO，在对象内部保存字符而不做堆分配。自定义堆字符串或 `unique_ptr<string>` 会为每个短值额外分配，造成 allocator 和指针追逐开销。误区是低估标准库值类型优化，重复实现反而丢掉 SSO。

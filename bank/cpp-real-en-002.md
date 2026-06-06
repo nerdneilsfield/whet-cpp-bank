@@ -25,3 +25,10 @@ Endianness 指多字节数据在内存中的字节排列顺序：
 嵌入式系统中不同架构（ARM 可配置、PowerPC 大端、x86 小端）混用时需要处理字节序转换。常用方法包括 `htons` / `ntohl` 等 POSIX 函数，或手动用移位运算转换。
 
 **来源：** InterviewBit "C++ Interview Questions" — Endianness
+
+## Explanation
+
+正确答案是 A。
+Endianness 指多字节数据在内存中的字节排列顺序： 大端序（big-endian）：最高有效字节（MSB）存放在最低地址，符合人类的阅读习惯。
+小端序（little-endian）：最低有效字节（LSB）存放在最低地址，x86/x86-64 架构使用此方式。
+嵌入式系统中不同架构（ARM 可配置、PowerPC 大端、x86 小端）混用时需要处理字节序转换。常用方法包括 htons / ntohl 等 POSIX 函数，或手动用移位运算转换。

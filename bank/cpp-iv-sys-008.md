@@ -14,7 +14,7 @@ rubric:
 
 # 什么是 Copy-on-Write（COW）？`std::string` 为何曾用 COW，C++11 后为何废弃？
 
-## 参考答案
+## Explanation
 
 ### Copy-on-Write 定义
 

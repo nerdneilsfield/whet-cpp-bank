@@ -47,6 +47,6 @@ D. 方式② 只能用在类外，类内必须用方式①
 
 因此现代 C++（C++11 起）应一律使用 `= delete`，并放在 public 区段，因为访问检查发生在 deleted 检查之前；放 public 能让错误信息直接说“deleted”而不是误导性的“private”。
 
-## 解析
+## Explanation
 
 正确答案是 B，private 未定义法在类外通常报访问错误，但在成员或友元内部访问合法，可能拖到链接期才因缺少定义失败。`= delete` 则在重载决议选中时立即于编译期报“use of deleted function”，诊断更直接。现代 C++ 应优先使用 `= delete` 表达禁止调用的意图。

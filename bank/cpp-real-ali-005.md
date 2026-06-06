@@ -33,3 +33,9 @@ A 错，全局变量在全局/静态区，不在栈。B 错，malloc 在堆，fr
 注意区别：`static int a = 0;` 存储在 .bss（未初始化数据段），`static int a = 1;` 存储在 .data（已初始化数据段）。
 
 **来源：** 阿里 C++ 后端面试
+
+## Explanation
+
+正确答案是 C。
+B 错，malloc 在堆，free 通常不归还 OS 而归还给进程堆管理；D 错，static 局部变量在全局/静态区（数据段），不是栈。
+注意区别：static int a = 0; 存储在 .bss（未初始化数据段），static int a = 1; 存储在 .data（已初始化数据段）。

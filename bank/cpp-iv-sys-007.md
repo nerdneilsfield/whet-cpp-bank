@@ -14,7 +14,7 @@ rubric:
 
 # 内存碎片（Memory Fragmentation）是什么？堆碎片 vs 栈不碎片的原因？
 
-## 参考答案
+## Explanation
 
 ### 什么是内存碎片
 

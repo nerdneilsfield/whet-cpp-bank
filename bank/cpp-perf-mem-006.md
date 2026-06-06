@@ -63,3 +63,7 @@ D. D — 加一条 ivdep 暗示告诉编译器循环无依赖
 - 排序索引把随机访问转成顺序访问，是 DOD 的标准武器："访问模式重要于代码漂亮"
 
 **来源：** Mike Acton, "Data-Oriented Design", CppCon 2014；Drepper, "What Every Programmer Should Know About Memory", §6.3 "Prefetching"；Chandler Carruth, "Tuning C++: Benchmarks, and CPUs, and Compilers!", CppCon 2015.
+
+## Explanation
+
+选 C，因为随机索引访问大数组的瓶颈是 DRAM 延迟和预取失败。先排序索引把访问变成近似顺序流，硬件预取器和 cache line 利用率都会明显改善，即使付出排序成本也常更快。误区是指望 `ivdep` 或小距离软件预取解决根本随机访问模式。

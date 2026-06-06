@@ -70,3 +70,9 @@ D. D — `final` 明确表达"不可继承"意图，无需 virtual dtor 的开�
 - 单例模式不是"禁止继承"的工具，二者无关
 
 **来源：** 手写题。Scott Meyers "Effective C++" Item 7: "Declare destructors virtual in polymorphic base classes"；C++ Core Guidelines C.139: "Use final on classes sparingly"。
+
+## Explanation
+
+正确答案是 D。这道题考的是 `final` + 非 virtual dtor 是正确的"叶子类"声明。
+但 A 表面上"安全"（如果有人未来继承也不会有 slicing 风险），代价是每个 Logger 对象多 8 字节、构造时多一次 vptr 初始化。
+其他程序员看到这个类时不知道：(a) 你是不是忘了写 virtual dtor？

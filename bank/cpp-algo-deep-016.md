@@ -21,6 +21,6 @@ B. `bool`，是否完全相等
 C. `std::pair<iterator, iterator>`，分别指向两序列第一次不相等处
 D. `std::vector<int>`，所有不匹配的元素
 
-## 解析
+## Explanation
 
 正确答案是 C：std::mismatch 返回一对迭代器，分别指向两个序列第一次不相等的位置。本例会指向 a[2] 的 3 和 b[2] 的 9。误区是把 mismatch 当作返回 bool 或下标的算法；若全相等，返回位置会到达相应末尾。

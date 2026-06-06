@@ -67,3 +67,8 @@ cv.wait(lk);        // 配合 condition_variable
 - 多个锁 → scoped_lock（C++17）或 std::lock + lock_guard（C++11）
 
 **来源：** 跨厂 C++ 并发面试常考（参考：cppreference、《C++ Concurrency in Action》第 3 章）
+
+## Explanation
+
+正确答案：A、B、D。
+E 错误： condition_variable::wait 要求传入 std::unique_lock<std::mutex>（不是 lock_guard），因为 wait 内部需要 unlock + 等待 + relock，需要 unique_lock 的能力。condition_variable_any 可以配合任意 BasicLockable，但标准 cv 必须用 unique_lock。

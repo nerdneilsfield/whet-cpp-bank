@@ -14,11 +14,11 @@ rubric:
 
 # `std::priority_queue` 的底层是什么？如何实现最小堆？
 
-## 问题
+### 问题
 
 `std::priority_queue` 的底层数据结构是什么？堆的核心操作（push / pop）是如何维护堆性质的？如何将默认的最大堆改为最小堆？时间复杂度如何？
 
-## 参考答案
+## Explanation
 
 ### 底层结构：vector + 堆算法
 

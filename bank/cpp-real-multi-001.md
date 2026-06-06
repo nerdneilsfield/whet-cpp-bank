@@ -50,3 +50,9 @@ E. shared_ptr 的所有操作都是无锁的（lock-free）
 - 多线程读 + 少量写 → 考虑 RCU / hazard pointer
 
 **来源：** 跨厂高频混淆点（参考：cppreference shared_ptr、Herb Sutter《Atomic Smart Pointers》）
+
+## Explanation
+
+正确答案：A、C、D。
+A 正确： 控制块的引用计数是 atomic，不同 shared_ptr 实例（即使指向同一对象）的拷贝/销毁是线程安全的；B 错误： 同一个 shared_ptr 实例（如 g_ptr）的并发读写不安全！。
+C 正确： shared_ptr 只保证控制块的引用计数线程安全，对对象内容的访问需用户用 mutex 等保护。

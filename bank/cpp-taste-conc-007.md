@@ -95,3 +95,9 @@ D 一行启动、一行获取，**异常也自动通过 future 传播**（`compu
 A 是"我会写并发"的人写的；B 是"我懂 memory model"的人写的；C 是"我知道 join 同步"的人写的；D 是"我先问该用什么工具"的人写的。**code-taste 里，先问 idiom 永远赢过秀技术**。
 
 **来源：** 手写题。`std::async` 替代手工同步见 Herb Sutter "Use async if the result is needed in this thread"；异常通过 future 传播见 ISO/IEC 14882:2017 §33.10 [futures]；Anthony Williams *C++ Concurrency in Action* 2e §4.2 系统对比了 future / promise / packaged_task / async。
+
+## Explanation
+
+正确答案是 D。在生产者-消费者多元素场景里 A 是正确写法，但在"传一个值"这件事上是大材小用、词不达意。
+这道题考 "想做什么 → 用最贴合意图的工具"——传递"一个值"用 `future`，而不是搭一套队列/标志/锁。
+常见误区是把一次运行结果当成同步保证，忽略数据竞争、锁顺序、条件变量谓词或线程生命周期。

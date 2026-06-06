@@ -14,11 +14,11 @@ rubric:
 
 # override 和 final 关键字的作用？
 
-## 问题
+### 问题
 
 C++11 引入了 `override` 和 `final` 关键字，请分别说明它们的作用，以及不使用它们可能带来什么问题。
 
-## 参考答案
+## Explanation
 
 ### override
 

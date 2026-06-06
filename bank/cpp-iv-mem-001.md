@@ -14,7 +14,7 @@ rubric:
 
 # `new`/`delete` vs `malloc`/`free` 的区别？
 
-## 参考答案
+## Explanation
 
 `new`/`delete` 和 `malloc`/`free` 都用于动态内存分配，但有本质区别：
 

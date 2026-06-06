@@ -64,3 +64,9 @@ D 根本不在函数内部处理 null——函数签名 `const Widget&` **编译
 **D 的签名本身就是对调用方的契约声明：我不需要处理 null，因为我根本不接受空的可能性。** 这是 C++ 引用比指针的"语义升级"最经典的应用——引用非空这一性质从 C 时代开始就是引用定义的一部分（Bjarne 原话："A reference should be implemented by a pointer, but it is not a pointer — references do not have a null value"）。
 
 **来源：** 手写题。引用不可空是 C++ 语言定义的一部分（[dcl.ref]/§11.3.2）；C++ Core Guidelines I.4, F.7, P.5；assert 适用场景见 Scott Meyers *Effective Modern C++* Item 14 的 noexcept 讨论中也涉及了 assert 在 Release 中的失效。
+
+## Explanation
+
+正确答案是 D。这道题考 "用类型系统排除无效状态，而不是在运行时检查"。
+逐一品味： A：在函数边界检查 null 并抛异常——这是调用方没检查时的"防御式"写法。
+这道题考 "用类型系统排除无效状态，而不是在运行时检查"。

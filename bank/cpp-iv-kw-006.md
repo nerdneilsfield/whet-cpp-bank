@@ -14,11 +14,11 @@ rubric:
 
 # `constexpr` vs `const` 的区别
 
-## 题目
+### 题目
 
 `constexpr` 和 `const` 有什么区别？`constexpr` 函数有哪些限制？什么时候应该用 `constexpr` 而不是 `const`？
 
-## 参考答案
+## Explanation
 
 ### 核心区别
 

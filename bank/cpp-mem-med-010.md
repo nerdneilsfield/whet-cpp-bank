@@ -31,6 +31,6 @@ v.emplace_back(open_remote(),  &send_to_close_service);
 
 代价：`std::function` 内部可能有小对象优化，但通常每个 `unique_ptr` 会变大（额外几十字节），调用删除器有一次间接调用，编译器无法内联。这就是 `unique_ptr` "零开销"承诺的对立面——只有在你确实需要异质删除器时才用这种方案，否则应当让 `D` 在编译期固定以获得 `sizeof(unique_ptr)==sizeof(T*)` 的最佳布局。D 错，正是这种类型擦除的存在反驳了它。
 
-## 解析
+## Explanation
 
 正确答案是 C，`unique_ptr` 的删除器类型属于对象类型的一部分，不同 lambda 或不同函数对象会产生不同的 `unique_ptr` 类型。若要把多种删除策略放进同一个 `vector`，需要统一删除器类型，`std::function<void(FILE*)>` 可做类型擦除。代价是可能有额外存储和间接调用开销，但能满足异构删除策略的容器需求。

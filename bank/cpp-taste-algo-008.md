@@ -70,3 +70,9 @@ C 是唯一一个名字直接对应"相邻元素差值"的写法。`adjacent_dif
 - 部分和 → `partial_sum`
 - 内部乘积 → `inner_product`
 - 这些都是 `<numeric>` 里的数值 algorithm
+
+## Explanation
+
+正确答案是 C。`std::adjacent_difference` 是标准库中专做"相邻差值"的 algorithm，名字明确，语义清晰。
+B：迭代器版本更现代一点，但 `*(it - 1)` 的反向引用不够直观。
+常见误区是手写循环或只看单步结果，忽略标准算法已经约定好的复杂度和迭代器语义。

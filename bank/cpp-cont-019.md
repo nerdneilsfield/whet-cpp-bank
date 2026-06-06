@@ -20,6 +20,6 @@ B. 插入后 `it1` 和 `it2` 依然有效
 C. `m.insert({1,"one"})` 返回 `void`
 D. `m.insert({1,"one"})` 返回 `std::pair<iterator, bool>`
 
-## 解析
+## Explanation
 
 正确答案是 B、D。`auto` 按模板实参推导规则工作，常会丢弃顶层 `const` 和引用，除非显式写成 `auto&`。 A 错误：插入 ｀{3,"three"}｀ 后，｀it1｀ 和 ｀it2｀ 均失效；B 正确：插入后 ｀it1｀ 和 ｀it2｀ 依然有效；C 错误：｀m.insert({1,"one"})｀ 返回 ｀void｀；D 正确：｀m.insert({1,"one"})｀ 返回 ｀std::pair<iterator, bool>｀。常见误区是只记住术语名称，而忽略每个选项中的限定条件、生命周期、同步关系或复杂度前提。

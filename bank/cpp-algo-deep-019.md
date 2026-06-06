@@ -20,6 +20,6 @@ B. `std::nth_element(v.begin(), v.begin()+k-1, v.end()); int kth = v[k-1];` — 
 C. `std::partial_sort(v.begin(), v.begin()+k, v.end()); int kth = v[k-1];` — O(n log k)
 D. `std::priority_queue<int> pq(v.begin(), v.end()); for(int i=1;i<k;i++) pq.pop(); int kth = pq.top();` — O(n + k log n)
 
-## 解析
+## Explanation
 
 正确答案是 B：std::nth_element 能把第 k 小元素放到目标位置，平均线性时间，且不要求两侧内部有序。sort 做了过多工作，partial_sort 适合前 k 个有序但复杂度更高。若只关心第 k 小，nth_element 是最匹配的算法。

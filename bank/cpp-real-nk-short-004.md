@@ -104,3 +104,7 @@ std::mutex Singleton::mutex_;
 - delete 拷贝构造和赋值（1 分）
 
 **来源：** 字节并发面试题 / 《C++ Concurrency in Action》
+
+## Explanation
+
+本题评分重点是给出 Meyers Singleton 和 DCL/atomic 等线程安全实现，并解释其内存模型。C++11 保证函数内静态局部变量初始化线程安全，因此 Meyers Singleton 简洁且通常首选。DCL 必须用 atomic 指针配合 release-acquire，确保对象构造完成后才发布给其他线程；C++11 前无同步的 DCL 可能读到半构造对象。常见误区是只在第一次判断外层加锁或使用普通指针，导致数据竞争。

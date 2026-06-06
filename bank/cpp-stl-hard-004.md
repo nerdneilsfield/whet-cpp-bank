@@ -22,7 +22,7 @@ B. ① 在 C++ 中使用 `propagate_on_container_copy_assignment = false` 时，
 C. ① 总是使用 `v1` 的分配器分配新内存
 D. `polymorphic_allocator` 的 `propagate_on_container_copy_assignment` 为 `false`，且本质上是浅复制指针，因此赋值操作中目标分配器保持不变——即使 `r1 ≠ r2`，元素拷贝也会使用 `r2`（目标分配器）来分配新内存，不会改为使用 `r1`
 
-## 解析
+## Explanation
 
 分配器感知容器的特殊规则由 `allocator_traits::propagate_on_container_copy_assignment`（简称 `POCA`）决定：
 - 若 `true`：拷贝赋值时目标分配器被赋值为来源分配器，然后用来源分配器重分配。

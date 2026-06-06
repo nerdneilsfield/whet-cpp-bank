@@ -14,7 +14,7 @@ rubric:
 
 # `std::allocator` 和自定义分配器的应用场景？
 
-## 参考答案
+## Explanation
 
 ### `std::allocator` 的作用
 

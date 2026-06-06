@@ -21,6 +21,6 @@ B. 前后两半都**不保证**保持相对顺序；若需要保序应使用 `st
 C. `std::partition` 时间复杂度 O(n log n)，必须排序
 D. `mid` 指向的位置一定是中间元素，即 `v.begin() + v.size()/2`
 
-## 解析
+## Explanation
 
 正确答案是 B：std::partition 只保证满足谓词的元素在前，不满足的在后，不保证两部分内部的原相对顺序。mid 指向后一组的第一个元素，位置由满足谓词的元素个数决定，不一定在物理中点。需要保序时应使用 std::stable_partition。

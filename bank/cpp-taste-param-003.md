@@ -45,7 +45,7 @@ B. B 段：指针 out 参数最灵活，调用方可以传 `nullptr` 表示"不�
 C. C 段：返回 `std::pair`，调用方一行 `auto [q, r] = divmod(...)` 解构，简洁。
 D. D 段：返回带具名字段的结构体，调用点 `r.quot` / `r.rem` 自解释，编译器照样 RVO。
 
-## 解析
+## Explanation
 
 正确答案是 **D**。
 

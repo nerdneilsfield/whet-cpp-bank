@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: B
 ---
 
-## 题目
+### 题目
 
 下面代码中，`push_back` 共调用了几次**拷贝构造**，几次**移动构造**？
 
@@ -29,11 +29,10 @@ B. 拷贝 1 次，移动 1 次
 C. 拷贝 0 次，移动 2 次
 D. 拷贝 1 次，移动 2 次（含扩容）
 
-## 答案
+## Explanation
 
 B
 
-## 解析
 
 - `(1)` 传入左值 `s`，调用 `push_back(const std::string&)`，触发**拷贝构造**。
 - `(2)` 传入 `std::move(s)` 右值，调用 `push_back(std::string&&)`，触发**移动构造**。

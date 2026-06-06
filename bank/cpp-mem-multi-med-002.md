@@ -26,3 +26,7 @@ A 正确：拷贝构造函数被 `= delete`，`std::move` 转移所有权并置�
 B 错误：`unique_ptr` 支持自定义删除器（作为模板参数），例如 `unique_ptr<FILE, decltype(&fclose)>`。
 C 正确：`unique_ptr<T[]>` 特化提供了 `operator[]` 但不提供 `operator*`/`operator->`，专门用于数组管理。
 D 正确：默认删除器时 `unique_ptr` 仅保存裸指针（1 个指针大小）；`shared_ptr` 需保存裸指针 + 控制块指针，共 2 个指针大小。
+
+## Explanation
+
+A、C、D 正确：`unique_ptr` 独占所有权，禁止拷贝，只能通过移动转移资源。数组特化 `unique_ptr<T[]>` 提供下标访问，默认删除器下对象通常只占一个指针大小。常见误区是认为智能指针都能共享或复制；需要共享所有权时才应使用成本更高的 `shared_ptr`。

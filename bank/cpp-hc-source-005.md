@@ -76,3 +76,9 @@ insertion sort 在 n ≤ 16 时常数因子极小（无递归、内存访问连�
 A 错——heapsort 平均**慢于**快排（更多 cache miss、更多比较），只是最坏更好。B 不准确——标准只要求最坏 O(n log n)，未指定 heapsort，但 heapsort 是满足约束的工程选择。D 错——mergesort 是稳定的，问题在内存（且 stable_sort 就是 mergesort，需要 O(n) 内存）。
 
 **来源：** 手写题，源参考 libstdc++ `bits/stl_algo.h::__sort` 与 `__introsort_loop`；论文：David R. Musser, "Introspective Sorting and Selection Algorithms" (Software: Practice & Experience, 1997)；C++ 标准 §28.7.1 [sort] 要求 O(n log n) 最坏。
+
+## Explanation
+
+正确答案是 C。这是 1997 年 David Musser 提出 introsort 的核心动机。
+** 快排的平均复杂度是 O(n log n)，但最坏可达 O(n²)——常见触发场景： 数据已经有序或近似有序（且 pivot 选首尾元素） 所有元素相等 攻击者构造的对抗性输入（适用于面向公网的库） C++ 标准（自 C++03 起）要求 `std::sort` 最坏 O(n log n)。
+*为什么是 heapsort，不是 mergesort？

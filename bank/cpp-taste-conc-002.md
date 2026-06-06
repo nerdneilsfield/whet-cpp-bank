@@ -78,3 +78,9 @@ D. D — 用 `recursive_mutex` 永远不会死锁，最稳
 A 选项的写法不只是"少打几行字"——它把"原子加多锁"这一抽象**封装在类型本身**里，连 `adopt_lock` 标签都不用提，意图直接由构造函数表达。这是 C++17 给并发代码的一个标志性改进。
 
 **来源：** 手写题。`scoped_lock` 规范见 ISO/IEC 14882:2017 §33.4.4.2 [thread.lock.scoped]；ABBA 死锁与多锁同时获取见 Anthony Williams *C++ Concurrency in Action* 2e §3.2.4；`recursive_mutex` 的设计原则见 Herb Sutter "Use threads correctly = isolation + asynchronous messages"。
+
+## Explanation
+
+正确答案是 A。正确但啰嗦——三行代码做一件事，C++17 之后已被 `scoped_lock` 一行取代。
+这道题考 "多锁同时获取"的死锁规避。
+`std::scoped_lock` 不是 `lock_guard` 的变参重命名——它内部用 `std::lock` 算法（要么全部成功、要么全部回退）来获取所有锁，保证没有循环等待死锁。

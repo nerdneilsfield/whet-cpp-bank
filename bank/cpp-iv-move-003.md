@@ -14,7 +14,7 @@ rubric:
 
 # `std::move` 的作用是什么？它真的"移动"了数据吗？
 
-## 参考答案
+## Explanation
 
 ### std::move 的本质
 

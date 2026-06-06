@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-includes-001/
 
 约束：0 <= a.size(), b.size() <= 10^5。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,11 +20,15 @@ tests_dir: tests/cpp-prog-stl-includes-001/
 bool contains_all(const std::vector<int>& a, const std::vector<int>& b);
 ```
 
-## 示例
+### 示例
 ```
 a=[1,2,2,3,4], b=[2,2,4]  => true
 a=[1,2,3],     b=[2,4]    => false
 ```
 
-## 提示
+### 提示
 - 在 skeleton/solution.hpp 中实现函数。
+
+## Explanation
+
+`std::includes(a.begin(), a.end(), b.begin(), b.end())` 判断有序区间 a 是否按多重集合语义包含 b。它会正确处理重复元素数量，而不是只看是否出现过。注意两个输入都必须升序，空 b 应返回 true。

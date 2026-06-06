@@ -32,3 +32,9 @@ ABI 规范（Itanium C++ ABI，被 GCC/Clang 采用；MSVC 类似）规定：
 验证：`std::cout << sizeof(Base);` 在没有其他成员时返回指针大小（64 位为 8），这变相说明 vptr 加在对象起始。
 
 **来源：** CSDN C++ 虚函数详解 / Itanium C++ ABI §2.5
+
+## Explanation
+
+正确答案是 B。
+关键是说明正确选项成立的 C++ 规则，以及其他选项忽略的边界条件。
+常见误区是只记结论，不解释代码行为、编译行为或复杂度前提。

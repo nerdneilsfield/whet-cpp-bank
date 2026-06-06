@@ -14,7 +14,7 @@ rubric:
 
 # 什么是左值（lvalue）和右值（rvalue）？如何区分？
 
-## 参考答案
+## Explanation
 
 ### 核心定义
 

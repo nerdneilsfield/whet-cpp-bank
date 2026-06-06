@@ -46,7 +46,7 @@ D. D
 
 ---
 
-## 解析
+## Explanation
 
 C++17 强制 RVO 的精确条件：
 1. **prvalue elision**（强制）：`return Image(...)` 直接构造在调用者预留位置。

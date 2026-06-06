@@ -18,6 +18,6 @@ B. 默认是 min-heap
 C. 传入 `std::greater<T>` 作为比较器可得到 min-heap
 D. 支持任意迭代器遍历内部所有元素
 
-## 解析
+## Explanation
 
 正确选项是 A、C。priority_queue 默认底层容器是 vector，并使用标准堆操作维护堆性质；默认比较器 less 让最大元素位于 top，因此是 max-heap。传入 greater 可得到 min-heap。它是容器适配器，只暴露 push、pop、top 等接口，不提供遍历内部元素的迭代器。

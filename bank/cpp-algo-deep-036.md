@@ -21,6 +21,6 @@ B. `std::push_heap(v.begin(), v.end());` 仅 O(log n) 上浮新元素
 C. `std::sort_heap(v.begin(), v.end());`
 D. `std::pop_heap(v.begin(), v.end());`
 
-## 解析
+## Explanation
 
 正确答案是 B：push_back 新元素后，原来的 [begin,end-1) 已是堆，std::push_heap 只需把新尾元素上浮，复杂度 O(log n)。重新 make_heap 虽正确但多做 O(n) 工作。sort_heap 会把堆排序，pop_heap 是弹出堆顶的准备动作，都不是插入。

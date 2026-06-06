@@ -74,3 +74,9 @@ D. 行为未定义——构造函数中调用虚函数是 UB
 **陷阱变种**：纯虚函数在构造/析构中被调用 → **运行时调 `std::terminate`**（因为 `Base::init = 0` 没定义，跳过去执行就崩）。这才是 UB 边界的东西，是真正的"灾难性陷阱"。
 
 **来源：** 手写题。规则见 ISO/IEC 14882:2017 §15.7.4 [class.cdtor]；Scott Meyers, *Effective C++* Item 9: "Never call virtual functions during construction or destruction"。
+
+## Explanation
+
+正确答案是 B（A、B 文字相同但 B 解释更明确）。
+这道题考察"构造/析构函数中的虚函数调用"这条 C++ 经典规则。
+*C 错**的原因：以为构造时也走动态派发——这是新人最大的误解。

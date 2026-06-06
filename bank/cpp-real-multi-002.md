@@ -53,3 +53,10 @@ E. 仅读取 `v[0]` 或 `v[4]`
 | erase | 删除点及后失效 | 全部失效 | 仅指向被删 | 仅指向被删 |
 
 **来源：** 阿里 / 字节 STL 迭代器失效经典考题（参考：cppreference）
+
+## Explanation
+
+正确答案：A、B、D。
+A 正确： push_back 触发重分配 → 所有迭代器失效，it 失效 *；B 正确： insert 在 begin() 位置，it 在它之后 → it 失效（即使没重分配也失效，因为元素后移） *。
+C 错误： reserve 后 capacity 充足，push_back 不重分配；且 it 在插入点之前 → it 仍然有效 *；D 正确： erase(begin()) 删除位置 0 → it（位置 2）在其之后 → 失效 *。
+E 错误： 读取不修改容器，不影响迭代器 *完整失效表格。

@@ -103,3 +103,9 @@ Rule of Five 的精髓：**用户定义了五个特殊成员的任何一个，�
 - 把构造函数标 explicit，析构里检查空状态，move 后留下"已交出"的空标识
 
 **来源：** 手写题。Scott Meyers "Effective Modern C++" Item 17: "Understand special member function generation"；C++ Core Guidelines C.21。
+
+## Explanation
+
+正确答案是 B。这题考Rule of Three/Five 不适用什么 vs 真的需要 Rule of Five 的场景。
+同时不能移动 Connection（move 操作被抑制）。
+`= default` 不是"安全"，它就是"编译器默认会做的事写出来"。

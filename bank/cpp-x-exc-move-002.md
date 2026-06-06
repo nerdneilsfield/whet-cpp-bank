@@ -36,7 +36,7 @@ D. vector 调用拷贝构造，原始元素安全；性能较差但 strong excep
 
 ---
 
-## 解析
+## Explanation
 
 [vector.modifiers] 与 `std::move_if_noexcept` 规定：扩容时若元素类型同时满足「有可用的拷贝构造」且「移动构造不是 noexcept」，vector 会 **退化使用拷贝构造**。
 

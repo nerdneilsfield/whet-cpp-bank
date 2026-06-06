@@ -83,3 +83,7 @@ D. D — 把每条记录补齐到 64 字节，正好对齐 cache line，整齐�
 - `sizeof(struct)` 是衡量数组带宽的最关键数字
 
 **来源：** Agner Fog, "Optimizing software in C++", §9.5 "Cache contentions in large data structures"；Ulrich Drepper, "What Every Programmer Should Know About Memory", §3.3.1；Intel Optimization Reference Manual, §3.6.4 "Alignment".
+
+## Explanation
+
+选项关键是结构体字段重排：按对齐需求从大到小排列可减少 padding，让数组更紧凑并提高 cache line 利用率。packed 虽然省空间，但可能制造未对齐访问，反而把成本转到运行时。误区是盲目 alignas(64)；没有 false sharing 时，它只会浪费带宽。

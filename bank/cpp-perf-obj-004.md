@@ -65,3 +65,7 @@ D. D — 用裸指针返回，调用方负责 delete
 - `return std::move(x)` 仅在 x 不是函数局部变量（如成员、参数）时才有意义
 
 **来源：** Scott Meyers, "Effective Modern C++", Item 25 "Use std::move on rvalue references, std::forward on universal references" + Item 36 "Use std::launch::async"；C++17 标准 [class.copy.elision]；C++ Core Guidelines F.20.
+
+## Explanation
+
+选 B，因为直接 `return result;` 允许 NRVO，在调用者返回值槽中构造对象，通常零拷贝零移动。`return std::move(result)` 会破坏 NRVO 候选，反而强制至少一次移动；输出参数也没有性能优势且接口更差。误区是把显式 move 当成返回局部变量的优化。

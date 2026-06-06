@@ -74,3 +74,7 @@ A 的关键是 TLS 把"每线程一份数据"从概念变成硬件能直接寻�
 - POD/数组用 `thread_local`：构造析构是 zero-cost；类型有非平凡构造时才有 TLS 初始化开销
 
 **来源：** Anthony Williams, "C++ Concurrency in Action" 2nd ed., §4.3 "thread_local variables"；ELF TLS ABI 文档；Intel Optimization Reference Manual, §11.6 "Thread-Local Storage Access".
+
+## Explanation
+
+正确答案应让生产者和消费者少阻塞、少忙等，并保证等待条件写对。条件变量适合低频等待，忙等适合极短临界等待；无界自旋会浪费核心并拖慢系统。常见误区是把“无锁”当作必然更快，忽略缓存一致性流量和退避策略。

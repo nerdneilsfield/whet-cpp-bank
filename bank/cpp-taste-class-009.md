@@ -94,3 +94,9 @@ D. D — 手写 Pimpl + 深拷贝，最经典的 PIMPL 设计
 - 看到 unique_ptr<Impl> 仅为了"避免大对象拷贝" → 警觉，可能用错工具
 
 **来源：** 手写题。Sean Parent "Value Semantics and Concept-based Polymorphism" (GoingNative 2013)。
+
+## Explanation
+
+正确答案是 A。这道题考的是值语义是 C++ 的默认范式，不要因为对象"大"就用引用语义。
+Configuration 由 string、vector、整数组成，全是 RAII 类型 → Rule of Zero 自动得到正确的拷贝、移动、析构。
+这道题考的是值语义是 C++ 的默认范式，不要因为对象"大"就用引用语义。

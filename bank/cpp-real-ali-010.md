@@ -45,3 +45,10 @@ class LRUCache {
 A 错，unordered_map 内存开销通常比 map 大（桶+链表）。B 错，list 不支持随机访问（这里也不需要）。D 错，unordered_map 的迭代器顺序是不确定的。
 
 **来源：** 阿里二面/三面 高频代码题
+
+## Explanation
+
+正确答案是 C。
+选 C。LRU 缓存的核心需求：O(1) 查找 + O(1) 把最近访问节点移到头部。
+*为什么不用 map？
+map 的迭代器确实在插入后不失效，但 map 本身是有序的（红黑树），不支持 O(1) 的"移动到头部"操作 移动一个节点到 LRU 队首需要修改链表关系，map 无法做到 *为什么用 list + unordered_map？

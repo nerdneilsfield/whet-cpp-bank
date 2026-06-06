@@ -13,3 +13,7 @@ tests_dir: tests/cpp-prog-ds-queue-bfs-001/
 #include <vector>
 int shortestPath(const std::vector<std::vector<int>>& grid);
 ```
+
+## Explanation
+
+从 `(0,0)` 开始 BFS，每个格子第一次入队时记录距离，按四个方向扩展可走且未访问的格子。BFS 按层推进，所以第一次到达终点的距离就是最短步数。边界包括空网格、起点或终点为墙、单格迷宫，以及访问数组要防止重复入队。

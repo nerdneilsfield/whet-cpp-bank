@@ -24,6 +24,6 @@ B. 第 (1) 行：`std::sort` 可以用于 `std::list`，没有问题
 C. 第 (2) 行：若先用 `std::list::sort()` 排序后再调用 `std::binary_search` 才是正确用法
 D. 应改用 `lst.sort()` 对 `std::list` 排序，因为成员函数 `sort` 专为链表设计
 
-## 解析
+## Explanation
 
 正确答案是 A、C、D。`std::sort` 需要随机访问迭代器，而 `std::list` 只有双向迭代器，所以第 (1) 行编译失败；链表应使用成员函数 `lst.sort()`。`binary_search` 也要求区间已按同一规则排序，因此应先正确排序再查找。

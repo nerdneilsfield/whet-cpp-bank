@@ -14,7 +14,7 @@ rubric:
 
 # Q: `weak_ptr` 的作用？如何解决 `shared_ptr` 的循环引用？代码演示。
 
-## 参考答案
+## Explanation
 
 ### 循环引用问题
 

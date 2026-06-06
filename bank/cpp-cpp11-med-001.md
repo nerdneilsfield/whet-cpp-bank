@@ -28,6 +28,6 @@ D. `a` 是 `const int`，`b` 是 `int`
 
 这是 C++11 引入 `auto` 和 `decltype` 的核心区别之一，也是后续 `decltype(auto)` 诞生的原因。
 
-## 解析
+## Explanation
 
 正确答案是 B。`auto` 按模板实参推导规则工作，常会丢弃顶层 `const` 和引用，除非显式写成 `auto&`。选项 B 的表述“｀a｀ 是 ｀int｀，｀b｀ 是 ｀const int&｀”正好符合该规则。A、C、D 的问题通常在于把相近概念混同、忽略默认行为，或把运行期现象误认为编译期/标准规定。

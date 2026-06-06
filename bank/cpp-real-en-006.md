@@ -26,3 +26,10 @@ E. `dynamic_cast` 如果失败，对指针返回 `nullptr`，对引用抛出 `st
 - **`reinterpret_cast`**：按位重新解释内存内容。最危险的转换，移植性差，通常用于与硬件交互（如 memory-mapped I/O）。
 
 **来源：** InterviewBit "C++ Interview Questions" — Type Casting
+
+## Explanation
+
+正确答案是 ["A", "C", "D"]。
+四种转换各有用途： static_cast：编译期安全检查的类型转换；适用于数值类型间转换、派生类→基类（向上转型、向下转型不检查）。
+dynamic_cast：运行时安全检查，只能用于多态类型（有虚函数的类）；向下转型时检查类型信息，失败返回 nullptr（指针）或抛 std::bad_cast（引用）。
+四种转换各有用途： static_cast：编译期安全检查的类型转换。

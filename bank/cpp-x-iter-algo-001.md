@@ -34,7 +34,7 @@ D. (D)
 
 ---
 
-## 解析
+## Explanation
 
 各算法对迭代器类别的最低要求（[alg.sortings] 等）：
 

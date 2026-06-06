@@ -28,3 +28,7 @@ A 正确：`class Mid final` 禁止任何派生，`struct Bad : Mid` 编译失�
 B 正确：`void f() final;` 禁止派生类再覆盖；`M3::f()` 试图覆盖 final 函数会被编译器拒绝。注意 final 函数仍是 virtual。
 C 错误：`final` 是给编译器的强约束信号，不只是文档性。现代编译器（GCC/Clang/MSVC）会利用 final 信息消除虚函数调用开销，进行去虚化优化。
 D 正确：当对象的静态类型已知是 final 类，或调用的虚函数已被声明 final，编译器可以静态决议虚函数调用（devirtualization），避免 vtable 间接跳转，提升性能。这是 final 实际带来的优化收益。
+
+## Explanation
+
+A、B、D 正确：`final` 修饰类会禁止继续派生，修饰虚函数会禁止后续覆盖。它是编译期约束，不只是文档说明，编译器可利用它做去虚化优化。常见误区是认为 `final` 只影响可读性；实际上它既能捕获错误继承，也可能减少虚调用开销。

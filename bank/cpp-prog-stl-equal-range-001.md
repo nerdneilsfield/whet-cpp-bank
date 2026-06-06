@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-equal-range-001/
 
 约束：0 <= nums.size() <= 10^5。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,11 +20,15 @@ tests_dir: tests/cpp-prog-stl-equal-range-001/
 std::vector<int> find_all_equal(const std::vector<int>& nums, int x);
 ```
 
-## 示例
+### 示例
 ```
 [1,2,2,2,3], 2 => [2,2,2]
 [1,2,3], 5     => []
 ```
 
-## 提示
+### 提示
 - 在 skeleton/solution.hpp 中实现函数。
+
+## Explanation
+
+对升序数组调用 `std::equal_range(nums.begin(), nums.end(), x)` 可一次得到等于 x 的半开区间。用这两个迭代器构造结果 vector 即可，若区间为空则返回空 vector。注意输入必须已排序，否则二分相关算法结果没有意义。

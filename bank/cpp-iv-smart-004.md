@@ -14,7 +14,7 @@ rubric:
 
 # Q: `make_shared` 和 `new` + `shared_ptr` 构造的区别？
 
-## 参考答案
+## Explanation
 
 ### 内存分配次数
 

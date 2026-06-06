@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: "A"
 ---
 
-## 题目
+### 题目
 
 以下代码输出什么？
 
@@ -33,6 +33,6 @@ B. `1 1 3 4 5`
 C. `3 1 4 1 5`（插入顺序）
 D. `5 4 3 2 1`
 
-## 解析
+## Explanation
 
 `std::priority_queue` 默认是最大堆（`std::less<int>`），每次 `top()` 返回当前最大元素。弹出顺序为 `5 4 3 1 1`（降序）。若要最小堆，需用 `std::priority_queue<int, std::vector<int>, std::greater<int>>`。

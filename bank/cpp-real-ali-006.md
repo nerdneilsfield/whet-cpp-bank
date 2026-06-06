@@ -55,3 +55,10 @@ Derived:
 对齐规则：所有成员对齐到自身大小倍数，结构体对齐到最大成员对齐值的倍数（vptr = 8）。
 
 **来源：** 阿里 C++ 面试（参考：huihut/interview、cs-offer）
+
+## Explanation
+
+正确答案是 A。
+选 A。关键在于虚函数表指针（vptr）的大小和对齐。
+64 位系统：vptr = 8 字节，int = 4 字节。
+Base：vptr(8) + int(4) = 12，对齐到 8 的倍数 → 16 字节 Derived：继承 Base 的 vptr(8) + int a(4) + int b(4) = 16，已是 8 的倍数 → 16 字节 *为什么 Derived 没有对齐到 24？

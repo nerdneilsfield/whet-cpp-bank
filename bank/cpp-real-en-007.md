@@ -40,3 +40,7 @@ obj.virtual_func(args)
 这个过程在运行时决定调用哪个函数版本（而非编译期），因此称为动态绑定（dynamic binding）或后期绑定（late binding）。代价是一次额外的指针间接寻址，且虚函数无法内联（inline）。
 
 **来源：** InterviewBit "C++ Interview Questions" — Virtual Table / vtable
+
+## Explanation
+
+本题评分重点是说明 vtable 是类级别的虚函数入口表，vptr 是对象里的隐藏指针，虚调用通过 vptr 找到 vtable 槽位再跳转。这个过程使 Base* 或 Base& 能在运行期调用派生类覆盖版本，也解释了动态绑定的来源。还应提到 RTTI 通常与虚表相关，虚调用有一次间接寻址并可能阻碍内联。常见误区是把普通非虚函数也放进虚表，或认为虚函数表每个对象各有一份。

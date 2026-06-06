@@ -61,3 +61,7 @@ A 的核心是"用最弱的内存序满足需求"——计数器只需要每次 
 - "计数器/统计/标志位"几乎都能用 relaxed；只有"用原子操作传递其他变量的可见性"才需要 acquire/release 或 seq_cst
 
 **来源：** Anthony Williams, "C++ Concurrency in Action" 2nd ed., §5.3 "Synchronizing operations and enforcing ordering"；Herb Sutter, "atomic Weapons", C++ and Beyond 2012；Paul McKenney, "Memory Barriers: a Hardware View for Software Hackers".
+
+## Explanation
+
+正确答案应避免在热循环中用过强同步；如果只需要计数最终值，relaxed 原子或线程局部累加后合并通常更合适。互斥锁和顺序一致原子都会引入额外同步、缓存行竞争或内存栅栏。常见误区是认为 atomic 一定轻量，实际上频繁跨核写同一 cache line 仍会很慢。

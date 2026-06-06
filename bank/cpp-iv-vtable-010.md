@@ -14,11 +14,11 @@ rubric:
 
 # 协变返回类型（covariant return type）是什么？
 
-## 问题
+### 问题
 
 什么是协变返回类型（covariant return type）？C++ 对它的规则是什么？它如何在 vtable 层面实现？请给出实际应用场景。
 
-## 参考答案
+## Explanation
 
 ### 定义
 

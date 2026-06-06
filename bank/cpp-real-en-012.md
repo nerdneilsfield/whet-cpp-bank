@@ -28,3 +28,9 @@ Race condition 指多个线程同时访问共享数据且至少有一个是写�
 **`volatile` 不能防止 race condition**。`volatile`只阻止编译器优化，不提供任何内存排序保证或原子性。线程安全的标志位应使用 `std::atomic<bool>` 而不是 `volatile bool`。
 
 **来源：** InterviewBit "C++ Interview Questions" — Race Condition
+
+## Explanation
+
+正确答案是 D。
+Race condition 指多个线程同时访问共享数据且至少有一个是写操作，导致结果依赖于线程执行顺序。
+常见预防手段： std::mutex / std::lock_guard：互斥锁保护临界区 std::atomic<T>：原子操作，无锁线程安全 读写锁（std::shared_mutex）：多读单写 *volatile 不能防止 race condition。volatile只阻止编译器优化，不提供任何内存排序保证或原子性。线程安全的标志位应使用 std::atomic<bool> 而不是 volatile bool。

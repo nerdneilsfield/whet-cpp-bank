@@ -73,3 +73,9 @@ A 一行代码、明确表达"我要在后台异步执行"。返回 `std::future
 A 比 D 多打 21 个字符（`std::launch::async, `），换来的是对"异步还是同步"的确定性承诺——这是品味题里典型的"细节决定味道"案例。
 
 **来源：** 手写题。`std::async` launch policy 陷阱见 Scott Meyers *Effective Modern C++* Item 36；`packaged_task` 与 `async` 区分见 Anthony Williams *C++ Concurrency in Action* 2e §4.2.1-4.2.3。
+
+## Explanation
+
+正确答案是 A。这道题考 "用 `std::async` 时一定要显式传 `std::launch::async`" 这条细节品味。
+返回 `std::future<int>`，调用方 `.get()` 时拿结果或拿到原始异常。
+D：这是 `std::async` 的著名陷阱。

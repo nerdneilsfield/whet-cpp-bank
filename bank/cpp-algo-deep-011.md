@@ -21,6 +21,6 @@ B. `if (it == v.end()) std::cout << "none"; else std::cout << *it;`
 C. `if (*it == 0) std::cout << "none"; else std::cout << *it;`
 D. `if (it < 0) std::cout << "none"; else std::cout << *it;`
 
-## 解析
+## Explanation
 
 正确答案是 B：std::find_if 找不到时返回 last，也就是这里的 v.end()。end() 不是 nullptr，也不能解引用；必须先比较 it == v.end()，确认找到后才能访问 *it。误区是把迭代器当裸指针，或把未找到状态误认为某个特殊元素值。

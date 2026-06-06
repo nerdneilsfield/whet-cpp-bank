@@ -46,6 +46,6 @@ dynamic_cast<Cat*>(a) 转换成功，返回非空指针，第二个 if 为真。
 基类 Animal 有虚析构函数，dynamic_cast 可正常工作。
 -->
 
-## 解析
+## Explanation
 
 B 正确：`a` 的动态类型是 `Cat`，所以 `dynamic_cast<Dog*>(a)` 返回空指针，而 `dynamic_cast<Cat*>(a)` 成功。`Animal` 有虚析构函数，类型是多态类型，指针形式的 `dynamic_cast` 合法且失败时返回 `nullptr`。关键误区是认为基类指针不能做运行时向下转换。

@@ -29,6 +29,6 @@ D. `static_cast` → `dynamic_cast` → `const_cast` → `reinterpret_cast`
 
 实践建议：C++ 代码应明确写出 `static_cast` / `dynamic_cast` / `const_cast` / `reinterpret_cast`，让 grep 和审阅者一眼看出意图，禁用 C 风格 cast（`-Wold-style-cast`）。
 
-## 解析
+## Explanation
 
 正确答案为 B，因为“`const_cast` → `static_cast` → `static_cast + const_cast` → `reinterpret_cast` → `reinterpret_cast + const_cast`”符合题干所问的 C++ 规则或代码执行结果。A、C、D 项分别混淆了相近概念、错误语法或不会发生的执行路径。常见误区是凭直觉看关键字，而没有按标准规则和代码顺序逐步判断。类型转换题要区分编译期转换、运行期检查、cv 限定和底层位模式重解释。

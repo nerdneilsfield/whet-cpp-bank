@@ -33,3 +33,9 @@ C **错**：`make_shared` 不支持自定义删除器，因为它需要使用默
 D **对**：`make_shared` 不是友元，无法访问 private 构造函数。常见技巧是用 PassKey idiom 或继承 + `enable_shared_from_this`。
 
 **来源：** 卡码笔记 C++ 智能指针专题 / Effective Modern C++ Item 21
+
+## Explanation
+
+正确答案是 C。
+A 对：make_shared 把控制块和被管理对象放在同一块内存中，一次 new；B 对：因为对象和控制块同块内存，必须等控制块被所有 weak_ptr 释放才能释放。
+C 错：make_shared 不支持自定义删除器，因为它需要使用默认 delete。

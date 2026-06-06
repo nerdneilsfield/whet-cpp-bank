@@ -14,11 +14,11 @@ rubric:
 
 # `push_back` vs `emplace_back`：区别与选用原则
 
-## 问题
+### 问题
 
 `std::vector::push_back` 与 `emplace_back` 有什么区别？各自的参数类型是什么？在什么场景下 `emplace_back` 有明显优势，什么场景下两者等价？
 
-## 参考答案
+## Explanation
 
 ### 签名对比
 

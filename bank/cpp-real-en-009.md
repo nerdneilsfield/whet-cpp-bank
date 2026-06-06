@@ -26,3 +26,10 @@ E. `std::unordered_map` 的迭代器顺序与插入顺序无关
 - **`unordered_map`**：迭代器顺序由哈希桶决定，与插入顺序无关。
 
 **来源：** InterviewBit "C++ Interview Questions" — Containers
+
+## Explanation
+
+正确答案是 ["A", "B", "E"]。
+vector：连续内存，尾部 O(1)（均摊），中间 O(n) 因为需要移动元素。
+list：双向链表，已知迭代器位置插入/删除 O(1)，但不支持随机访问。
+deque：双端队列，头部和尾部插入/删除 O(1)，也支持中间插入（O(n)），支持 operator[]。

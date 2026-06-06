@@ -14,11 +14,11 @@ rubric:
 
 # `std::deque` 的内存布局？为什么两端插入是 O(1)？
 
-## 问题
+### 问题
 
 `std::deque` 的内存布局是怎样的？它既支持下标随机访问，又支持两端 O(1) 插入，是如何做到的？与 `vector` 相比有哪些代价？
 
-## 参考答案
+## Explanation
 
 ### 内存布局：分段连续（Segmented Storage）
 

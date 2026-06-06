@@ -69,3 +69,9 @@ D. D — generate 配合 mutable lambda，函数式
 - "对每个输入元素做变换" → `transform`
 - "填充/生成一个序列" → `generate` / `iota`
 - `generate` 不接收输入范围，不要用 lambda 捕获硬让它接受输入
+
+## Explanation
+
+正确答案是 A。选错了 algorithm，读者看到 `generate` 的时候想的是"生成随机数/序列"，而不是"元素翻倍"。
+逐一品味为什么其他版本不好： B：range-for + push_back 可读性可以，但它在做两件事：遍历 + 构造输出。
+这是 algorithm 选型错误：`generate` 的语义是"不需要输入，每次生成一个新值"；`transform` 的语义是"遍历输入范围，变换后填入输出"。

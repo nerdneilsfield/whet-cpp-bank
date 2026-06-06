@@ -14,7 +14,7 @@ rubric:
 
 # Q: `shared_ptr` 和裸指针混用的危险：双重释放场景演示。
 
-## 参考答案
+## Explanation
 
 ### 场景一：同一裸指针构造两个独立 `shared_ptr`
 

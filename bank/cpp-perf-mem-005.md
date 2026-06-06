@@ -70,3 +70,7 @@ D. D — 每个变量都用 alignas(64) 单独占满一条 cache line
 - 一个 atomic 本身不慢，但跨核被反复 invalidate 的代价是 ~100 cycles 一次
 
 **来源：** Intel Optimization Reference Manual, §11.10 "False Sharing"；Herb Sutter, "Eliminate False Sharing", Dr. Dobb's；C++17 `std::hardware_destructive_interference_size` 提案（P0154）；Anthony Williams, "C++ Concurrency in Action" 2nd ed., §8.2.
+
+## Explanation
+
+选 D，因为两个线程频繁写相邻 atomic 会产生 false sharing。`alignas(64)` 让两个计数器落在不同 cache line，避免 MESI 在两个核心之间来回失效同一行。误区是垫几个字节就够；实际要按硬件破坏性干扰大小通常约 64 字节隔离。

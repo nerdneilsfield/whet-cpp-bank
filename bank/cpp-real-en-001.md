@@ -28,3 +28,8 @@ auto reg = reinterpret_cast<volatile uint32_t*>(0x40021000);
 `new` 和 `malloc` 用于堆分配，不适用于固定硬件地址；文件 I/O 则完全不是硬件寄存器访问的方式。
 
 **来源：** InterviewBit "C++ Interview Questions" — Memory-Mapped I/O
+
+## Explanation
+
+正确答案是 B。
+Memory-mapped I/O 是将外设寄存器映射到 CPU 的地址空间中，使 CPU 可以像访问普通内存一样读写寄存器。C++ 中通常通过 reinterpret_cast 将物理地址转为指针，然后用 volatile 防止编译器优化掉看似"无用"的读写（因为寄存器读写可能有副作用）。例如： new 和 malloc 用于堆分配，不适用于固定硬件地址；文件 I/O 则完全不是硬件寄存器访问的方式。

@@ -14,11 +14,11 @@ rubric:
 
 # `std::unordered_map` 的底层实现？哈希冲突如何解决？
 
-## 问题
+### 问题
 
 `std::unordered_map` 的底层数据结构是什么？当多个 key 的哈希值相同时（哈希冲突），标准库如何处理？负载因子和 rehash 是怎么回事？
 
-## 参考答案
+## Explanation
 
 ### 底层结构：哈希表
 

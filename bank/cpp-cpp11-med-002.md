@@ -52,6 +52,6 @@ D. 未定义行为
 
 这个陷阱常出现在 STL 的 `vector<bool>` 中，其 `operator[]` 返回 `__Bit_reference` 代理对象而非 `bool&`，`auto` 推导出代理类型而不是 `bool`。
 
-## 解析
+## Explanation
 
 正确答案是 C。`auto` 按模板实参推导规则工作，常会丢弃顶层 `const` 和引用，除非显式写成 `auto&`。选项 C 的表述“输出 ｀9BoolProxy｀，｀x｀ 保留为 ｀BoolProxy｀ 类型”正好符合该规则。A、B、D 的问题通常在于把相近概念混同、忽略默认行为，或把运行期现象误认为编译期/标准规定。

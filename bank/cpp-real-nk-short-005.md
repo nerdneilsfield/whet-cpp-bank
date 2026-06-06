@@ -98,3 +98,7 @@ Widget::~Widget() = default;  // 必须在 .cpp 中
 - 移动构造也需显式定义在 cpp（1 分）
 
 **来源：** 阿里云 C++ 面试题 / Effective Modern C++ Item 22 / GotW #100
+
+## Explanation
+
+本题评分重点是 Pimpl 的头文件/实现文件结构、编译防火墙、ABI 稳定性、运行期开销和 unique_ptr<Impl> 的完整类型要求。Pimpl 把实现细节移到 .cpp，调用方只依赖稳定接口，修改 Impl 成员通常不影响使用者重新编译或二进制布局。代价是额外堆分配、一次指针间接访问、较难内联以及特殊成员函数需要显式管理。常见误区是把 ~Widget() = default 写在头文件中，导致 unique_ptr 析构时 Impl 仍是不完全类型。

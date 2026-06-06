@@ -18,6 +18,6 @@ B. `std::min<int>`
 C. `std::greater<int>`
 D. `std::not_equal_to<int>`
 
-## 解析
+## Explanation
 
 正确答案是 C：priority_queue 默认 Compare 是 std::less，因此 top 是最大值。改用 std::greater<int> 后，较大的元素被认为优先级更低，最小值会在 top，形成 min-heap。误区是把 sort 中 greater 的降序直觉直接套到 priority_queue 上。

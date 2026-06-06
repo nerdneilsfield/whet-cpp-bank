@@ -33,7 +33,7 @@ D. (2)(3) 抛； (1) 也可能抛，但 (1) 存在异常安全问题
 
 ---
 
-## 解析
+## Explanation
 
 - **(1) `make_shared`**：一次性分配控制块 + `Heavy` 对象，单次 `new`。内存不够时抛出 `std::bad_alloc`。**更关键的是**，`make_shared` 要求控制块和对象在同一个内存块里，对于类型对齐要求严格的类型（`Heavy` 对齐到 `alignof(int)`，没问题），但要求分配器能提供这么大的连续块。若抛出，异常在内存分配时即抛出，不存在泄漏，因为 **没有任何 `new Heavy` 裸操作发生了**。
 - **(2) `shared_ptr<Heavy>(new Heavy)`**：**两次独立分配**——`new Heavy` 分配 `Heavy` 对象，然后 `shared_ptr` 构造函数分配控制块。如果控制块分配抛异常（`std::bad_alloc`），`new Heavy` 已经成功但控制块构造失败，`shared_ptr` 会立即 `delete` 裸指针（因为 shared_ptr 的构造函数是异常安全的，会回滚），所以也不会泄漏。

@@ -43,7 +43,7 @@ B. B 段：`span<const int>` 能接 vector、数组、指针+size、initializer 
 C. C 段：C 风格指针 + size，兼容 C 和 C++，调用方不用调整数据结构。
 D. D 段：模板通用性最强，任何有 begin/end 的容器都能用。
 
-## 解析
+## Explanation
 
 正确答案是 **B**。
 

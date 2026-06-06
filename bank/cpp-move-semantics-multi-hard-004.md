@@ -37,3 +37,7 @@ A 正确：`return S{};` 中的 `S{}` 是 prvalue，在 C++17 下直接构造到
 B 正确：三元条件表达式中的局部变量是左值而非 prvalue，所以即使 C++17，`return b ? a : b` 也需要将 a 或 b 拷出——此时若拷贝构造已 delete 则报错。这也是编译器能做的 elision 与 mandatory elision 之间最重要的区别。
 C 正确：C++17 规范规定 prvalue（如 `S{}`）在初始化场景中直接 materialize 到目标位置，不做附加临时对象，这是 mandatory elision 的核心机制。
 D 错误：NRVO 在 C++17 中仍然是可选的（non-mandatory）优化，标准不要求它，编译器实现受 QoI 控制。若拷贝/移动构造被 delete，NRVO 不行时会报错。只有 `return 纯右值表达式;` 才是 mandatory 的。
+
+## Explanation
+
+A、B、C 正确：C++17 中 prvalue 可直接构造到目标位置，`return S{}` 和 `g(S{})` 不需要可用的拷贝/移动构造。具名局部变量或条件表达式不是同一种 mandatory copy elision 场景，仍可能需要拷贝或移动。常见误区是认为 C++17 后所有返回值优化都强制发生；NRVO 仍是可选优化。

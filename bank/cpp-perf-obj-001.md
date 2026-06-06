@@ -66,3 +66,7 @@ A 的核心优势是 *in-place construction*：`emplace_back` 直接把参数转
 - `reserve` 必须配合 emplace/push 才发挥作用——没 reserve 时再多 emplace 也跑不掉重分配
 
 **来源：** Scott Meyers, "Effective Modern C++", Item 42 "Consider emplacement instead of insertion"；Herb Sutter, "back to the basics", CppCon 2014；C++ Core Guidelines C.137.
+
+## Explanation
+
+选 A，因为 `emplace_back` 直接在 vector 槽位中构造 pair，避免先构造临时 pair 再移动进去。对包含 `std::string` 的对象，这少一次资源对象移动和一次临时生命周期管理。误区是把 `push_back({ ... })` 视为等价；它通常仍要形成一个临时元素。

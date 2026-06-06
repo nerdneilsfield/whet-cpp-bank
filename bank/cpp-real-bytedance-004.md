@@ -74,3 +74,9 @@ void wrapper(T&& arg) {
 ```
 
 **来源：** 字节 C++11 高级面试（参考：Effective Modern C++ Item 24-26）
+
+## Explanation
+
+正确答案是 B。
+选 B。这是 Scott Meyers 总结的关键规则。
+*通用引用（universal reference）的精确条件： 必须是 T&& 的形式 T 必须是通过类型推导得出的（模板参数或 auto） *reference collapsing 规则： T& & → T& T& && → T& T&& & → T& T&& && → T&& *应用： *反例（不是通用引用）： *配套： 通用引用要用 std::forward<T>(arg) 实现完美转发（perfect forwarding），而右值引用用 std::move。

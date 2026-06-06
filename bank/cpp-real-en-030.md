@@ -37,3 +37,8 @@ D. 编译错误：不能对 `unsigned short` 做减法
 如果希望结果为 `unsigned short` 回绕值（65535），需要显式转换：`auto c = static_cast<unsigned short>(a - b);`
 
 **来源：** cppquiz #3 "Integral Promotion"
+
+## Explanation
+
+正确答案是 B。
+这是 C++ 中整型提升（integral promotion）导致的常见陷阱。

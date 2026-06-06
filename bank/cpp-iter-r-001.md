@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: "3"
 ---
 
-## 题目
+### 题目
 
 阅读以下代码，`d` 的值是什么？
 
@@ -25,6 +25,6 @@ int main() {
 
 `d` = ___
 
-## 解析
+## Explanation
 
 `std::distance(first, last)` 返回从 `first` 到 `last` 需要推进的步数。`it` 指向 `v[0]`，`it + 3` 指向 `v[3]`，距离为 `3`。对随机访问迭代器（`vector::iterator`）此操作是 O(1)；对双向迭代器（如 `list::iterator`）则是 O(n)。

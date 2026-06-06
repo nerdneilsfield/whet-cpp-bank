@@ -27,7 +27,7 @@ D. 1 是 C 风格，C++ 中无效
 
 ---
 
-## 解析
+## Explanation
 
 历史上 C 用 `static` 限制符号到 TU 内部链接。C++03 一度 **deprecate** 了命名空间作用域的 `static`，推动匿名命名空间。但 C++11 撤回了 deprecation。
 

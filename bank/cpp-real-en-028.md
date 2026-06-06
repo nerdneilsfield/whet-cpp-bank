@@ -33,3 +33,8 @@ D. `inline` 函数不能有参数
 - 内联函数的定义必须在调用处可见（通常放在头文件）
 
 **来源：** roadmap.sh "C++ inline functions"
+
+## Explanation
+
+正确答案是 C。
+inline 关键字向编译器建议将函数调用替换为函数体直接展开，从而消除函数调用栈帧开销。

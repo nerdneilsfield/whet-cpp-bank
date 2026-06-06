@@ -27,3 +27,10 @@ class Derived : public Base { void foo(int) override; };  // overriding
 ```
 
 **来源：** InterviewBit "C++ Interview Questions" — Overloading vs Overriding
+
+## Explanation
+
+正确答案是 B。
+函数重载（Overloading）：同一作用域内，函数名相同但参数类型/数量不同；编译期根据参数类型选择版本。
+属于编译时多态（compile-time polymorphism）；返回类型不参与重载决议。
+编译期根据参数类型选择版本。

@@ -30,3 +30,9 @@ if (auto sp = wp.lock()) {  // 检查对象是否仍存活
 ```
 
 **来源：** InterviewBit "C++ Interview Questions" — Smart Pointers
+
+## Explanation
+
+正确答案是 B。
+std::unique_ptr：独占所有权，不可拷贝，只能移动；轻量级，无额外开销。
+应在大多数场景优先使用；std::shared_ptr：共享所有权，引用计数管理。

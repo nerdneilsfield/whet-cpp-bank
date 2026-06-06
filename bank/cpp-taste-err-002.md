@@ -73,3 +73,9 @@ C++ 异常的设计就是**默认向上传播**——`step1()` 抛了什么，�
 A 的写法体现的品味是 **"对语言机制的信任"**——异常透传是 C++ 给你的免费服务，不需要任何代码去"启用"它。Herb Sutter 在 *Exceptional C++* 里把这条总结为 "If you can't add value, don't add anything"——如果一个 catch 块不能在该层做出有意义的处置（转换异常类型、添加上下文、记录日志、回滚），就不要写它。**写空 catch + throw 的人，是把语言默认行为当成了需要显式书写的功能，反映了对异常机制的不熟悉**。
 
 **来源：** 手写题。"If you can't add value..." 见 Herb Sutter *Exceptional C++* Item 8；`noexcept` 强契约见 Scott Meyers *Effective Modern C++* Item 14；exception_ptr API 用途见 ISO/IEC 14882:2017 §18.9 [propagation]。
+
+## Explanation
+
+正确答案是 A。这道题考 "什么都不写"才是异常透传的正确姿势。
+这道题考 "什么都不写"才是异常透传的正确姿势。
+`noexcept` 不是"我不在意抛不抛"的标签，是强契约，只能给真正不抛（或抛了等于程序错误的）函数加。

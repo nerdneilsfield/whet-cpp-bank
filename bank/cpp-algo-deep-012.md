@@ -21,6 +21,6 @@ B. `a = false, b = false, c = true`
 C. `a = true,  b = false, c = true`
 D. `a = true,  b = true,  c = true`
 
-## 解析
+## Explanation
 
 正确答案是 C：空范围上 all_of 返回 true，这是空真；any_of 返回 false，因为没有元素满足谓词。none_of 返回 true，因为没有元素违反条件。误区是把 all_of 为 true 理解为“至少有一个且全满足”，实际还需单独检查非空。

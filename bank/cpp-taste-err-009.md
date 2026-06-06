@@ -131,3 +131,9 @@ A 的标注是正确的套餐：`noexcept` 标在析构、swap、move ctor/assig
 Scott Meyers 在 *Effective Modern C++* Item 12 里说："`noexcept` is part of the function's interface, and callers can depend on it." C++ Standard Library 在 move-only 类型的优化上大量使用了 noexcept 的 SFINAE checks。
 
 **来源：** 手写题。noexcept 影响 move/copy 选择见 ISO/IEC 14882:2017 §23.2.1/13 (Container requirements)；Scott Meyers *Effective Modern C++* Item 12, Item 15；C++ Core Guidelines E.12, F.6。
+
+## Explanation
+
+正确答案是 A。这道题考 "noexcept 在哪些点上会本体上影响容器的正确性和性能 + 哪些点不能标"。
+这道题考 "noexcept 在哪些点上会本体上影响容器的正确性和性能 + 哪些点不能标"。
+`vector<VecA>` 在 reallocation 时，如果 move ctor 不是 noexcept，`vector` 会选择 copy 而不是 move（保证异常安全——如果 move 只完成了部分元素后抛了，无法回滚）。

@@ -25,7 +25,7 @@ D. R4
 
 ---
 
-## 解析
+## Explanation
 
 **rule of five 隐式生成规则**（[class.copy.ctor]/8、[class.copy.assign]/4）：
 

@@ -35,7 +35,7 @@ D. 编译错误，因为基类析构非 virtual
 
 ---
 
-## 解析
+## Explanation
 
 [expr.delete]/3：通过指向基类的指针 `delete` 一个派生类对象时，如果基类的析构函数 **不是 virtual**，行为是 **未定义行为（UB）**。
 

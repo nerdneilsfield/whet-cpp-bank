@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: "B"
 ---
 
-## 题目
+### 题目
 
 阅读以下代码，`locked` 在两处分别是什么？
 
@@ -34,6 +34,6 @@ B. `1` 然后 `0`（`sp` 销毁后 `lock()` 返回空 `shared_ptr`）
 C. `0` 然后 `0`（`weak_ptr` 从不持有对象）
 D. 编译错误，`weak_ptr` 不能赋值给 `shared_ptr`
 
-## 解析
+## Explanation
 
 `weak_ptr::lock()` 在被观察的 `shared_ptr` 仍存活时返回有效的 `shared_ptr`，否则返回空。`sp` 在块结束时销毁，引用计数降至 0，对象释放；之后 `wp.lock()` 返回空 `shared_ptr`，输出 `0`。

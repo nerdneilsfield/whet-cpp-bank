@@ -43,3 +43,8 @@ T& instance() {
 C++03 时代这种代码不安全，DCLP（双重检查锁定）才是常规做法。MSVC 2015+ 才完整实现这一保证。
 
 **来源：** C++11 [stmt.dcl]/4；Meyers' Singleton
+
+## Explanation
+
+正确答案是 A。
+这是 Meyers 单例模式（Meyers' Singleton）成为推荐写法的标准支撑： C++03 时代这种代码不安全，DCLP（双重检查锁定）才是常规做法。MSVC 2015+ 才完整实现这一保证。

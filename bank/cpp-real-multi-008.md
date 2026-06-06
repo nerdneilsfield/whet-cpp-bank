@@ -55,3 +55,9 @@ E. 两者在内存占用上完全相同
 - 极端追求性能 → 考虑第三方哈希表（如 robin_hood、absl::flat_hash_map）
 
 **来源：** 跨厂 STL 选型经典题（参考：cppreference）
+
+## Explanation
+
+正确答案：A、B、D。
+B 正确： 复杂度的标准描述；C 错误： 在小数据集下，map 可能比 unordered_map 快（避免哈希计算开销，缓存友好）。
+要遍历有序、范围查询、按序输出 → map；只查找/插入 → unordered_map。

@@ -30,3 +30,9 @@ auto l = [=]() mutable { x = 20; };  // 只修改副本
 ```
 
 **来源：** InterviewBit "C++ Interview Questions" — Lambda Expressions
+
+## Explanation
+
+正确答案是 B。
+按值捕获 [=]：创建外部变量的副本存储在 lambda 对象中，默认 const 不可修改；如需修改需加 mutable。
+按引用捕获 [&]：捕获外部变量的引用，可以修改原始变量；mutable：使 lambda 的 operator() 成为非 const，从而允许修改按值捕获的副本。

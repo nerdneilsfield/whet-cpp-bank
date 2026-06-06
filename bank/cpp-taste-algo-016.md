@@ -67,3 +67,9 @@ D. D — vector 无 reserve 会反复 reallocate
 - 任意位置插入（迭代器持久性） → `list`
 - 不要忽视 cache 局部性——连续内存是现代 CPU 友好的
 - "不写 reserve"是 performance bug，不是品味问题
+
+## Explanation
+
+正确答案是 B。纯尾部插入场景，`vector` + `reserve` 提供连续内存 + 摊销 O(1) 插入 + 最优缓存局部性，是标准答案。
+只有在需要在任意位置插入而不使迭代器失效时才用 `list`。
+常见误区是只看表面语法或局部运行结果，忽略标准规则和工程边界条件。

@@ -33,3 +33,7 @@ A 正确：release 和 acquire 在同一个原子变量上形成同步关系（s
 B 正确：sequenced-before + synchronizes-with 可以传递构造 inter-thread happens-before，这正是 release-acquire 模式下数据可见性的保障链。
 C 正确：happens-before 分为同一线程内的 sequenced-before 和跨线程的"由同步关系传递"两部分，这之间可以传递，正是标准中定义的 happens-before 关系。
 D 错误：在没有同步关系的条件下读取其他线程写入的非原子变量是**数据竞争**（data race），属于未定义行为。C++ 标准不保证任何可见性或顺序，不是"仍然安全"。
+
+## Explanation
+
+A、B、C 正确：release store 与同一原子变量上的 acquire load 可形成 synchronizes-with 关系。线程内的 sequenced-before 与跨线程同步关系传递后形成 happens-before，从而保证普通数据写入对读取线程可见。常见误区是认为没有同步的普通变量读写也只是“读到旧值”；实际上并发读写普通变量是数据竞争和 UB。

@@ -28,3 +28,7 @@ A 正确：`accumulate` 顺序确定（`(((0+1)+2)+3)+4`），适合不可交换
 B 错误：两者**不是别名**。`reduce` 允许不同结合顺序，对不可交换运算（如浮点求和、字符串）结果可能与 `accumulate` 不同。
 C 正确：`reduce` 的乱序自由度要求运算结合且交换。结合 `std::execution::par`/`par_unseq` 可启用线程或 SIMD 加速。
 D 错误：即便用 `execution::seq`，`reduce` 仍可能采用树形结合等非左折叠顺序，结果与 `accumulate` 不保证一致。
+
+## Explanation
+
+A、C 正确：`std::accumulate` 按固定左折叠顺序执行，适合对顺序敏感的运算。`std::reduce` 允许重排和并行规约，因此二元运算应满足结合性和交换性，否则结果可能不同。常见误区是把 `reduce` 当成 `accumulate` 的别名；即使用顺序执行策略，也不保证完全同样的结合顺序。

@@ -35,3 +35,7 @@ B 正确：标准要求 `std::vector::push_back` 等扩容操作在元素 move �
 C 错误：析构函数默认是 `noexcept(true)`，但用户**可以**显式声明 `~S() noexcept(false)` 让析构允许抛异常（如 (4)）。不过强烈不推荐——异常在栈展开中再抛会直接 `terminate`。
 
 D 正确：`noexcept(expr)` 是双重语义：作为说明符 `noexcept(bool_expr)`，里面的 `noexcept(other_expr)` 是 noexcept 运算符（编译期检查表达式是否潜在抛出）。组合使用实现"如果 t.foo() 不抛，则本函数也不抛"的条件转发。
+
+## Explanation
+
+A、B、D 正确：`noexcept` 是运行时硬承诺，违背时调用 `std::terminate`，不保证正常栈展开。容器会利用移动构造是否 `noexcept` 来决定扩容时移动还是拷贝，以维护强异常保证。常见误区是把 `noexcept(expr)` 的说明符和内部的 noexcept 运算符混淆。

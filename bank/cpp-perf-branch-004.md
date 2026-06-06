@@ -82,3 +82,7 @@ D. D — 按类型把形状分别放进三个 vector，三次纯循环
 - 多态的真正代价不是间接 call 的 ~5 cycles，而是它**禁用了内联和向量化**这两个数量级的优化
 
 **来源：** Mike Acton, "Data-Oriented Design and C++", CppCon 2014；Stoyan Nikolov, "OOP Is Dead, Long Live Data-oriented Design", CppCon 2018；Andrei Alexandrescu, "Optimization Tips", code::dive.
+
+## Explanation
+
+这题的关键是查表或算术化能否替代不可预测的多路分支。若分支目标随数据随机变化，switch/if 链会造成预测失败和前端停顿；紧凑查表通常更利于流水线。误区是认为 switch 一定会被优化成跳表，实际上小范围、稀疏值和编译器策略都会影响生成代码。

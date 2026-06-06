@@ -60,6 +60,6 @@ printf("%d\n", data);  // 现在有 happens-before，安全
 
 **E（错误）**：Java 的 `volatile` 提供可见性 + 禁止重排（happens-before 语义）。C++ 的 `volatile` 没有这些保证，两者**不等价**，是常见的跨语言经验迁移错误。
 
-## 解析
+## Explanation
 
 正确选项是 A（`flag` 和 `data` 之间没有 happens-before 关系，`data` 的读写是数据竞争，是 UB）、C（`volatile` 阻止编译器将 `flag` 缓存在寄存器，但不提供内存屏障，CPU 可能重排 `data` 和 `flag` 的写入顺序）、D（正确修复：将 `flag` 改为 `std::atomic<int>`，并使用合适的内存序（至少 `memory_order_release`/`acquire`）），它们符合本题涉及的 C++ 规则。B（`volatile` 保证 `flag` 的写入对其他线程立即可见，因此代码正确） 的关键问题在于混淆了相关概念或把实现细节当成语言保证。未定义行为题的关键是区分“标准无保证”和“某次运行看起来正常”；一旦触发 UB，编译器可基于其不会发生来优化。 多选题要逐项判断，不能因为某个说法在常见平台上成立就认为它是标准规则。

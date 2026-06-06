@@ -73,3 +73,9 @@ C 的 `span` 方案是"provide abstraction, not implementation"的典范。对�
 - `span` 作为参数类型 → 适配多种来源（vector、array、C数组），是最通用的范围抽象
 
 **来源：** 手写题。C++ Core Guidelines I.4: "Make interfaces precisely and strongly typed"；GSL 指南使用 span 作为数组参数标准。
+
+## Explanation
+
+正确答案是 C。但品味上这是最正确的抽象。
+C：`std::span<const char>` 准确地表达了"一块连续内存的只读视图"——不假设是字符串、不提供字符串操作、不涉及所有权。
+B：`string_view` 是语义误导——buffer 存的是二进制数据（char），不是字符串。

@@ -59,3 +59,9 @@ D. D — 用 `bool` + 出参，C 风格，最高效
 P0709 / Herb Sutter 的总结很经典：**"errors that are not exceptional should not use exceptions"**。`optional` 让"可能没有"成为类型契约的一部分——调用方无法忘记处理，编译器替你强制 `.has_value()` 或解构。
 
 **来源：** 手写题。`optional` 设计动机见 N3793 (Fernandes & Zarzycki) "A proposal to add a utility class to represent optional objects"；`expected` 见 P0323；Herb Sutter "Zero-overhead deterministic exceptions: Throwing values" (P0709)；C++ Core Guidelines E.2, E.3, E.16。
+
+## Explanation
+
+正确答案是 B。这道题考 "key 查不到是预期的、不是异常"这一关键判断——结合 optional/expected/异常的适用场景。
+这道题考 "key 查不到是预期的、不是异常"这一关键判断——结合 optional/expected/异常的适用场景。
+这是预期分支，不是异常情况。

@@ -32,7 +32,7 @@ D. 应该用 std::mutex 替换 std::atomic
 
 ---
 
-## 解析
+## Explanation
 
 **False sharing（伪共享）** 是多核性能最常见的陷阱。
 

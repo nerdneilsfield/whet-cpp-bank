@@ -26,3 +26,10 @@ ISR 的限制包括：
 - **不能 `std::mutex`**：互斥锁操作可能阻塞，ISR 中不允许阻塞；某些 RTOS 提供了 ISR-safe 的同步原语（如信号量 fromISR 版本）。
 
 **来源：** InterviewBit "C++ Interview Questions" — ISR
+
+## Explanation
+
+正确答案是 ["A", "B", "D"]。
+ISR 的限制包括： volatile：告知编译器该变量可能被中断等外部因素修改，防止优化掉重复读/写。
+不能 new / delete：堆分配内部可能加锁，ISR 中加锁可能导致死锁（ISR 和主程序互相等待）。
+不能 printf：格式化输出通常是非重入的（non-reentrant），且涉及 I/O 等待，违背 ISR 短小快速原则。

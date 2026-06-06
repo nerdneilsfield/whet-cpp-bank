@@ -41,3 +41,9 @@ make_shared 的布局:
 ```
 
 **来源：** 阿里 C++ 后端面试追问（参考：cppreference、Effective Modern C++）
+
+## Explanation
+
+正确答案是 D。
+A 错在"与所指对象同一内存块"——通常不是，因为对象本身和 control block 是分开的（除非 make_shared）。B 错在"完全不需要加锁"——引用计数是原子操作（通常是 atomic<int>），保证了 ref_count 的线程安全，但不保证所指对象本身的线程安全。C 错在 make_shared 比直接 new 快（少一次分配），而非慢。
+注意 control block 的内存布局。

@@ -49,3 +49,10 @@ delete p;  // 如果 ~Base 非虚 → 只调 ~Base，Derived 的资源泄漏
 实践规则：**只要类可能作为基类被继承，析构函数就应该是 virtual**（或者将类标记为 final）。
 
 **来源：** 腾讯 / huihut/interview C++ 经典考题
+
+## Explanation
+
+正确答案是 D。
+选 D（说法错误的项）。
+*为什么构造函数不能是虚函数？
+虚函数靠 vptr → vtable 实现动态分发 对象构造时，vptr 还没设置（构造过程才填充 vptr） 派生对象构造时：先调用 Base()，此时 vptr 指向 Base 的 vtable，故 Base 构造函数中调虚函数走的是 Base 版本；接着 Derived 构造体执行前才把 vptr 重新指向 Derived 的 vtable *为什么析构函数应该是虚函数（基类）？

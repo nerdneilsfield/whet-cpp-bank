@@ -20,6 +20,6 @@ B. `std::replace_if(v.begin(), v.end(), 0, [](int x){return x%2==0;});`
 C. `std::replace_if(v.begin(), v.end(), [](int x){return x%2==0;}, 0);`
 D. `std::replace(v.begin(), v.end(), [](int x){return x%2==0;}, 0);`
 
-## 解析
+## Explanation
 
 正确答案是 C：std::replace_if 的参数顺序是 first, last, pred, new_value，所以谓词在第三个位置，新值在第四个位置。std::replace 则按旧值做相等比较，不接受谓词。常见误区是把 replace 与 replace_if 的参数形状混用。

@@ -62,3 +62,9 @@ D. D — `string_view` 从 `string_view` 切，链式最自然
 Bjarne Stroustrup 在 CppCon 2016 上对 `string_view` 有一条著名的警告："`string_view` is a pointer to something that someone else owns." 如果那个"someone else"被销毁了，你拿到的就是一个 `string_view` 的尸体。
 
 **来源：** 手写题。`string_view` 生命周期陷阱见 Marshall Clow "The C++17 Standard Library"、C++ Core Guidelines 的讨论；NRVO / copy elision 见 ISO/IEC 14882:2017 §12.8.2 [class.copy.elision]；Bjarne 在 CppCon 2016 的 keynote 对此有演示。
+
+## Explanation
+
+正确答案是 C。这道题考的是 "`string_view` 是一个借用指针（非拥有视图），用来观察自己不长命的字符串时是安全的；一旦返回给调用方且调用方会用超过原字符串的生命周期，`string_view` 就是悬空指针"。
+这道题考的是 "`string_view` 是一个借用指针（非拥有视图），用来观察自己不长命的字符串时是安全的；一旦返回给调用方且调用方会用超过原字符串的生命周期，`string_view` 就是悬空指针"。
+常见误区是把新语法等同于直觉糖，忽略 `auto`、列表初始化、lambda 捕获和重载决议的特殊规则。

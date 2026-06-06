@@ -37,7 +37,7 @@ D. Circle 应该用 unique_ptr<double[]> 才正确
 
 ---
 
-## 解析
+## Explanation
 
 C++ 规则：通过基类指针 `delete` 派生类对象，**只有当基类析构函数是 virtual 时**，才会调用派生类析构函数。否则**仅调用基类析构**，派生类资源泄漏（且是 UB）。
 

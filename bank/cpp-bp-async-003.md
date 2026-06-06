@@ -32,7 +32,7 @@ D. 100ms 间隔太长
 
 ---
 
-## 解析
+## Explanation
 
 `std::future::wait_for` 返回的 `std::future_status` 有 3 种值：
 - `ready`：结果就绪

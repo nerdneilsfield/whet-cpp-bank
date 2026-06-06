@@ -29,3 +29,10 @@ Coffman 四大条件是死锁的充要条件（同时满足才会死锁）：
 避免方法：破坏任意一个条件即可，常用策略是破坏"循环等待"（如规定加锁顺序）或"持有并等待"（如一次性获取所有锁）。
 
 **来源：** InterviewBit "C++ Interview Questions" — Deadlock
+
+## Explanation
+
+正确答案是 ["A", "B", "C", "D"]。
+Coffman 四大条件是死锁的充要条件（同时满足才会死锁）： 互斥（Mutual Exclusion）：资源不能同时被多个线程共享。
+持有并等待（Hold and Wait）：线程持有一个资源，同时等待获取其他线程持有的资源。
+不可抢占（No Preemption）：资源不能被系统强制从线程手中剥夺。

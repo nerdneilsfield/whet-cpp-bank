@@ -70,3 +70,10 @@ D. get: O(1), put: O(n)
 - 用 `find` 而不是 `[]` 避免插入默认值
 
 **来源：** 字节 / 阿里 LRU 标准考题（LeetCode 146）
+
+## Explanation
+
+正确答案是 B。
+选 B。LRU 缓存的标准实现就是 doubly linked list + hash map 的组合，保证 O(1) 操作。
+移动中间元素到头部需要 O(n) 拷贝。
+*为什么不用 set/map？

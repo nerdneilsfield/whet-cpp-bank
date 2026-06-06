@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-set-difference-001/
 
 约束：0 <= a.size(), b.size() <= 10^5。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,11 +20,15 @@ tests_dir: tests/cpp-prog-stl-set-difference-001/
 std::vector<int> set_diff(const std::vector<int>& a, const std::vector<int>& b);
 ```
 
-## 示例
+### 示例
 ```
 [1,2,3,4], [2,4] => [1,3]
 [1,1,1,2], [1,2] => [1,1]
 ```
 
-## 提示
+### 提示
 - 在 skeleton/solution.hpp 中实现函数。
+
+## Explanation
+
+对两个升序区间调用 `std::set_difference`，把只在 a 中剩余的元素写入结果。该算法按多重集合语义处理重复次数，即保留 `max(count_a-count_b, 0)` 个。注意输入必须已排序，结果天然升序。

@@ -98,3 +98,9 @@ A 的简洁是 hard-won：每行都精准对应一个语义，没有冗余、没
 - `protected` dtor 是特殊用法，需配合 virtual 才安全
 
 **来源：** 手写题。C++ Core Guidelines C.35: "A base class destructor should be either public and virtual, or protected and non-virtual"；Scott Meyers Item 7。
+
+## Explanation
+
+正确答案是 A。protected dtor 的正确用法是 `protected: virtual ~Animal() = default;` 或者 `protected: ~Animal() = default;` （前者允许派生类间接析构，但禁止外部 delete）。
+Dog 持有的资源（如 vector、unique_ptr）不会被释放——资源泄漏 + UB（标准明确：通过基类指针 delete 派生类对象需 virtual dtor）。
+常见误区是只看表面语法或局部运行结果，忽略标准规则和工程边界条件。

@@ -25,7 +25,7 @@ D. 增量构建变慢（修改一个文件触发重链接）
 
 ---
 
-## 解析
+## Explanation
 
 **LTO（Link-Time Optimization）** 把编译期分离的 TU IR 在链接时合并，进行跨 TU 优化：
 

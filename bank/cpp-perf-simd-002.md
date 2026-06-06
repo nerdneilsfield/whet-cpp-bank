@@ -64,3 +64,7 @@ A 最美的地方是它**让编译器为你选 ISA**：CI 在 AVX2 机器上编�
 - 真正需要 intrinsic 的场景：编译器没识别出来的怪算法（permute、shuffle、scan 等）
 
 **来源：** Matt Godbolt, "What Has My Compiler Done for Me Lately?", CppCon 2017；Intel Intrinsics Guide；Agner Fog, "The microarchitecture of Intel, AMD and VIA CPUs", §13 "AVX/SSE transition penalties".
+
+## Explanation
+
+选 A，因为简单 range-for 上的 `sqrt` 和线性算术通常能由现代编译器自动向量化，并按目标平台选择 ISA。手写 AVX2 intrinsic 维护成本高且锁死指令集，`unseq` 和 `for_each` 未必比朴素循环生成更好代码。误区是把 intrinsic 当成必然最快；对简单逐元素算术，编译器往往已经足够好。

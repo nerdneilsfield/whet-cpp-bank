@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-nth-element-001/
 
 约束：1 <= nums.size() <= 10^5。中位数定义为排序后下标 `nums.size()/2` 的元素。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,11 +20,15 @@ tests_dir: tests/cpp-prog-stl-nth-element-001/
 int find_median(std::vector<int> nums);
 ```
 
-## 示例
+### 示例
 ```
 [3,1,2,4,5] => 3 (排序后[1,2,3,4,5]，下标 2)
 [1,2]       => 2 (排序后[1,2]，下标 1)
 ```
 
-## 提示
+### 提示
 - 在 skeleton/solution.hpp 中实现函数。
+
+## Explanation
+
+目标位置是 `nums.begin() + nums.size()/2`，调用 `std::nth_element` 后该位置元素就等于完整排序后的中位位置值。它不保证左右两侧内部有序，但保证左侧不大于该元素、右侧不小于该元素。注意题目按下标 `n/2` 定义偶数长度中位数，因此 `[1,2]` 返回 2。

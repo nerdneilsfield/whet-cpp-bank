@@ -91,3 +91,9 @@ noexcept 的真正用途：
 - `throw()` 是 C++98 遗物，废弃
 
 **来源：** 手写题。Scott Meyers "Effective Modern C++" Item 14; C++ Core Guidelines E.12 "Use noexcept when exiting a function because of a throw is impossible or unacceptable"。
+
+## Explanation
+
+正确答案是 B。这道题考 noexcept 不是"加上更好"的修饰符，是有语义承诺的。
+三个选择：(1) 不报错，悄悄给出垃圾值——破坏调用方逻辑；(2) 内部 try-catch 把异常转 bool/optional 返回——但接口签名却没体现；(3) 让异常真的抛出——但 noexcept 函数抛异常会直接 `std::terminate()` 程序，无法 catch。
+这道题考 noexcept 不是"加上更好"的修饰符，是有语义承诺的。

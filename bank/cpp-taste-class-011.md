@@ -92,3 +92,9 @@ C++ Core Guidelines 推荐 B 的理由：copy-and-swap 把所有困难（自赋�
 - 先 new 再 delete 是 strong guarantee 的基本要求
 
 **来源：** 手写题。Stroustrup "C++ Programming Language" 4ed §17.4.5；Herb Sutter "Exceptional C++" Item 9-10。
+
+## Explanation
+
+正确答案是 B。功能上正确（自赋值正常工作），代码也清晰。
+这题考的是自赋值不是一个独立问题，是异常安全 + 资源管理的副产物。
+用一个错误的检查替换另一个错误的检查。

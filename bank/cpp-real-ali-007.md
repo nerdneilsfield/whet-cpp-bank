@@ -68,3 +68,8 @@ D. Derived\nBase display\nDerived\nBase display
 C++ 中加了 `override` 关键字后，如果签名不匹配编译器会报错，这是推荐做法。
 
 **来源：** 阿里 C++ 面试（参考：huihut/interview、cs-offer 项目）
+
+## Explanation
+
+正确答案是 D。
+选 D。这道题考察的是重写（override）vs 隐藏（hide） 的本质区别。

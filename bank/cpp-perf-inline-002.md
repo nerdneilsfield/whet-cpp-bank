@@ -76,3 +76,7 @@ C 优于 B 的关键：B 的 devirtualization 是脆弱的"编译器或许做得
 - devirtualization 的触发条件挑剔：final + LTO + 静态类型可见——不要赌编译器
 
 **来源：** Andrei Alexandrescu, "Modern C++ Design", §1.4 "Policy-based design"；Chandler Carruth, "Going Nowhere Faster", CppCon 2019；Eigen 文档 "Why Eigen uses expression templates".
+
+## Explanation
+
+这题考查虚调用、std::function 或函数指针在热路径中的代价。模板或可见 lambda 让调用目标在编译期确定，通常可以完全内联并继续向量化。常见误区是只看一次间接调用的 cycles，而忽略它阻断后续优化带来的连锁损失。

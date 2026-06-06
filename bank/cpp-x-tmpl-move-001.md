@@ -35,7 +35,7 @@ D. fwd_D
 
 ---
 
-## 解析
+## Explanation
 
 `T&&` 在模板参数推导上下文中是 **转发引用（universal reference）**：传左值时 `T` 推为 `int&`，整体折叠为 `int&`；传右值时 `T` 推为 `int`，整体为 `int&&`。
 

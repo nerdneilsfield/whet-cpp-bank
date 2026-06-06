@@ -68,3 +68,10 @@ int* fp = reinterpret_cast<int*>(&f);     // 看 float 的位模式（小心 str
 - 位重解释 → reinterpret_cast
 
 **来源：** 跨厂 C++ cast 经典考题（参考：cppreference、Effective C++ Item 27）
+
+## Explanation
+
+正确答案：A、B、C、D。
+*四种 cast 的使用场景： *A 正确（static_cast 数值转换）： static_cast 用于编译期已知安全的转换： *B 正确（dynamic_cast 安全向下转换）： 仅用于多态类型（有虚函数）的安全向下/侧向转换： 对于引用版本失败时抛 std::bad_cast。运行时检查 RTTI。
+*C 正确（const_cast 去 const）： 唯一能修改 const/volatile 限定符的 cast： 仅当原始对象不是 const 时安全。
+*D 正确（reinterpret_cast 位重解释）： 用于完全不同类型的位模式重解释： 最危险的 cast，仅在确实需要时使用（驱动开发、序列化、底层 hack）。

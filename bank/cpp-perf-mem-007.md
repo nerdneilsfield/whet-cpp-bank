@@ -58,3 +58,7 @@ D. D — 用 move + operator+ 避免每次拷贝
 - 两遍扫描（measure + write）几乎总优于"边走边猜容量"
 
 **来源：** Herb Sutter, "Exceptional C++ Style", Item 12；Andrei Alexandrescu, "Writing Quick Code in C++, Quickly", CppCon 2016；Bjarne Stroustrup, "The C++ Programming Language" 4th ed., §36.4.
+
+## Explanation
+
+选 B，因为先计算总长度再 `reserve` 能把字符串拼接变成一次分配和顺序写入。直接循环 `+=` 依赖容量增长策略，会发生多次重分配和旧内容搬移；`ostringstream` 还引入格式化路径开销。误区是认为 `std::move(out) + s` 会复用容量，实际上常构造临时对象。

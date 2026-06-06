@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: B
 ---
 
-## 题目
+### 题目
 
 下面代码能否通过编译？若不能，指出原因。
 
@@ -32,10 +32,9 @@ B. 编译错误：`std::vector<double>` 不能传给接受 `std::vector<int>&` �
 C. 运行时崩溃
 D. 输出 `1` 和 `1`
 
-## 答案
+## Explanation
 
 B
 
-## 解析
 
 `std::vector<int>` 和 `std::vector<double>` 是同一类模板的两个不同实例化，它们是完全独立的类型，没有继承关系。`print_first` 接受 `std::vector<int>&`，传入 `std::vector<double>` 类型不匹配，编译报错。如需兼容多种 vector，应将 `print_first` 改为函数模板：`template<typename T> void print_first(std::vector<T>& v)`。

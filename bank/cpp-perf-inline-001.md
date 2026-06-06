@@ -62,3 +62,7 @@ B 优于 D 的原因不是性能（一样），而是**用标准语言机制而�
 - 模板自动满足这个特性（必须在头里），是它在性能代码里盛行的原因之一
 
 **来源：** Scott Meyers, "Effective C++" 3rd ed., Item 30 "Understand the ins and outs of inlining"；C++ 标准 [dcl.fct.spec]；Matt Godbolt, "What Has My Compiler Done for Me Lately?", CppCon 2017.
+
+## Explanation
+
+正确选项体现内联的真正收益：消除调用开销只是小头，更重要是让编译器做常量传播、去虚化和循环优化。过度拆成不可见的函数或类型擦除回调会阻断这些优化。误区是认为 inline 关键字能强制优化；实际由优化器、可见定义和调用上下文共同决定。

@@ -29,3 +29,8 @@ B 错误，把 C++20 的特性归到了 C++14。
 - **C++20** (2020): **四大金刚** concepts、modules、ranges、coroutines；`<=>` 三路比较、`consteval`、`constinit`、`std::format`
 
 **来源：** 字节 C++ 面试题 / cppreference C++ 版本特性列表
+
+## Explanation
+
+正确答案是 B。
+B 错误，把 C++20 的特性归到了 C++14。

@@ -32,3 +32,10 @@ int Counter::count = 0;  // 定义和初始化
 ```
 
 **来源：** GeeksforGeeks "C++ Static Members"
+
+## Explanation
+
+正确答案是 A。
+静态成员变量不属于任何一个对象实例，而是属于整个类，所有对象共享同一份。
+存储在全局/静态存储区（而非栈或堆），在程序启动时分配，程序结束时释放。
+必须在类外单独定义初始化（类内只声明），如 int MyClass::count = 0;（C++17 起 inline static 可以类内初始化）。

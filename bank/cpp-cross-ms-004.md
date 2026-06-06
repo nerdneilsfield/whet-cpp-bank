@@ -37,6 +37,6 @@ std::move(x) 将 x 转型为 const Obj&&（右值引用，但保留 const）。
 因此重载决议选中拷贝构造，输出 copy。
 -->
 
-## 解析
+## Explanation
 
 B 正确：`std::move(x)` 的类型是 `const Obj&&`，保留了 `const`。移动构造函数 `Obj(Obj&&)` 需要非 const 右值引用，不能绑定到 `const Obj&&`，而拷贝构造 `Obj(const Obj&)` 可以绑定。关键误区是认为对 const 对象调用 `std::move` 会调用移动构造。

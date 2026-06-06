@@ -6,7 +6,7 @@ difficulty: easy
 answer_key: "A"
 ---
 
-## 题目
+### 题目
 
 阅读以下代码，程序输出是什么？
 
@@ -36,6 +36,6 @@ B. 编译错误：`static_assert` 对 `T=int` 失败
 C. `int:10 int:6`
 D. 运行时错误
 
-## 解析
+## Explanation
 
 `if constexpr` 在编译期选择分支，**未选中的分支不被实例化**。当 `T=int` 时，`else` 分支整体不编译，`static_assert(!std::is_integral_v<int>, ...)` 不触发。当 `T=double` 时，`if` 分支不编译，`else` 分支输出 `other:3.14`。最终输出 `int:10 other:3.14`。

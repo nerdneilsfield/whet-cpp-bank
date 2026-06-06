@@ -26,3 +26,7 @@ A 正确：`is_lock_free` 对某些大小或对齐不利的类型可能在运行
 B 正确：weak 版本可能因 LL/SC 实现等微架构原因 spurious 失败，要在循环里使用；strong 版本由库内部循环消除 spurious 失败但单次开销更大。在循环中用 weak 通常性能更好。
 C 错误：CAS 仅比较"值是否相等"，对 ABA 完全不免疫——值从 A 变到 B 再变回 A，CAS 看到的依然相等。解决 ABA 通常需要带版本号的 CAS（如 `atomic<pair<T*, uint64_t>>` 或硬件 DCAS）。
 D 正确：CAS 失败时把当前真实值写入 expected，是 C++ 原子接口的关键设计——便于下一轮循环用最新值重新计算并尝试。
+
+## Explanation
+
+A、B、D 正确：`std::atomic` 是否真正 lock-free 取决于类型、大小、对齐和平台。`compare_exchange_weak` 允许伪失败，失败时会把当前值写回 `expected`，因此通常放在循环中重试。常见误区是认为 CAS 自动解决 ABA；它只比较值相等，不知道中间是否经历过 A→B→A。

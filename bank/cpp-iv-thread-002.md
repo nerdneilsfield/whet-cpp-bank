@@ -14,7 +14,7 @@ rubric:
 
 # `std::mutex` vs `std::atomic` 的选择原则？原子操作的开销？
 
-## 参考答案
+## Explanation
 
 ### 核心区别
 

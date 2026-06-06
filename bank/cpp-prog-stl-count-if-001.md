@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-count-if-001/
 
 约束：0 <= nums.size() <= 10^5。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,11 +20,15 @@ tests_dir: tests/cpp-prog-stl-count-if-001/
 int count_even(const std::vector<int>& nums);
 ```
 
-## 示例
+### 示例
 ```
 [1,2,3,4,5,6] => 3
 [1,3,5]       => 0
 ```
 
-## 提示
+### 提示
 - 在 skeleton/solution.hpp 中实现函数。
+
+## Explanation
+
+使用 `std::count_if` 搭配 lambda `x % 2 == 0` 统计偶数数量。0 应计为偶数，负数取模后同样可用这个判断。注意返回类型可转换为 int，但底层算法返回的是迭代器差值类型。

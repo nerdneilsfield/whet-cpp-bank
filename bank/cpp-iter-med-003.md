@@ -26,6 +26,6 @@ C++ 迭代器分类的核心差异常被误解。逐项澄清：
 
 这条差异决定了算法的复制语义：input iterator 只能保证 `++it` 后旧迭代器的拷贝失效，forward iterator 才能保证拷贝独立可用。
 
-## 解析
+## Explanation
 
 正确答案是 C，对应“input iterator 是单趟（single-pass）的，对同一序列再走一遍无定义；forward iterator 是多趟（multi-pass）的，可以重复遍历”。本题考查迭代器类别、失效规则或迭代移动语义，关键是看容器操作后原迭代器是否仍指向有效元素。其他选项容易混淆相关概念：A 项“forward iterator 支持随机访问 it[n]，input iterator 不支持”不满足题干要求；B 项“input iterator 只能读不能写，forward iterator 可以写”不满足题干要求；D 项“input iterator 不支持 ++，forward iterator 支持”不满足题干要求。常见误区是只凭关键字判断，而没有结合完整声明、表达式求值结果或 C++ 语义限制。

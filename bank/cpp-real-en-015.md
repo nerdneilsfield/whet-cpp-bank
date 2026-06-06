@@ -26,3 +26,9 @@ D. Aggregation 表示"is-a"关系，Inheritance 表示"has-a"关系
 设计原则：优先使用组合/聚合而非继承（"favor composition over inheritance"），因为继承破坏封装、耦合度高。
 
 **来源：** InterviewBit "C++ Interview Questions" — Composition vs Aggregation vs Inheritance
+
+## Explanation
+
+正确答案是 B。
+三种关系： Composition（组合）："has-a"强关系；部分对象的生命周期由整体管理，整体销毁时部分也随之销毁。
+如 Car 包含 Engine（引擎在车内创建和销毁）；用成员变量实现。

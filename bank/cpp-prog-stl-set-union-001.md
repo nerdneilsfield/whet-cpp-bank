@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-set-union-001/
 
 约束：0 <= a.size(), b.size() <= 10^5。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,11 +20,15 @@ tests_dir: tests/cpp-prog-stl-set-union-001/
 std::vector<int> set_union(const std::vector<int>& a, const std::vector<int>& b);
 ```
 
-## 示例
+### 示例
 ```
 [1,2,3], [2,3,4] => [1,2,3,4]
 [1,1,2], [1,3]   => [1,1,2,3]
 ```
 
-## 提示
+### 提示
 - 注意函数名 `set_union` 不要与关键字冲突；在 skeleton/solution.hpp 中实现。
+
+## Explanation
+
+使用 `std::set_union` 合并两个升序区间到结果中。多重集合语义下，某元素出现次数取两边次数的较大值，而不是简单去重到一次。注意函数名若与标准算法同名，应通过命名空间或局部调用避免歧义。

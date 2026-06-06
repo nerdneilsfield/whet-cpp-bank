@@ -38,7 +38,7 @@ D. NVI 把"接口"和"实现"分离：public 接口非虚，可以添加前置/�
 
 ---
 
-## 解析
+## Explanation
 
 **NVI (Non-Virtual Interface)** 由 Herb Sutter 提出，核心是 **"Public functions should be non-virtual, virtual functions should be private (or protected)."**
 

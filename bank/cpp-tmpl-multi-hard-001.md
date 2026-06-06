@@ -29,3 +29,7 @@ A 正确：SFINAE 的核心规则就是"替换失败不是错误"，候选会被
 B 错误：concepts 的诊断信息明显优于 SFINAE。concepts 直接报告"约束 X 未满足"，而 SFINAE 失败往往给出长串的"no matching function"+候选列表，可读性差很多，这是 concepts 的主要卖点之一。
 C 正确：concepts 之间存在 subsumption（包含）关系，编译器能据此对重载/特化排序，自动选择约束更强（更特化）的版本，SFINAE 无此机制，必须靠 tag dispatch 或 `std::enable_if` 互斥条件人工区分。
 D 正确：concepts 的约束在替换前作为布尔表达式求值，只检查表达式合法性而不实例化整个函数体，因此能避免 SFINAE 中因深层实例化而触发的硬错误（即所谓 immediate context 之外的失败）。
+
+## Explanation
+
+A、C、D 正确：SFINAE 和 concepts 都能让不满足条件的候选退出重载解析，但 concepts 的约束表达更清晰、诊断更好。Concepts 还能参与约束的 subsumption 排序，自动选择更特化的重载。常见误区是把 concepts 只看作 `enable_if` 的语法糖，忽略其约束模型和错误诊断优势。

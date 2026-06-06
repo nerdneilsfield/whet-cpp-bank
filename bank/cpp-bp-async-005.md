@@ -30,7 +30,7 @@ D. 用 std::thread + executor，实际上启了新线程
 
 ---
 
-## 解析
+## Explanation
 
 C++ 标准没有 executor 抽象（C++26 才正式引入 `std::execution` 框架，灵感来源于 `sender/receiver` 提案）。在没有标准库支持时，工程上典型做法是**自己组合 `packaged_task` + `executor`**：
 

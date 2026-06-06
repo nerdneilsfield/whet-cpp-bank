@@ -77,3 +77,7 @@ rubric:
 - cache 友好性讨论（1 分）
 
 **来源：** 牛客网 C++ STL 高频面试题 / cppreference / SGI STL 源码
+
+## Explanation
+
+本题评分重点是 unordered_map 的哈希表结构、链地址法冲突处理、load_factor 触发 rehash 以及与 map 的复杂度差异。插入导致负载因子超过阈值时会重建桶数组并重新分布元素，开销为 O(n)，且会使迭代器失效。与 map 相比，unordered_map 平均 O(1) 但无序且最坏可退化，map 有序并支持范围查询但操作为 O(log n)。常见误区是只记平均 O(1)，忽略 rehash、哈希质量和自定义 key 需要 hash/equal。

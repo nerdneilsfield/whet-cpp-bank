@@ -21,6 +21,6 @@ B. `lower_bound` 必须使用**与排序时相同的比较器**，否则结果�
 C. `std::sort` 不能用 lambda
 D. `std::abs` 不能用于 int
 
-## 解析
+## Explanation
 
 正确答案是 B：二分搜索族要求范围已经按同一个比较器排序或至少满足对应分区条件。这里 sort 使用 abs 比较器，lower_bound 却使用默认 <，算法前提被破坏，结果不可靠。正确做法是 lower_bound 也传入同一个 cmp，并让 value 的比较语义一致。

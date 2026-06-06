@@ -65,3 +65,7 @@ D. D — 把字段拆开存，写起来不像 OOP 但循环里只摸到要用的
 - 一条 cache line 64 字节是基本计量单位，凡是"搬了用不上的字节"都是隐性带宽税
 
 **来源：** Mike Acton, "Data-Oriented Design", CppCon 2014；Stroustrup, "Why you should avoid Linked Lists", GoingNative 2012；Agner Fog, "Optimizing software in C++", §9.
+
+## Explanation
+
+正确选择通常是顺序访问连续内存，因为它最符合 cache line 和硬件预取器的工作方式。链表、指针跳转或随机访问会把每个元素变成潜在 cache miss。常见误区是只比较容器操作复杂度，忽略 vector 的空间局部性常常压倒理论上的插入删除优势。

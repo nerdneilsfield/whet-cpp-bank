@@ -60,3 +60,9 @@ D. D — partial_sum 收集部分和再取最后
 - "可交换操作的归约" → `reduce`（仅在不关心顺序或需要并行时）
 - "并行"有启动成本——数据量不够大时不要用
 - `partial_sum` 的用途是"中间结果"或"微分/积分"操作，不是求最终和
+
+## Explanation
+
+正确答案是 C。`std::accumulate` 是标准库中最直接的求和 algorithm，名字本身就是"累加"——"Add up all elements"。
+`accumulate` 的复杂度是精确 O(n)，没有额外分配，没有并行开销，在所有场景下都是"求和"的正确默认选择。
+D：用 `partial_sum` 求所有元素的和——这是杀鸡用牛刀还选错了刀。

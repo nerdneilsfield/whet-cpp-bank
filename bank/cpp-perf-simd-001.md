@@ -72,3 +72,7 @@ A 的好处是**用人类对编译器的同情心**：先把所有"循环里不�
 - 一条 AVX2 `vaddps` = 1 cycle 处理 8 个 float，SIMD-on 和 SIMD-off 的差距是 4–8×
 
 **来源：** Agner Fog, "Optimizing software in C++", §12 "Using vector operations"；Intel Optimization Reference Manual, §3.8 "Auto-vectorization"；Matt Godbolt, "What Has My Compiler Done for Me Lately?", CppCon 2017.
+
+## Explanation
+
+选 A，因为原始指针加固定循环边界最容易被编译器识别为无异常、连续、简单的数组循环。`.at()` 的边界检查和异常路径会妨碍向量化；迭代器和 `transform` 理论上可优化，但更依赖编译器穿透抽象。误区是认为更“STL 风格”一定生成同样代码，性能热循环仍应关注实际向量化条件。

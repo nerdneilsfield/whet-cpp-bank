@@ -14,7 +14,7 @@ rubric:
 
 # ODR（One Definition Rule）是什么？违反会产生什么问题？
 
-## 参考答案
+## Explanation
 
 ### 定义
 

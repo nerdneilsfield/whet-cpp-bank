@@ -31,3 +31,9 @@ A 正确：`if constexpr` 丢弃的分支（discarded branch）不会被实例�
 B 错误：丢弃分支中的代码**不需要**对当前类型合法。这是 `if constexpr` 与普通 `if` 的关键区别——普通 `if` 两个分支都会被实例化。
 C 错误：在模板中 `if constexpr (false)` 的丢弃分支不会被实例化，而 `if (false)` 两个分支都会实例化。两者有本质区别。
 D 正确：在非模板函数中 `if constexpr` 退化为普通 `if`，编译期没有短路效果，因为不需要处理模板实例化问题。
+
+## Explanation
+
+正确答案是 [A, D]。A 正确：`if constexpr` 丢弃的分支（discarded branch）不会被实例化，这就是 SFINAE 之外进行类型分发的核心机制。
+D 正确：在非模板函数中 `if constexpr` 退化为普通 `if`，编译期没有短路效果，因为不需要处理模板实例化问题。
+B 错误：丢弃分支中的代码不需要对当前类型合法。

@@ -71,3 +71,9 @@ D. D — `inline static` 把声明和定义合为一处，头文件单点维护
 C++17 之前的"静态成员必须有 .cpp 定义"这条规则坑了无数模板库作者——你不能在纯头文件里安放任何非整型常量。`inline` 变量把这道围墙拆掉，是 C++17 一个不显眼但极重要的进步。
 
 **来源：** 手写题。`inline` 变量见 ISO/IEC 14882:2017 §10.1.6 [dcl.inline]/6；类内静态成员初始化规则见 §9.4.2 [class.static.data]；`constexpr` 对 literal type 的要求见 §7.1.5 [dcl.constexpr]。
+
+## Explanation
+
+正确答案是 D。这道题考的是 "C++17 的 `inline` 变量解决了头文件里静态成员的老麻烦"。
+类内初始化器对非 `const`/`constexpr` 的静态数据成员是非法的；即使是 `const`，类内初始化也只对 integral / enumeration 类型生效（§9.4.2 [class.static.data]）。
+代码本身没错，但强迫维护两个文件：改一条配置要同时改 `.hpp` 和 `.cpp`，或者改一个忘改另一个 → 链接错误。

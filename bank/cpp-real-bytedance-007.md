@@ -59,3 +59,9 @@ D. atomic 是 C++17 引入的，C++11 只有 mutex
 A 错，atomic 在无竞争时快，高竞争时可能比 mutex 更慢（CPU 缓存行 ping-pong）。B 错，atomic 支持所有 trivially copyable 类型（大对象可能用锁实现，is_lock_free 检查）。D 错，atomic 是 C++11 引入。
 
 **来源：** 字节 C++ 后端面试（参考：cppreference、《C++ Concurrency in Action》）
+
+## Explanation
+
+正确答案是 C。
+关键是说明正确选项成立的 C++ 规则，以及其他选项忽略的边界条件。
+常见误区是只记结论，不解释代码行为、编译行为或复杂度前提。

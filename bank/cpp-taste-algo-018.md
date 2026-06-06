@@ -63,3 +63,9 @@ A 的 `find` 返回迭代器，一次查找得到位置，判断合法性后直�
 - `count` + `operator[]` 是两次查找
 - `contains()` + `at()` 也是两次查找 + 异常风险
 - C++17 的 `try_emplace` / `insert_or_assign` 是另一些场景的进阶选择
+
+## Explanation
+
+正确答案是 D。在 C++20 `contains()` 加入之前，C++ 里"查 map 取值的标准模式"一直是 `find` + 三目。
+D：C++20 的 `contains()` + `at()` 看起来干净，但 `at()` 如果 key 不存在会抛 `std::out_of_range` 异常。
+常见误区是只看表面语法或局部运行结果，忽略标准规则和工程边界条件。

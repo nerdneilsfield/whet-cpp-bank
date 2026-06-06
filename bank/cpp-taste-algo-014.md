@@ -66,3 +66,9 @@ D. D — push_back 循环
 - 任意序列生成 → `generate`
 - 转换现有范围 → `transform`
 - `iota` 不要求随机访问迭代器（forward iterator 即可），但预分配大小是必须的
+
+## Explanation
+
+正确答案是 C。`std::iota` 的名字来自 APL 语言的 `⍳`（希腊字母 iota），是 Fortran/APL 概念在 C++ 标准库里的映射。
+D：循环内 `push_back` 每次可能触发 reallocation，性能最差。
+常见误区是手写循环或只看单步结果，忽略标准算法已经约定好的复杂度和迭代器语义。

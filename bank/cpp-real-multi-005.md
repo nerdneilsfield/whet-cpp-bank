@@ -52,3 +52,8 @@ public:
 4. 与 move semantics 完美配合（unique_ptr 移动 = 转移资源所有权）
 
 **来源：** 跨厂高频 C++ 习语（参考：Stroustrup《The C++ Programming Language》, Effective C++ Item 13-14）
+
+## Explanation
+
+正确答案：A、B、C。
+E 错误： 直接 mmap 不算 RAII。RAII 需要封装资源到一个对象中。要做的话应该写： *RAII 优势： 异常安全（栈展开自动释放） 防止资源泄漏（包括 leaked memory、leaked file handle、leaked socket、leaked lock） 简化代码（无需写 try-finally 或显式 cleanup） 与 move semantics 完美配合（unique_ptr 移动 = 转移资源所有权）。

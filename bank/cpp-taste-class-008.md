@@ -77,3 +77,9 @@ D. D — 让编译器隐式生成全部特殊成员函数
 - 看到 `unique_ptr<Pimpl前置声明>` + 头文件里 `= default` → 编译陷阱
 
 **来源：** 手写题。C++ Core Guidelines C.149；Herb Sutter "GotW #100: Compilation Firewalls"。
+
+## Explanation
+
+正确答案是 B。此时 `unique_ptr<Impl>` 看到完整 Impl，正确生成。
+在头文件中写 `Widget(Widget&&) noexcept = default;` 是要求编译器在头文件这个点定义移动构造。
+Pimpl 的核心陷阱是：`unique_ptr<Impl>` 要求特殊成员函数的定义点处 `Impl` 是完整类型。

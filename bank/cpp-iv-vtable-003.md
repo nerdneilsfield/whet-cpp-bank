@@ -14,11 +14,11 @@ rubric:
 
 # 多重继承时虚函数表如何组织？Derived 有几个 vptr？
 
-## 问题
+### 问题
 
 假设 `class Derived : public Base1, public Base2`，且 `Base1` 和 `Base2` 都有虚函数。请描述 `Derived` 对象的内存布局，vtable 是如何组织的，共有几个 vptr？
 
-## 参考答案
+## Explanation
 
 ### 基本规则
 

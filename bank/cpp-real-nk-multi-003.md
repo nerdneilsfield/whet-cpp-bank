@@ -51,3 +51,8 @@ const int* const p;  // 双 const，指针和指向都不可变
 D 是设计 const-correctness 的核心实践。
 
 **来源：** 虎牙 C++ 面试题 / Effective C++ Item 3
+
+## Explanation
+
+正确答案是 [A, B, C, D]。
+记忆法："const 在 * 左边修饰类型，在 * 右边修饰指针" *const 成员函数： 函数末尾的 const 修饰 *this（即 this 指向 const Foo） const 函数内不能修改成员（除非成员是 mutable） 非 const 对象既可以调用 const 函数，也可以调用非 const 函数 const 对象只能调用 const 函数 *const 返回值： 返回内置类型（值类型）加 const 几乎没意义：const int foo() 调用方 int x = foo() 仍可拷贝 但返回引用/指针：const string& at(size_t i) 防止 s.at(0) = 'X' D 是设计 const-correctness 的核心实践。

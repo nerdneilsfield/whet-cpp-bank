@@ -83,3 +83,9 @@ D. D — 私有构造 + 命名工厂函数，让单位在函数名中显式表�
 - 多个相关参数（值 + 单位）→ 用类型区分（`Meters{5}`、`Kilometers{5}`），不用字符串
 
 **来源：** 手写题。C++ FAQ "Named Constructor Idiom"；Scott Meyers "Effective C++" Item 18: "Make interfaces easy to use correctly"。
+
+## Explanation
+
+正确答案是 D。这道题考的是 "单位敏感的值"如何避免隐式转换 + 表达力。
+逐一品味： A：隐式构造的灾难。
+隐式 `double → Distance` 转换让任何函数签名变成"宽容到错"。

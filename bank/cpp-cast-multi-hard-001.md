@@ -34,3 +34,7 @@ B 正确：这是 dynamic_cast 的失败处理设计——指针版本可检 nul
 C 错误：dynamic_cast 运行时需查 RTTI 信息（如 typeinfo 树），并可能遍历继承链做交叉转换，是 C++ 中开销最大的 cast 之一，比 static_cast/reinterpret_cast 慢得多。性能敏感路径应避免。
 
 D 正确：dynamic_cast 满天飞通常意味着抽象层次划分不合理；替代方案包括：让基类提供 `virtual` 接口（让派生类自身处理）、Visitor 模式（双重分派）、`std::variant + std::visit`（封闭多态）等。
+
+## Explanation
+
+A、B、D 正确：`dynamic_cast` 依赖多态类型的 RTTI，指针转换失败返回 `nullptr`，引用转换失败抛出 `std::bad_cast`。它不是零开销转换，可能需要运行时检查继承关系。常见误区是把 `dynamic_cast` 当成普通强转；大量使用它往往说明抽象接口、Visitor 或 `std::variant` 设计更合适。

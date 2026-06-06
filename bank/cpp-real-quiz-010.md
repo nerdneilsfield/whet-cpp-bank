@@ -39,3 +39,9 @@ D. 编译错误
 核心考点：非虚菱形继承产生多个同一个基类的副本，虚继承归并为一个；虚继承的 vtable 指针额外开销显著。
 
 **来源：** C++ Brain Teasers / Itanium C++ ABI；C++17 [class.mem]/[class.derived]
+
+## Explanation
+
+正确答案是 A。
+*虚继承的 DDV：虚继承保证只有一个 A 子对象。每个虚基类 A 的内容在对象末尾，每个 DV/DV2 内部需要 vptr 或偏移指针来定位 A。常见 x64 实现下 DDV 至少：vptr(DV)8 + char g + vptr(DV2)8 + char h + vptr(DDV) 不另算 + char i + A::char c，总体约 8~12 字节。
+核心考点：非虚菱形继承产生多个同一个基类的副本，虚继承归并为一个；虚继承的 vtable 指针额外开销显著。

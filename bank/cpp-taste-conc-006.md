@@ -94,3 +94,9 @@ C 在 A 的基础上多做了一件事：`int x = std::move(q.front())` 而不�
 A 和 C 的区别看起来是"几个字符"，但落到 review 视角，**C 的作者明显是"考虑过 push 的元素可能是 string 也可能是 unique_ptr"的人**——这是味道分水岭。
 
 **来源：** 手写题。谓词 `wait` 写法见 ISO/IEC 14882:2017 §33.5.3 [thread.condition.condvar]；移动语义友好的 queue.pop 见 Herb Sutter "GotW #93: Auto Variables"；Anthony Williams *C++ Concurrency in Action* 2e §4.1.2 给出几乎一样的 thread-safe queue 模板。
+
+## Explanation
+
+正确答案是 C。逐一品味： A：`cv.wait(lk, predicate)` 是正确的"避免虚假唤醒"写法（标准明确允许 spurious wakeup，没有谓词的 `wait()` 必须放在 `while` 循环里），用 `unique_lock` 是因为 `wait` 内部要 unlock-then-relock。
+例子里恰好 push 内顺序对，但这是把同步原语和数据状态拆成两个原子操作的脆弱写法，比 cv + 谓词更难证明正确。
+C 在 A 的基础上多做了一件事：`int x = std::move(q.front())` 而不是 `int x = q.front()`。

@@ -32,3 +32,7 @@ A 正确：relaxed 仅承诺原子性与该原子变量的单一全序，对其�
 B 正确：release-acquire 同步建立了 happens-before 关系——release 之前所有副作用（包括非原子写）对其后 acquire 之后的读可见；这个同步关系是通过同一个原子变量建立的。
 C 错误：`seq_cst` 是**最强**的顺序，所有 seq_cst 操作在所有线程上形成单一全局序（Sequential Consistency），代价最高（典型实现需 `mfence` 或 `lock`），不只是单线程顺序。
 D 正确：`consume` 旨在比 acquire 更便宜（只保证数据依赖链上的同步），但实现复杂且优化器易破坏依赖链，几乎所有编译器把它退化为 `acquire`，标准中已暂时弃用并劝退使用。
+
+## Explanation
+
+A、B、D 正确：`relaxed` 只保证单个原子操作的原子性，不建立对其他数据的同步。release/acquire 必须通过同一原子变量配对，才能把释放前写入对获取后读取可见。常见误区是认为 `seq_cst` 只影响单线程顺序；它还要求所有 seq_cst 操作进入单一全局序。

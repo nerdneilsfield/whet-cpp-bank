@@ -35,6 +35,6 @@ D. (1) 中 `x` 类型为 `std::string&`，`decltype(x)` = `std::string&`，`proc
 
 选 D。这是在泛型 lambda 里实现完美转发的**标准惯用法**，必须用 `decltype(x)` 而不是手写的类型。
 
-## 解析
+## Explanation
 
 正确答案是 D，泛型 lambda 的 `auto&&` 等价于函数模板中的转发引用。对左值调用时 `decltype(x)` 为左值引用类型，`forward` 后仍是左值；对右值调用时 `decltype(x)` 为右值引用类型，`forward` 后为右值。直接写 `x` 会丢失右值类别，因为具名形参是左值。

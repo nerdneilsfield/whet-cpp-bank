@@ -91,3 +91,9 @@ C 是最简单的方案，它的代码量最少、形式最传统。在"简单 =
 对于 `if (init; cond)` 还应警惕 C++20 的 range-for 的 init-statement 类似扩展：`for (auto x = f(); auto& e : container)`。它在某些场景下很有用（比如容器创建 + 遍历一次），但也不是"有就用"。
 
 **来源：** 手写题。C++17 init-statement 见 ISO/IEC 14882:2017 §9.5.2 [stmt.if]/3；C++ Core Guidelines ES.5 "Keep scopes small"。
+
+## Explanation
+
+正确答案是 C。这种情况下 `if (init; cond)` 是"语法正确但品味盈余"——额外的语法结构没有解决实际问题。
+当你的 init-statement 产生一个资源句柄（文件、锁、内存），且需要在 if-else 外卖保证它被销毁时： 但对于这里的 `ptr`（不拥有所有权，只是一个观察指针），它的生命周期并不需要在 if-else 结束后立刻终止——因为它在之后也没被使用。
+这道题考 "`if` with init-statement 的品味存在于它的使用寿命被精确匹配的场景，而不是本文场景"。

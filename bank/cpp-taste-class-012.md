@@ -88,3 +88,9 @@ C 胜出的关键：当**变种集合是封闭的且确定的**，编译期穷�
 - 手写 tagged union → 总是劣于 variant
 
 **来源：** 手写题。C++17 variant + visit；Sean Parent "Better Code: Runtime Polymorphism" (NDC 2017)。
+
+## Explanation
+
+正确答案是 C。这道题考"封闭类型集合"的最佳建模工具。
+手动检查 `type` 字段、忘记处理某个 case 编译器不会警告、union 的字段不是 trivial 时需要手动调用构造/析构。
+但代价：每个对象需要 vptr（指针大小开销）、虚调用不能 inline、堆分配（unique_ptr）、值语义丢失。

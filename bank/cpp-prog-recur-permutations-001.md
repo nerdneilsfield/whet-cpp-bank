@@ -13,3 +13,7 @@ tests_dir: tests/cpp-prog-recur-permutations-001/
 #include <vector>
 std::vector<std::vector<int>> permute(std::vector<int> nums);
 ```
+
+## Explanation
+
+使用回溯或交换法枚举排列：固定当前位置，递归选择剩余每个元素，达到末尾时把当前排列加入答案。输入元素 distinct，因此不需要额外去重。注意递归返回时要撤销选择或交换回来，避免影响其他分支。

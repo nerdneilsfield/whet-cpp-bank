@@ -34,6 +34,6 @@ p->~std::string();   // 手动销毁对象
 
 这一模式在自定义内存池、arena allocator 等场景中很常见——构造/析构由用户管理，内存分配/回收由分配器管理，两者解耦。
 
-## 解析
+## Explanation
 
 正确答案是 C，placement new 只在已有缓冲区中开始对象生命周期，并没有分配可由 `delete` 回收的内存。清理时必须显式调用 `p->~std::string()` 结束对象生命周期，然后让底层 `buf` 按其原本规则离开作用域。把 placement new 得到的指针交给 `delete` 或 `delete[]` 都会把非堆内存当堆内存释放，属于未定义行为。

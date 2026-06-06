@@ -22,6 +22,6 @@ B. 编译错误
 C. **数据竞争（data race）**，对 `sum` 的并发非原子写是 UB；正确做法是用 `std::reduce`
 D. 输出固定为 0
 
-## 解析
+## Explanation
 
 正确答案是 C：execution::par 允许多个调用并发执行，但不会自动同步捕获变量。多个线程同时执行 sum += x 是对同一变量的非原子读改写，形成数据竞争，行为未定义。并行求和应使用 std::reduce 或 transform_reduce，而不是在 for_each 中共享累加器。

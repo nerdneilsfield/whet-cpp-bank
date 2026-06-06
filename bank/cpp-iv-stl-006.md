@@ -14,11 +14,11 @@ rubric:
 
 # `std::list` vs `std::vector`：性能特征与选用
 
-## 问题
+### 问题
 
 `std::list` 和 `std::vector` 在内存布局和性能上有哪些根本差异？为什么大多数场景下 `vector` 实际性能更好，即使 `list` 的插入/删除理论上是 O(1)？
 
-## 参考答案
+## Explanation
 
 ### 内存布局差异
 

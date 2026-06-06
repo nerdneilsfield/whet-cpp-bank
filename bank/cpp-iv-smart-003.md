@@ -14,7 +14,7 @@ rubric:
 
 # Q: `unique_ptr` 为什么不能拷贝但可以移动？内部如何实现的？
 
-## 参考答案
+## Explanation
 
 ### 不能拷贝的原因
 

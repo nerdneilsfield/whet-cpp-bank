@@ -36,7 +36,7 @@ D. D：lower_bound + emplace_hint 避免两次查找 && 临时 std::string 构�
 
 ---
 
-## 解析
+## Explanation
 
 逐个分析开销：
 

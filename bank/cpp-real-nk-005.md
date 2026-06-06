@@ -30,3 +30,8 @@ C++ 标准要求 `unordered_map` 必须使用**链地址法**（separate chainin
 注意：Google 的 `absl::flat_hash_map` 才使用开放地址法（cache 更友好），但这是非标准实现。
 
 **来源：** 牛客网 C++ STL 高频面试题 / cppreference
+
+## Explanation
+
+正确答案是 B。
+注意：Google 的 absl::flat_hash_map 才使用开放地址法（cache 更友好），但这是非标准实现。

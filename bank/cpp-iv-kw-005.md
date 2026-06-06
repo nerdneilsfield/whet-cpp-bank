@@ -14,11 +14,11 @@ rubric:
 
 # `mutable` 关键字的使用场景
 
-## 题目
+### 题目
 
 `mutable` 关键字的作用是什么？请列举其合理使用场景，并说明它与 `const` 的设计哲学关系。
 
-## 参考答案
+## Explanation
 
 ### mutable 的基本作用
 

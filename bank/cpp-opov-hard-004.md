@@ -28,7 +28,7 @@ B. ② 调用 `Money::operator+`，5.0 隐式转换为 `Money`？编译失败
 C. ③ 调用全局 `operator+(double, double)`，`m1` 转换为 `double`，返回 `double`
 D. ① 正确；② 编译失败或歧义：`m1+5.0` 既可经 `Money::operator+`（5.0→`Money` 但没有 `Money(double)` 单参数构造则不行）也可经 `m1` 转 `double` 再 `+5.0`（返回 `double`）——若提供了 `Money(double)` 构造，则两路径都成立产生歧义；③ 通常调用 `double+double`（`m1` 转 `double`），但若 `Money` 有非 `explicit` 单参数构造也可能歧义
 
-## 解析
+## Explanation
 
 这是经典"隐式转换 + 重载运算符 → 歧义"的多对一陷阱。`Money` 既能 `→ double`（转换运算符）又可能 `double → Money`（如果有非 explicit 构造），运算符重载与内置运算符同时成为候选。
 

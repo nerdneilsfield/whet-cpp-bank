@@ -82,3 +82,9 @@ structured bindings 把这一切吞掉了——`auto&& [k, v] = some_pair;` 一�
 structured bindings 是 C++17 在"日常代码品味"维度上最大的一次升级——一次性把 `std::tie`、`.first/.second`、`std::get<N>` 三套并存的笨拙合并成一种自然语法。今天还在写 `.first / .second` 的代码相当于在 2026 年还在写 `<%for x in y%>` 的模板。
 
 **来源：** 手写题。structured bindings 见 ISO/IEC 14882:2017 §11.5 [dcl.struct.bind]；提案 P0144；最佳实践见 Herb Sutter "Trip Report" 系列、Bartek Filipek "C++17 in Detail" 第三章。
+
+## Explanation
+
+正确答案是 B。这道题考 "C++17 structured bindings 让 pair/tuple 解包变成一等公民" ——选错的人都没跟上 C++17 的最低限度更新。
+逐一品味： A 迭代器三件套 `begin()/end()/++it/it->first`。
+这道题考 "C++17 structured bindings 让 pair/tuple 解包变成一等公民" ——选错的人都没跟上 C++17 的最低限度更新。

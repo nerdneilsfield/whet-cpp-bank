@@ -47,3 +47,8 @@ f(5);
 性能上比 `std::function` 快（无虚函数调用、可内联），但每个 lambda 都是独立类型，因此 `decltype(f1) != decltype(f2)`。
 
 **来源：** 字节 C++11 面试题 / cppreference
+
+## Explanation
+
+正确答案是 C。
+C++ lambda 是匿名 functor 的语法糖。编译器为上述代码生成等价的： 特点： 按值捕获 [x] → 作为成员变量 按引用捕获 [&x] → 作为引用成员 不捕获 [] → 可以隐式转换为函数指针 operator() 默认是 const（因此不能修改按值捕获的变量，除非加 mutable） 性能上比 std::function 快（无虚函数调用、可内联），但每个 lambda 都是独立类型，因此 decltype(f1) != decltype(f2)。

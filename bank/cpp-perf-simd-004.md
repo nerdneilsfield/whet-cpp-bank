@@ -66,3 +66,7 @@ C 是"标准库做了好事，用它"的典型——同时拿性能和稳定性�
 - 标准库 `std::reduce` 在主流实现里就是 pairwise，免费拿到两个好处
 
 **来源：** Higham, "Accuracy and Stability of Numerical Algorithms" 2nd ed., §4.2；C++17 P0024；BLAS DSDOT 实现注释；Goldberg, "What Every Computer Scientist Should Know About Floating-Point Arithmetic", ACM 1991.
+
+## Explanation
+
+选 C，因为 `std::reduce(std::execution::unseq, ...)` 同时给出重排和向量化许可，通常能采用多累加器或分治求和。它比单累加器更快也更稳定；Kahan 更精确但串行依赖强，适合极端精度需求而非本题的常规规模。误区是把“最精确”当成“最值得采用”，忽略性能与精度的权衡。

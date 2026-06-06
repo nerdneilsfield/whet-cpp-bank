@@ -79,3 +79,9 @@ D. D — copy-and-swap 用法最地道，异常安全最好
 - 看见 `= default` 一行和看见五句 `= default` 一样好——前者更好
 
 **来源：** 手写题。Rule of Zero 见 C++ Core Guidelines C.20；自赋值讨论见 StackOverflow "Is the self-assignment check necessary?"。
+
+## Explanation
+
+正确答案是 C。Rule of Zero 在这里是唯一正确的选择。
+`vector` 的拷贝构造、移动构造、拷贝赋值、移动赋值、析构全部正确实现——那为什么要再写一遍？
+常见误区是把新语法等同于直觉糖，忽略 `auto`、列表初始化、lambda 捕获和重载决议的特殊规则。

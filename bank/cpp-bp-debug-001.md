@@ -23,7 +23,7 @@ D. D 错
 
 ---
 
-## 解析
+## Explanation
 
 C++ 主要 sanitizer（GCC/Clang）：
 

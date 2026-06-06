@@ -14,7 +14,7 @@ rubric:
 
 # 程序的虚拟地址空间布局（Linux 进程内存映射）
 
-## 参考答案
+## Explanation
 
 ### 64-bit Linux 进程虚拟地址空间（概览）
 

@@ -64,3 +64,9 @@ D. 仅指向首桶 (`bucket(0)`) 的迭代器失效，其他迭代器仍可继�
 D 是干扰项，rehash 影响整个桶数组，不只是 bucket(0)。A 把 vector 的语义套到了哈希表上，是错的。
 
 **来源：** 手写题，参考 GCC libstdc++ `bits/hashtable.h` 第 1500-1700 行 + ISO/IEC 14882:2017 §26.2.7 [unord.req]。
+
+## Explanation
+
+正确答案是 C。`std::unordered_map` 是节点容器（node-based container）。
+工程上应优先使用标准库算法和容器惯用法，因为它们把复杂度、迭代器边界和资源行为表达得更清楚。
+A 把 vector 的语义套到了哈希表上，是错的。

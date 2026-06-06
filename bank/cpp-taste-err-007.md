@@ -95,3 +95,9 @@ A 只做了三件事：构造 `ifstream`（打开文件）、构造 `unique_lock
 A 的优雅来自一个简单的洞察：**任何资源一旦过了 RAII 构造那一步，它在任何后续的失败路径上都会自动释放**。构造顺序决定了释放逆序，这是 C++ 标准给的语言级别保证（stack unwinding）。Herb Sutter 在 *Exceptional C++* 里把"能 RAII 的都 RAII"称为 C++ 错误处理的第一原则：**永远不要让一个资源跨越 try/catch 边界。**
 
 **来源：** 手写题。RAII 组合与逆序析构见 Herb Sutter *Exceptional C++* Items 9, 10, 11（全面讨论异常安全的三个级别）；ScopeExit 技术见 Andrei Alexandrescu *C++ Coding Standards* Item 22；RAII 是语言特性而非库特性见 Bjarne Stroustrup *The C++ Programming Language* 4e §13.3。
+
+## Explanation
+
+正确答案是 A。这道题考 "RAII 的嵌套组合——多个资源的生命周期在异常下的配合"。
+这道题考 "RAII 的嵌套组合——多个资源的生命周期在异常下的配合"。
+这比 B 更退步：多了一堆手写 cleanup，`catch(...)` 写错一次就是泄漏。

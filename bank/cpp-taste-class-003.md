@@ -104,3 +104,9 @@ B 优于 C 的理由：**不需要依赖 swap**、不需要依赖拷贝构造的
 - 自赋值保护 `if (this != &o)` 不能替代异常安全
 
 **来源：** 手写题。Herb Sutter "Exceptional C++" Item 10-11；C++ Core Guidelines C.42 和 C.43。
+
+## Explanation
+
+正确答案是 B。这道题区分"看过 copy-and-swap 就迷信"和"真的理解异常安全级别"。
+这道题区分"看过 copy-and-swap 就迷信"和"真的理解异常安全级别"。
+逐一品味： A：先 `delete[] data_` 再 `new[]`——如果 `new` 抛出 `std::bad_alloc`，`data_` 已经是野指针了，对象处于不可恢复的破坏状态（dangling pointer，不能再安全析构）。

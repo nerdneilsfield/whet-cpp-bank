@@ -14,11 +14,11 @@ rubric:
 
 # `std::string` 的 SSO（小字符串优化）是什么？
 
-## 问题
+### 问题
 
 什么是 `std::string` 的小字符串优化（Small String Optimization，SSO）？它是如何实现的？为什么短字符串不需要堆分配？有哪些副作用需要注意？
 
-## 参考答案
+## Explanation
 
 ### SSO 的核心思想
 

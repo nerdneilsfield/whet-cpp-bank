@@ -35,3 +35,8 @@ D. 自动支持自定义删除器
 2. 对象内存释放可能延迟到 weak_ptr 也清零（控制块同块内存）
 
 **来源：** 卡码笔记 / Effective Modern C++ Item 21
+
+## Explanation
+
+正确答案是 B。
+make_shared 内部使用一次 ::operator new 分配 sizeof(T) + sizeof(ControlBlock) 的连续内存。

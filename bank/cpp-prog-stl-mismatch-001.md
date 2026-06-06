@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-mismatch-001/
 
 约束：0 <= a.size(), b.size() <= 10^5。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,12 +20,16 @@ tests_dir: tests/cpp-prog-stl-mismatch-001/
 int first_mismatch(const std::string& a, const std::string& b);
 ```
 
-## 示例
+### 示例
 ```
 "hello", "help"   => 3
 "abc",   "abc"    => 3
 "abc",   "ab"     => 2
 ```
 
-## 提示
+### 提示
 - 在 skeleton/solution.hpp 中实现函数。
+
+## Explanation
+
+使用 `std::mismatch` 比较两个字符串直到任一结束或字符不同。返回的第一个迭代器相对 `a.begin()` 的距离就是所需下标；若完全相等则距离为 `a.size()`。注意一个字符串是另一个前缀时，mismatch 会停在较短者末尾。

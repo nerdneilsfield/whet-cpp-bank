@@ -50,3 +50,9 @@ class Base2 final { };  // Base2 不能被继承
 ```
 
 **来源：** 阿里 C++ 继承面试题 / Effective C++ Item 7, 32, 39
+
+## Explanation
+
+正确答案是 [A, B, D]。
+A 对： 基类析构应为 virtual 是 Effective C++ Item 7；B 对：常见错误： C 错：public 继承表示 is-a；private 继承表示has-a 实现关系（用基类实现派生类，但不是基类的子类型），不能上行转换。
+D 对。

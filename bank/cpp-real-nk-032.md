@@ -43,3 +43,10 @@ D. 三者都支持 defer_lock
 **scoped_lock**：C++17 引入，目的就是解决 lock_guard 不能同时锁多个 mutex 的问题（`lock(m1, m2)` 不会被死锁的算法）。
 
 **来源：** 字节并发面试题 / cppreference
+
+## Explanation
+
+正确答案是 A。
+三种锁对比： *lock_guard：最简单的 RAII 包装，构造加锁析构解锁，不可扩展。
+*unique_lock：最灵活，支持延迟锁定、try_lock、手动 unlock（需要与 condition_variable 配合）、可移动（unique_lock 可以作为函数返回值）。
+*scoped_lock：C++17 引入，目的就是解决 lock_guard 不能同时锁多个 mutex 的问题（lock(m1, m2) 不会被死锁的算法）。

@@ -14,6 +14,6 @@ B. `std::any_of(empty)` 返回 `false`
 C. `std::min_element(empty)` 返回 `nullptr`
 D. `std::accumulate(first, first, init)` 返回 `init`
 
-## 解析
+## Explanation
 
 正确选项是 A、B、D。空范围上 all_of 为 true、any_of 为 false，这是逻辑量化的默认值；accumulate(first, first, init) 直接返回 init。min_element 找不到时返回 last/end，不是 nullptr，也不能解引用。

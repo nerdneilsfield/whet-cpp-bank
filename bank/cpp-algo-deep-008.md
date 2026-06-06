@@ -20,6 +20,6 @@ B. `std::transform(a.begin(), a.end(), c.begin(), std::plus<int>{});`
 C. `std::transform(a.begin(), a.end(), b.begin(), c.begin(), std::plus<int>{});`
 D. `std::transform(a.begin(), a.end(), b.begin(), b.end(), c.begin(), std::plus<int>{});`
 
-## 解析
+## Explanation
 
 正确答案是 C：二元版本 std::transform 的形态是 first1, last1, first2, dest, binary_op，第二个输入序列只给起始迭代器。B 使用了一元版本却传二元加法器，D 多传了 b.end()，都不符合签名。A 试图从引用地址推下标，既脆弱也不必要。

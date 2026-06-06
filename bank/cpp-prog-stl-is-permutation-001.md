@@ -11,7 +11,7 @@ tests_dir: tests/cpp-prog-stl-is-permutation-001/
 
 约束：0 <= a.size(), b.size() <= 10^5。
 
-## 函数签名
+### 函数签名
 ```cpp
 // solution.hpp
 #pragma once
@@ -20,11 +20,15 @@ tests_dir: tests/cpp-prog-stl-is-permutation-001/
 bool is_anagram(const std::string& a, const std::string& b);
 ```
 
-## 示例
+### 示例
 ```
 "listen", "silent" => true
 "abc", "abd"       => false
 ```
 
-## 提示
+### 提示
 - 在 skeleton/solution.hpp 中实现函数。
+
+## Explanation
+
+先比较长度，不同长度不可能互为排列；长度相同再调用 `std::is_permutation(a.begin(), a.end(), b.begin())`。该算法按元素出现次数判断，而不是只判断集合相同。注意长字符串上它可能不是最优复杂度，但本题要求使用该 STL 算法。

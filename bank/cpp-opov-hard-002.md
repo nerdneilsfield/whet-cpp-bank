@@ -31,7 +31,7 @@ B. 不能，链式 `operator->` C++ 不支持
 C. 能，但只在第一层调用 `greet`
 D. 能。C++ 标准规定：若 `operator->` 返回的不是指针类型，编译器会对结果递归再次应用 `operator->`，直到得到一个真正的指针为止。此处 `o.operator->()` 返回 `Wrapper`，再 `Wrapper.operator->()` 返回 `Inner*`，最后用该指针调用 `greet`
 
-## 解析
+## Explanation
 
 `operator->` 是 C++ 中独特的"递归求值运算符"。语言规则：表达式 `a->b` 等价于：
 1. 若 `a` 是指针，直接 `(*a).b`。

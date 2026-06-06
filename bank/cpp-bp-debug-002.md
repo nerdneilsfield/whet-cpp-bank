@@ -21,7 +21,7 @@ D. 给 third-party header 加 `-isystem` 标志，避免它们的 warning 被视
 
 ---
 
-## 解析
+## Explanation
 
 `-Werror` 把 warning 转为 error，是工程纪律的核心：
 

@@ -80,3 +80,10 @@ ListNode* reverseKGroup(ListNode* head, int k) {
 D 错，链表算法不需要转数组就能 O(1) 空间完成。
 
 **来源：** 字节算法二面（LeetCode 25 Hard）
+
+## Explanation
+
+正确答案是 C。
+选 C。这是字节高频算法面试题（LeetCode 25），考察对链表分组反转 + 复杂度分析的掌握。
+反转每组 k 个节点是 O(k)，共 n/k 组，总和是 (n/k)*k = O(n)。
+*迭代版本可做到 O(1) 空间： D 错，链表算法不需要转数组就能 O(1) 空间完成。

@@ -62,3 +62,7 @@ public:
 - 为什么存 `unordered_map<K, list::iterator>` 而不是 `unordered_map<K, V>`？（不知 value 在 list 中的位置，无法 splice）
 
 **来源：** 字节/阿里 LRU 手写高频考题（LeetCode 146）
+
+## Explanation
+
+本题评分重点是用 list 保存访问顺序、用 unordered_map 保存 key 到 list 迭代器的映射，从而让查找、移动到头部和淘汰尾部都保持 O(1)。get 命中后要用 splice 把节点移到链表头部，put 对已有 key 更新并前移，对新 key 在容量满时删除尾节点并同步 erase map。还要处理不存在返回 -1 和 capacity 为 0 等边界。常见误区是只用 map 或 vector，导致移动或查找退化为 O(n)。

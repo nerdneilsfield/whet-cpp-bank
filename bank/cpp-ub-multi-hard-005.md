@@ -36,3 +36,7 @@ B 正确：`unsigned char` 和（C++17 起）`std::byte` 类型本身没有 trap
 C 错误：CWG defect 1787 与后续澄清表明，即使通过 `unsigned char*` 别名访问，**如果该底层存储中存放的是其他类型的未初始化对象（如 `int z`）**，访问其字节仍可能是 UB（编译器视该读为"用了 indeterminate value"）。规则更细致：若该 `int` 已被初始化或通过 `memcpy` 写入，则可读其字节；纯未初始化的非 char 对象按字节读仍 UB。
 
 D 正确：C++14 起明确：indeterminate value 的使用是 UB（除少数例外）。Clang/GCC 利用此 UB 做激进优化，"if (uninit_var) ..." 整个分支可被消除，导致看似神秘的 bug。`-Wuninitialized` 与 sanitizer 是常用检测手段。
+
+## Explanation
+
+A、B、D 正确：普通自动变量未初始化后的值是 indeterminate value，参与算术等求值属于未定义行为，而 `unsigned char` 作为例外类型读取自身未初始化值不会因 trap representation 触发 UB。关键点是“字符类型例外”并不等于可以任意安全观察其他未初始化对象的对象表示。常见误区是把 `unsigned char*` 能别名任意对象，误解成能读取未开始有效值语义的任意未初始化对象。

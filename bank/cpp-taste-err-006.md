@@ -80,3 +80,9 @@ D. D — `bool + 出参` 最传统，调用方可以当场处理
 C 用 `expected<Config, error_code>` 是 P0323 提案的代表用例。注意区分：errc（可移植的错误代码枚举）和 errno（平台相关）的不同。用 `make_error_code(errc::no_such_file_or_directory)` 生成了可移植的 error_code，而不是手写字符串。
 
 **来源：** 手写题。`expected` 与文件 I/O 用例见 C++ Core Guidelines E.2, E.16; `std::error_code` 设计见 Christopher Kohlhoff (ASIO 作者) 的设计文档; P0323 `std::expected` 提案 (Vicente Botet et al.)。
+
+## Explanation
+
+正确答案是 C。这道题考 "文件加载是一种通用失败来源、失败原因需要区分 + 非异常路径处理"。
+这道题考 "文件加载是一种通用失败来源、失败原因需要区分 + 非异常路径处理"。
+配置文件加载的两个失败场景——文件不存在和格式错误——对应不同的恢复策略：文件不存在可能 fallback 到默认配置、格式错误可能需要报错退出。
