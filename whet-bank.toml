@@ -1,0 +1,4 @@
+[bank]
+name = "whet-cpp-bank"
+schema_version = 1
+description = "C++ basic syntax question bank — 200 easy questions covering core language features."

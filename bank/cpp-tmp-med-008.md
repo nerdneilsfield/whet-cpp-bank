@@ -1,0 +1,25 @@
+---
+qid: cpp-tmp-med-008
+type: multi
+kp: [cpp-templates]
+difficulty: medium
+answer_key: [A, C]
+---
+
+关于 CRTP 与虚函数实现多态的对比，**正确**的说法有哪些？（多选）
+
+A. CRTP 在编译期绑定，虚函数在运行期绑定
+B. CRTP 需要虚函数表（vtable），虚函数不需要
+C. CRTP 不产生 vtable 开销，适合对性能敏感的场景
+D. CRTP 可以在运行期动态切换具体类型，虚函数不能
+E. CRTP 和虚函数都需要在基类中声明 `virtual` 关键字
+
+---
+
+**解析：**
+
+- **A 正确**：CRTP 调用在编译期通过模板实例化静态确定，虚函数通过 vtable 在运行期查找。
+- **B 错误**：CRTP **不需要** vtable；虚函数**需要** vtable。选项描述相反。
+- **C 正确**：无 vtable、无间接调用开销，适合嵌入式、高频调用等性能敏感场景。
+- **D 错误**：CRTP 的"派生类"在编译期固定，无法在运行期切换；虚函数恰恰支持运行期多态。
+- **E 错误**：CRTP 基类不需要 `virtual`。

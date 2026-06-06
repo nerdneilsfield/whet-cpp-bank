@@ -1,0 +1,16 @@
+---
+qid: cpp-cpp17-007
+type: multi
+kp: [cpp-cpp14-17]
+difficulty: easy
+answer_key: [A, C]
+---
+
+# 认知：std::make_unique 的优势
+
+C++14 引入 `std::make_unique<T>(args...)` 相比直接 `new`，有哪些优势？（多选）
+
+A. 异常安全：避免裸 `new` 在多参数函数中因求值顺序导致的内存泄漏
+B. 性能更高：`make_unique` 使用了内存池优化
+C. 代码简洁：无需重复写类型名，如 `auto p = std::make_unique<Foo>(args)` 而非 `std::unique_ptr<Foo> p(new Foo(args))`
+D. 支持自定义删除器，而 `new` 不支持

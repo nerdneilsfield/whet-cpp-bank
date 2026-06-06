@@ -1,0 +1,32 @@
+---
+qid: cpp-move-adv-005
+type: single
+kp: [cpp-move-semantics]
+difficulty: medium
+answer_key: A
+---
+
+下列关于 `const T&&` 的说法，**正确**的是？
+
+```cpp
+template<typename T>
+void f(const T&& x);   // (A) 形参类型
+
+template<typename T>
+void g(T&& x);         // (B) 形参类型
+```
+
+A. `f` 的形参是**普通右值引用**（不是转发引用），只能绑定右值；`g` 的形参是转发引用
+B. `f` 和 `g` 都是转发引用，均可绑定左值和右值
+C. `f` 是转发引用，`g` 是普通右值引用
+D. 两者都是右值引用，均不能绑定左值
+
+---
+
+**解析：**
+
+转发引用要求形参类型**精确**为 `T&&`，其中 T 是无 cv 限定的推导参数。`const T&&` 中的 `const` 打破了这一条件：
+- `f(const T&&)` 是**右值引用**，T 推导时不会产生引用折叠效果，只接受右值（以及 const 右值）。
+- `g(T&&)` 是转发引用，T 可推导为引用类型，从而绑定任意值类别。
+
+实际上 `const T&&` 在泛型代码里几乎没用武之地，因为它既不是转发引用，又比 `const T&` 限制更多。

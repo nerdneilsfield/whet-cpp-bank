@@ -1,0 +1,16 @@
+---
+qid: cpp-conc-003
+type: single
+kp: [cpp-concurrency]
+difficulty: easy
+answer_key: A
+---
+
+# 认知：忘记 `join()`/`detach()` 的后果
+
+若 `std::thread` 对象在析构时既未调用 `join()` 也未调用 `detach()`，程序会发生什么？
+
+A. 调用 `std::terminate()`，程序异常终止  
+B. 线程自动被 `join()`，主线程等待其结束  
+C. 线程自动 `detach()`，在后台继续运行  
+D. 编译器会在编译阶段报错  

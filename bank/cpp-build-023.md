@@ -1,0 +1,9 @@
+---
+qid: cpp-build-023
+type: fill
+kp: [cpp-build-tools]
+difficulty: easy
+answer_key: "$^"
+---
+
+# 在 Makefile 的 recipe 中，自动变量 `____` 代表当前规则的**所有依赖文件**（去重后）。

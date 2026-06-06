@@ -1,0 +1,23 @@
+---
+qid: cpp-build-008
+type: single
+kp: [cpp-build-tools]
+difficulty: easy
+answer_key: B
+---
+
+# 题目
+
+以下关于 `-Wall` 和 `-Werror` 的描述，哪一条是**正确**的？
+
+A. `-Wall` 开启所有可能的警告，包括极少见的实验性警告
+B. `-Wall` 开启一组常见的有用警告；`-Werror` 将所有警告视为错误，导致有警告时编译失败
+C. `-Werror` 只把 `-Wall` 产生的警告变成错误，对其他警告无效
+D. 使用 `-Wall` 后就不需要 `-Werror`，因为 `-Wall` 已包含它
+
+## 选项解析
+
+- A：`-Wall` 不是"所有警告"，部分极端警告需要 `-Wextra` 或 `-Wpedantic`。
+- B：正确。二者通常组合使用：`g++ -Wall -Werror ...` 让任何警告都阻断构建。
+- C：`-Werror` 影响所有警告，不限于 `-Wall` 的范围。
+- D：二者功能不同，不存在包含关系。
