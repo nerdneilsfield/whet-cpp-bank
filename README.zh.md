@@ -87,7 +87,7 @@
 
 ```bash
 # 在你的 exam 仓库里
-whet repo add cpp https://github.com/your-org/whet-cpp-bank
+whet repo add cpp https://github.com/nerdneilsfield/whet-cpp-bank
 whet repo sync
 
 # 验证已注册
