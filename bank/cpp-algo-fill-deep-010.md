@@ -9,23 +9,6 @@ answer_key: ["std::reduce", "reduce", "std::transform_reduce", "transform_reduce
 
 要对 `std::vector<double>` 并行求和（接受 `std::execution::par`），且避免 `std::accumulate` 严格左折叠带来的不可并行性，应改用算法 _______。
 
----
+## 解析
 
-**解析：**
-
-`std::reduce(policy, first, last, init, binary_op = plus<>{})`（C++17，`<numeric>`）允许任意求值顺序，可加并行策略：
-
-```cpp
-auto sum = std::reduce(std::execution::par, v.begin(), v.end(), 0.0);
-```
-
-要求 `binary_op` 满足**结合律**（典型实现还假定交换律）。对浮点加法严格意义上**不满足结合律**（舍入误差），所以并行 reduce 结果**不可复现**——这是性能换稳定性的取舍。
-
-需要"并行加 + 元素变换"用 `std::transform_reduce`：
-
-```cpp
-auto sqsum = std::transform_reduce(
-    std::execution::par,
-    v.begin(), v.end(), 0.0, std::plus<>{},
-    [](double x){ return x*x; });
-```
+答案是 std::reduce，若还需要先映射元素则用 std::transform_reduce。reduce 支持执行策略并允许重排求值顺序，所以可并行。误区是继续用 accumulate；accumulate 是严格左折叠，不能表达并行归约契约。

@@ -20,18 +20,6 @@ B. `1 2 1 3 2 1 4`
 C. `1 2 3 2 1 4`
 D. 未定义行为
 
----
+## 解析
 
-**解析：**
-
-`std::unique` 只移除**相邻**重复元素，并不会做全局去重。因此对未排序的 `v`，每个相邻位置都不相等，没有任何元素被消除，输出原样。
-
-正确做法：先排序再 unique：
-
-```cpp
-std::sort(v.begin(), v.end());
-v.erase(std::unique(v.begin(), v.end()), v.end());
-// → 1 2 3 4
-```
-
-或直接用 `std::set` / `std::unordered_set`。注意 `std::unique` 同样返回新逻辑末尾迭代器，配合 `erase` 才能真正缩容。
+正确答案是 B：std::unique 只消除相邻重复元素，而题中没有相邻相等元素，所以序列保持原样。它不是全局去重算法，也同样只返回逻辑末尾。若要得到 1 2 3 4，通常先 sort 再 unique+erase，或使用 set/unordered_set。

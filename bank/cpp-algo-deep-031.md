@@ -23,14 +23,6 @@ B. p=`1 3 6 10`, e=`0 1 3 6`, i=`0 1 3 6`
 C. p=`1 3 6 10`, e=`0 1 3 6`, i=`1 3 6 10`
 D. 全部相等
 
----
+## 解析
 
-**解析：**
-
-- `partial_sum`：`p[k] = v[0] + ... + v[k]`（包含当前），即 inclusive
-- `inclusive_scan`：与 `partial_sum` 同结果（但 C++17 起允许并行且要求关联可重排）
-- `exclusive_scan(first, last, dest, init)`：`e[k] = init + v[0] + ... + v[k-1]`（**不含**当前；`e[0] = init`）
-
-两者主要差别是 `inclusive_scan`/`exclusive_scan` 接受 `ExecutionPolicy` 做并行化，要求加法**结合律**；而 `partial_sum` 严格按顺序串行。
-
-GPU/SIMD 常用 exclusive scan 做"前缀偏移表"，第 k 元素正好是前 k 个的总和。
+正确答案是 C：partial_sum 和 inclusive_scan 都包含当前元素，所以结果都是 1 3 6 10。exclusive_scan 不包含当前元素，并从初值 0 开始，因此是 0 1 3 6。误区是把 inclusive 与 exclusive 的边界含义混淆。

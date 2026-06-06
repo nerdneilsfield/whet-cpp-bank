@@ -34,3 +34,7 @@ D. `unique_ptr` 会自动检测类型，调用正确的析构函数
 实际表现通常是：只调用 `~Base()`，`Derived` 的成员（如 `data` 这个 `std::string`）不被析构，造成资源泄漏；运行时也可能直接崩溃，取决于实现的 ABI。
 
 修复方法之一是给 `Base` 加 `virtual ~Base() = default;`。注意 `shared_ptr` 在这种情况下反而是安全的——它的删除器在构造时根据真实类型生成（类型擦除），即使 `Base` 没有虚析构也能正确析构 `Derived`。这是 `unique_ptr` 与 `shared_ptr` 的关键区别之一。
+
+## 解析
+
+正确答案是 B，通过 `Base*` 删除实际为 `Derived` 的对象时，基类析构函数必须是 `virtual` 才能保证派生部分被析构。这里 `unique_ptr<Base>` 的默认删除器等价于对 `Base*` 执行 `delete`，非虚析构会导致未定义行为，常见表现是只调用 `~Base`。不要误以为智能指针能自动弥补基类析构函数设计错误。

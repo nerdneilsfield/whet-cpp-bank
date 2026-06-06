@@ -34,7 +34,7 @@ D. 虽然正确但没必要——C++11 的 local static 已有线程安全初始
 
 ---
 
-**解析：**
+## 解析
 
 这个 DCLP 实现**本身是正确的**（使用 `acquire` + `release` 语义确保了 happens-before 关系和 visibility），且在 C++11 之前是唯一可靠的懒初始化方式。
 

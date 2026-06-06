@@ -46,3 +46,7 @@ static_cast<int>(Status::Error) == 2，命中 case 2，fallthrough 到 case 3，
 static_cast<int>(Status::Warn) == 1，命中 case 1，打印 "fine"，遇 break 退出。
 输出两行：critical / fine。
 -->
+
+## 解析
+
+A 正确：`Status::Error` 显式转成整数是 2，命中 `case 2` 后贯穿到 `case 3` 的同一处理块，打印 `critical` 并 `break`。`Status::Warn` 转成 1，命中 `case 1` 打印 `fine`。关键误区是把相邻 case 标签误认为会打印两次；这里多个 case 共享一段代码。

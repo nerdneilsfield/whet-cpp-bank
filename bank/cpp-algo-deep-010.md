@@ -21,10 +21,6 @@ B. `dst.assign(src.rbegin(), src.rend()); std::reverse(src.begin(), src.end());`
 C. `dst.resize(src.size()); std::reverse_copy(src.begin(), src.end(), dst.begin());`
 D. `std::transform(src.rbegin(), src.rend(), std::back_inserter(dst), std::reverse{});`
 
----
+## 解析
 
-**解析：**
-
-`std::reverse_copy(first, last, dest)` 把 `[first, last)` 反转后写入 `dest`，**不修改源**。要求 `dest` 已有足够空间，或使用 `std::back_inserter(dst)` 配合空容器。
-
-A 修改了 `src`，违反需求；B 工作但多余地再次反转 `src`；D 中 `std::reverse` 不是函数对象，不能当 unary_op。另一种简洁写法：`std::vector<int> dst(src.rbegin(), src.rend());`。
+正确答案是 C：std::reverse_copy 会把源区间反向复制到目标区间，不修改 src，符合“副本反转、源不变”的需求。A 修改了 src，B 又额外反转 src，D 把 reverse 当函数对象使用也不成立。注意目标迭代器必须有足够空间，或改用 back_inserter。

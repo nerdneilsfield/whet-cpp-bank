@@ -22,3 +22,7 @@ v.erase(std::remove(v.begin(), v.end(), x), v.end());
 ```
 
 这就是 erase-remove 惯用法。C++20 提供 `std::erase(v, x)` 和 `std::erase_if(v, pred)` 来直接完成这件事，更加简洁。
+
+## 解析
+
+本题应围绕关键机制作答，而不是只给术语列表。完整答案至少要说明：解释 std::remove 不真正删除元素，而是将"保留"元素移到前部、返回新逻辑尾迭代器；指出之后必须配合容器的 erase 才能真正缩短容器（erase-remove 惯用法）；给出代码示例 `v.erase(std::remove(v.begin(),v.end(),x), v.end());`；提到 C++20 引入 std::erase / erase_if 简化此惯用法。常见误区是只描述表面用法，漏掉前置条件、生命周期或性能/安全影响。评分时应看解释是否能指导实际写代码和排查错误。

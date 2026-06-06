@@ -19,16 +19,6 @@ B. `cmp(a, a) == false`（反自反性 / irreflexivity）
 C. `cmp(a, b) && cmp(b, c) ⇒ cmp(a, c)`（传递性）
 D. 必须返回 `std::strong_ordering`
 
----
+## 解析
 
-**解析：**
-
-严格弱序要求：
-- B ✅ 反自反性
-- C ✅ 传递性
-- 反对称性（asymmetry）：`cmp(a,b) ⇒ !cmp(b,a)`（A 写反了——A 说的是"对称"，会破坏排序）
-- 等价的传递性：`!cmp(a,b) && !cmp(b,a)` 是等价关系且传递
-
-违反任一会导致 `std::sort` 进入 UB（实际表现为崩溃、死循环或越界）。`std::less` 在大多数内置类型上满足，但对 `NaN` 浮点不满足（需自定义处理）。
-
-D 错：比较器只需返回 `bool`；`std::strong_ordering` 是 C++20 三向比较，用于 spaceship。
+正确选项是 B、C。严格弱序要求反自反性和传递性，还要求 cmp(a,b) 为真时 cmp(b,a) 不能同时为真；A 写成了对称性，方向正好错误。std::sort 的比较器只需可转换为 bool，不要求返回 std::strong_ordering；违反这些性质会导致排序行为不可靠。

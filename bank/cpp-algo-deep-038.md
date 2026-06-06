@@ -24,12 +24,6 @@ B. `out = {3, 5, 9}`；要求两个输入序列都**已排序**
 C. `out = {1,3,5,7,9,2,3,5,8,9}`
 D. 编译错误，需要传 `std::set`
 
----
+## 解析
 
-**解析：**
-
-`<algorithm>` 中的"set 系列"算法（`set_union` / `set_intersection` / `set_difference` / `set_symmetric_difference` / `includes` / `merge`）**作用于任意已排序序列**——名字里的 "set" 指数学集合而非 `std::set` 容器。
-
-前提：两序列必须按**同一比较器**有序。输出同样按该比较器有序。算法用线性归并法实现，O(m+n)。
-
-若用 `std::greater` 排序则 5 个算法的比较器也应传 `std::greater`。`std::back_inserter` 自动 `push_back`，适合大小未知的输出。
+正确答案是 B：set_intersection 作用于任意已排序序列，不要求容器类型是 std::set。两个输入均已升序，公共元素依次为 3、5、9，因此输出交集 `{3,5,9}`。关键前提是两边必须按同一比较器排序，否则算法的归并过程会得到不可靠结果。

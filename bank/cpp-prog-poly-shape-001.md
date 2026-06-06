@@ -44,3 +44,6 @@ double total_area(const std::vector<std::unique_ptr<Shape>>& shapes);
 ## 提示
 - 不要修改 tests/ 下的文件
 - 在 skeleton/solution.hpp 中实现函数
+
+## 解析
+基类通过虚析构和纯虚 `area()` 支持运行时多态，派生类只需保存构造参数并覆写面积公式。圆面积使用指定 π 常量乘 `r*r`，矩形面积为 `w*h`。`total_area` 遍历 `unique_ptr<Shape>` 容器并累加 `p->area()`，空容器返回 0。

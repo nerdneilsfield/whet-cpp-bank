@@ -18,15 +18,6 @@ B. `std::min<int>`
 C. `std::greater<int>`
 D. `std::not_equal_to<int>`
 
----
+## 解析
 
-**解析：**
-
-`std::priority_queue` 的比较器语义有些反直觉：**比较器返回 `true` 表示"前者应排在后者之后"（即"优先级更低"）**。
-
-- 默认 `std::less<T>`：当 `a < b` 为真，`a` 优先级更低 → `b` 在堆顶 → **max-heap**
-- `std::greater<T>`：当 `a > b` 为真，`a` 优先级更低 → 小的在堆顶 → **min-heap**
-
-`std::make_heap` 等底层算法用法相同：传 `std::greater` 得 min-heap。
-
-记忆：与 `std::sort` 的"`less` → 升序，`greater` → 降序"是**反过来的**——因为 priority_queue 取的是末尾的最大值作堆顶。
+正确答案是 C：priority_queue 默认 Compare 是 std::less，因此 top 是最大值。改用 std::greater<int> 后，较大的元素被认为优先级更低，最小值会在 top，形成 min-heap。误区是把 sort 中 greater 的降序直觉直接套到 priority_queue 上。

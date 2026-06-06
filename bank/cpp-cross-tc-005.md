@@ -37,3 +37,7 @@ D. 编译错误：`operator+` 不支持 `int` 与 `double`
 编译器报错：deduced conflicting types for parameter 'T'。
 修复方式：显式指定 sumFirst<double>(vi, vd) 或使用两个独立类型参数。
 -->
+
+## 解析
+
+B 正确：`sumFirst` 只有一个模板参数 `T`，两个形参都要求是 `std::vector<T>`。传入 `vector<int>` 推导出 `T=int`，传入 `vector<double>` 又推导出 `T=double`，发生推导冲突。关键误区是认为模板实参推导会自动把 `vector<int>` 转成 `vector<double>`；容器类型之间不会这样隐式转换。

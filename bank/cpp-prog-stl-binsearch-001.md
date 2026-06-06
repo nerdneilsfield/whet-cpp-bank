@@ -21,3 +21,6 @@ int find_peak(const std::vector<int>& nums);
 ## 提示
 - 不要修改 tests/ 下的文件
 - 在 skeleton/solution.hpp 中实现函数
+
+## 解析
+利用相邻元素不相等和两端视为负无穷，可以二分判断斜率方向。若 `nums[mid] < nums[mid+1]`，右侧一定存在峰值；否则左侧含 `mid` 一定存在峰值。循环到 `l == r` 时该位置就是一个峰值，单元素数组也自然成立。

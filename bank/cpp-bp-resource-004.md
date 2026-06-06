@@ -54,7 +54,7 @@ D. D：显式 = default 五大成员
 
 ---
 
-**解析：**
+## 解析
 
 **Rule of Zero**（Sutter 提出）：**如果你的类的所有成员都是 RAII 的（如 string、vector、unique_ptr），就不要写任何 destructor / copy / move ctor / copy / move assignment**。让编译器自动生成的版本"该 copy 就 copy，该 move 就 move"，这是最简单也最安全的设计。
 

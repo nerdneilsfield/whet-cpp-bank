@@ -33,7 +33,7 @@ D. lambda 必须 mutable
 
 ---
 
-**解析：**
+## 解析
 
 `std::async(f)` 不指定 launch policy 时，默认为 `std::launch::async | std::launch::deferred`。这是一个 "**实现可任选**" 的模糊语义：
 

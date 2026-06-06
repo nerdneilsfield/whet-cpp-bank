@@ -33,3 +33,7 @@ A. `one`
 B. `onetwothree`
 C. `onetwo`
 D. 编译错误
+
+## 解析
+
+正确答案是 B。`x` 匹配 `case 1` 后输出 `one`，由于没有 `break`，继续贯穿执行 `case 2` 和 `case 3`，依次输出 `two`、`three`。在 `case 3` 遇到 `break` 后退出，不执行 `default`。

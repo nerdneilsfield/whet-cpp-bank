@@ -46,3 +46,7 @@ std::stack 是 LIFO，top() 返回最后压入的元素。
 Stack<int>：依次 push 10、20、30，top 为 30。
 Stack<std::string>：依次 push "hello"、"world"，top 为 "world"。
 -->
+
+## 解析
+
+C 正确：`std::stack` 是后进先出的容器适配器，`top()` 返回最后压入但尚未弹出的元素。整数栈依次压入 10、20、30，栈顶是 30；字符串栈最后压入 `world`，栈顶是 `world`。关键误区是按队列 FIFO 理解 stack。

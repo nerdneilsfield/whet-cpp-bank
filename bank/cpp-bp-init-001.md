@@ -30,7 +30,7 @@ D. Widget 缺少默认构造
 
 ---
 
-**解析：**
+## 解析
 
 著名的 **most vexing parse**：`Widget w(Timer())` 在 C++ 语法上**优先解析为函数声明**而非对象定义。
 

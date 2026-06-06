@@ -35,3 +35,7 @@ C++ 异常抛出后会进行**栈展开**（stack unwinding）：从 `throw` 点
 `unique_ptr<Resource> p` 是栈对象，栈展开会调用它的析构函数，进而 `delete` 掉它持有的 `Resource`，所以那个对象被正确销毁。
 
 但 `raw` 只是一个裸指针（也是栈对象），栈展开只会"析构这个指针"——而析构 `Resource*` 是平凡操作，不会调用 `delete`。结果：`new` 出来的 `Resource` 既没析构、内存也没释放，泄漏。这正是 *naked `new`/`delete` 在异常场景下不安全* 的根本原因，也是为什么 C++ Core Guidelines R.11/R.13 要求一律用智能指针或容器持有所有权。
+
+## 解析
+
+正确答案是 B。`std::make_unique` 避免裸 `new`，写法更简洁且更有利于异常安全。选项 B 的表述“只有 ｀unique_ptr｀ 管理的 ｀Resource｀ 会被析构；｀raw｀ 指向的对象内存泄漏”正好符合该规则。A、C、D 的问题通常在于把相近概念混同、忽略默认行为，或把运行期现象误认为编译期/标准规定。

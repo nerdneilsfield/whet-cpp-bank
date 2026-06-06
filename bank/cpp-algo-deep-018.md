@@ -20,13 +20,6 @@ B. `std::stable_sort(v.begin(), v.end());`
 C. `std::stable_sort(v.begin(), v.end(), [](auto& x, auto& y){return x.score > y.score;});`
 D. `std::partial_sort(v.begin(), v.end(), v.end(), [](auto& x, auto& y){return x.score > y.score;});`
 
----
+## 解析
 
-**解析：**
-
-- `std::sort`：O(n log n) 期望，**不保证稳定**——同分学生顺序可能错乱
-- `std::stable_sort`：O(n log n) 或 O(n log² n)（取决于内存），**保证稳定**
-- B 缺少比较器且 `Student` 没有 `operator<`，编译错误
-- D `partial_sort` 用于"取前 k 个"语义不同
-
-按多关键字"二轮排序"需要稳定排序：先按次关键字 stable_sort，再按主关键字 stable_sort，最终结果按主关键字升序、相等者按次关键字保序。
+正确答案是 C：要按分数降序且同分保持原相对顺序，必须用 stable_sort 并传 score > 的比较器。sort 不保证稳定，B 缺少 Student 的默认小于比较，D 的 partial_sort 不是为稳定排序设计。关键误区是把“排好序”和“稳定排序”混为一谈。

@@ -18,13 +18,6 @@ B. ranges 算法支持**投影**（projection）参数，可在比较前映射�
 C. ranges 算法不能用于普通迭代器对，只能用于 view
 D. 对临时容器调用返回迭代器的算法会得到 `std::ranges::dangling`，把潜在 UB 提前为编译期错误
 
----
+## 解析
 
-**解析：**
-
-- A ✅：视图惰性、零拷贝；典型管道无堆分配。
-- B ✅：投影把"取键"逻辑从比较器分离出来，代码更清晰。
-- C ❌：ranges 算法既接受 range 对象也接受 `(begin, end)` 迭代器对。
-- D ✅：dangling 检查通过类型系统拒绝悬挂迭代器使用。
-
-注意 `filter_view::iterator` 是 ForwardIterator（不是 RandomAccess），所以管道末端常常退化为前向遍历，无法直接 `sort`。
+正确选项是 A、B、D。views 是惰性组合，通常不产生中间容器；ranges 算法还支持 projection，把取键逻辑与比较器分开。ranges 既可接收 range 也可接收迭代器对；对临时 range 返回迭代器时用 dangling 降低悬挂风险。

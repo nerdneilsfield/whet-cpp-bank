@@ -21,7 +21,7 @@ D. libstdc++ 5 引入了 dual ABI（_GLIBCXX_USE_CXX11_ABI）—— GCC 5.x 默�
 
 ---
 
-**解析：**
+## 解析
 
 C++ ABI 的稳定性是工程难题，最经典的案例是 **GCC 5 / libstdc++ 5 的 dual ABI**：
 

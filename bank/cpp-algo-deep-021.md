@@ -23,14 +23,6 @@ B. 只有 (3) 错误
 C. 只有 (2) 错误
 D. 全部正确
 
----
+## 解析
 
-**解析：**
-
-`std::sort` 要求 **RandomAccessIterator**，而 `std::list::iterator` 是 BidirectionalIterator——(2) 编译错误。
-
-`std::list`（以及 `std::forward_list`）提供成员函数 `lst.sort()`，使用归并排序，O(n log n)，对节点指针重链而不移动元素值。
-
-类似地，`std::list::remove / remove_if / unique / merge / reverse / splice` 都是成员版本，比通用算法更高效（指针操作）。
-
-记忆：通用 `<algorithm>` 算法的迭代器类别要求很重要：`sort` 要 RA，`partition` 要 Forward，`reverse` 要 Bidirectional，`find` 要 Input。
+正确答案是 C：std::sort 要求随机访问迭代器，vector 满足而 list 不满足。list 应使用成员函数 lst.sort()，它基于链表结构实现排序。误区是以为所有容器迭代器都能用于所有算法；算法的迭代器类别要求必须匹配。

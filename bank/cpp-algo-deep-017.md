@@ -20,17 +20,6 @@ B. `std::search(text.begin(), text.end(), pat.begin(), pat.end());`
 C. `std::find_if(text.begin(), text.end(), [&](char c){return pat.find(c)!=std::string::npos;});`
 D. `std::adjacent_find(text.begin(), text.end());`
 
----
+## 解析
 
-**解析：**
-
-`std::find` 查找**单个元素**，传入字符串会编译错误（`char` 不能与 `string` 比较）。`std::search(haystack_first, haystack_last, needle_first, needle_last)` 才是查找**子序列**的算法。
-
-C++17 起 `std::search` 支持高级搜索器：`std::boyer_moore_searcher`、`std::boyer_moore_horspool_searcher` 等，可处理大文本：
-
-```cpp
-std::search(text.begin(), text.end(),
-            std::boyer_moore_searcher(pat.begin(), pat.end()));
-```
-
-`std::string::find` 也是常用方案。`std::find_first_of` 是"找第一个出现在另一集合中的字符"，语义不同。
+正确答案是 B：std::search 用于在一个序列中查找另一个子序列，正适合查找字符串 pat。std::find 只能查找单个元素，不能把 string 当作 char 去找。find_if 只能找到任一出现在 pat 中的字符，adjacent_find 则查相邻关系，都不是子串匹配。

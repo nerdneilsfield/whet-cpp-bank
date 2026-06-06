@@ -41,3 +41,7 @@ switch 对 enum class 合法，case 必须加限定名 Color::Green。
 static_cast<int>(Color::Green) == 1。
 输出 "green 1"。
 -->
+
+## 解析
+
+C 正确：`Color::Green` 的底层值是 1，`switch` 可以直接以 `enum class` 表达式作为条件。`case` 标签必须写成 `Color::Green` 这样的限定名，函数返回 `green`。关键误区是认为 `enum class` 不能用于 `switch`；不能的是隐式转成 `int`。

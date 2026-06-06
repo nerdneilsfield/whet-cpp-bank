@@ -24,3 +24,7 @@ D. `value_or()` 比 `value()` 慢，因为总会构造 `T`
 - `value_or(U&&)`：空时返回备选值，不会默认构造空 `T`——传引用或移动即可，不必然慢。
 
 选项 A 错在 `operator*` 在空时是 UB；B 错在语义不等价；D 错在 `value_or` 不会额外构造 `T`。
+
+## 解析
+
+正确答案是 C。`std::optional<T>` 表示可能有值也可能为空，访问前应检查是否持有值。选项 C 的表述“｀has_value()｀ 返回 ｀false｀ 时调用 ｀value()｀ 抛出 ｀std::bad_optional_access｀，而 ｀operator*｀ 是未定义行为”正好符合该规则。A、B、D 的问题通常在于把相近概念混同、忽略默认行为，或把运行期现象误认为编译期/标准规定。

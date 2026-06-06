@@ -20,15 +20,6 @@ B. 用 `std::sort` 并传随机比较器
 C. 用 `std::shuffle(v.begin(), v.end(), std::mt19937{std::random_device{}()})`
 D. 用 `std::reverse`
 
----
+## 解析
 
-**解析：**
-
-`std::random_shuffle` 使用 `std::rand()`，质量差且不可控；C++17 起被移除。`std::shuffle` 接受一个 **URBG（UniformRandomBitGenerator）**，必须显式传入：
-
-```cpp
-std::mt19937 rng{std::random_device{}()};
-std::shuffle(v.begin(), v.end(), rng);
-```
-
-要求 RandomAccessIterator。用随机比较器做 `std::sort` 是**未定义行为**（违反严格弱序）。
+正确答案是 C：std::shuffle 需要显式提供满足 UniformRandomBitGenerator 的随机引擎，mt19937 是常见选择。random_shuffle 依赖旧式随机源，已在 C++17 移除。用随机比较器交给 sort 是严重误区，因为比较器不满足严格弱序，行为未定义。

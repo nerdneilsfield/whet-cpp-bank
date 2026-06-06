@@ -37,7 +37,7 @@ D. 编译错误，不能通过基类引用给派生类对象赋值
 
 ---
 
-**解析：**
+## 解析
 
 这是 classic 的 **slicing 变形**：通过 `Base&` 调用的是 `Base::operator=(const Base&)`，其作用域仅限 `Base` 的子对象，对 `Child` 新增的成员 `y` 一无所知。
 

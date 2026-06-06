@@ -35,7 +35,7 @@ D. 应使用 errno 类似的全局错误码
 
 ---
 
-**解析：**
+## 解析
 
 C++ 异常机制采用零开销 (zero-cost) 模型——只在抛出路径才有开销，但**抛出本身的成本极高**（栈展开、RTTI 匹配、内存分配等），通常上千 CPU 周期。规则："exceptions are for exceptional cases"。
 

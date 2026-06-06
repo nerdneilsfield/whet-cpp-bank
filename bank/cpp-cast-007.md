@@ -28,3 +28,7 @@ A. 行 A
 B. 行 B
 C. 两行都不会
 D. 两行都会
+
+## 解析
+
+正确答案是 A。`explicit` 构造函数禁止从 `double` 到 `Meter` 的隐式转换，所以 `print(3.14)` 编译失败。`print(Meter(3.14))` 是显式构造临时对象，符合 `explicit` 的用法。

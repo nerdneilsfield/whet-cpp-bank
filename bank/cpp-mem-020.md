@@ -42,3 +42,7 @@ D — 安全：weak_ptr 正确用法。
 E — 泄漏：覆盖 p 前未 delete。
 答案：B C E
 -->
+
+## 解析
+
+正确答案是 B、C、E。B 在释放后解引用，是 use-after-free；C 用 `delete` 释放 `new[]` 数组，释放形式不匹配；E 覆盖唯一指针值导致无法再释放原对象。A 中 raw 只是借用指针且 `unique_ptr` 仍存活，D 是 `weak_ptr` 的正常用法。

@@ -27,7 +27,7 @@ D. 两者等价
 
 ---
 
-**解析：**
+## 解析
 
 `packaged_task` 和 `promise` 都是 "producer" 侧，区别在于：
 

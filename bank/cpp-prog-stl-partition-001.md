@@ -21,3 +21,6 @@ int partition_last(std::vector<int>& v);
 ## 提示
 - 不要修改 tests/ 下的文件
 - 在 skeleton/solution.hpp 中实现函数
+
+## 解析
+使用 Lomuto partition：最后一个元素作为 pivot，维护 `i` 指向下一个 `<= pivot` 的位置。遍历前 `n-1` 个元素，遇到 `<= pivot` 就与 `v[i]` 交换并递增 `i`，最后把 pivot 与 `v[i]` 交换。返回 `i`，要注意空数组若测试涉及应有明确处理，通常可返回 `-1`。

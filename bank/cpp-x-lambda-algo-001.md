@@ -34,7 +34,7 @@ D. `std::sort` 要求比较器返回 `int`（负/零/正），而非 `bool`
 
 ---
 
-**解析：**
+## 解析
 
 `std::sort` 要求比较器满足 **strict weak ordering（严格弱序）**（[alg.sorting]/3），核心要求之一是 **irreflexive**：`comp(a, a) == false`。
 

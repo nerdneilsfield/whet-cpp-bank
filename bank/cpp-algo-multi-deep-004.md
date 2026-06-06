@@ -14,13 +14,6 @@ B. `std::sort` 平均/最坏 O(n log n)（C++11 起最坏也是 n log n），不
 C. `std::stable_sort` 复杂度严格优于 `std::sort`
 D. 两者都可用于 `std::list`
 
----
+## 解析
 
-**解析：**
-
-- A ✅：稳定性是 stable_sort 的核心契约。
-- B ✅：C++11 起 `std::sort` 最坏复杂度也是 O(n log n)（典型实现 introsort：quicksort + 深度阈值切 heapsort）。C++03 仅保证平均。
-- C ❌：`stable_sort` 是 O(n log n) 至 O(n log² n)（取决于辅助内存），常数项通常更大；并不严格优于 `std::sort`。
-- D ❌：两者都要 RandomAccessIterator；`list` 用其成员 `sort()`，那才是稳定归并排序。
-
-实际：需稳定性才用 stable_sort，否则 `std::sort` 更快、内存更少。
+正确选项是 A、B。stable_sort 保证等价元素的相对顺序不变，sort 不保证稳定但复杂度为 O(n log n)。stable_sort 并不严格优于 sort，通常常数和内存成本更高。两者都要求随机访问迭代器，list 应用成员 sort。

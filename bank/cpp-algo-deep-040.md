@@ -22,18 +22,6 @@ B. 编译错误
 C. **数据竞争（data race）**，对 `sum` 的并发非原子写是 UB；正确做法是用 `std::reduce`
 D. 输出固定为 0
 
----
+## 解析
 
-**解析：**
-
-`std::execution::par` 允许并行执行 lambda，但**不提供同步**——程序员必须保证谓词/函数对象**无数据竞争**。多线程同时执行 `sum += x` 是经典数据竞争 → UB（结果可能远小于 1'000'000）。
-
-正确并行加和：
-
-```cpp
-auto sum = std::reduce(std::execution::par, v.begin(), v.end(), 0LL);
-```
-
-或用 `std::atomic<long long>` / `std::transform_reduce`。
-
-另一坑：`par_unseq` 还允许**矢量化交错执行**，谓词中不可调用同步原语（mutex、I/O 等），违反同样是 UB。
+正确答案是 C：execution::par 允许多个调用并发执行，但不会自动同步捕获变量。多个线程同时执行 sum += x 是对同一变量的非原子读改写，形成数据竞争，行为未定义。并行求和应使用 std::reduce 或 transform_reduce，而不是在 for_each 中共享累加器。

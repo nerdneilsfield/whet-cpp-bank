@@ -55,3 +55,7 @@ name() 是 virtual，循环调用时动态分派到各自的 override，依次�
 Circle、Square、Triangle。
 这是工厂模式 + 多态的典型用法。
 -->
+
+## 解析
+
+C 正确：`Shape` 是抽象类，不能直接创建对象，但 `vector` 存的是 `unique_ptr<Shape>`，指向具体派生对象。`name()` 是虚函数，循环中分别分派到 `Circle`、`Square`、`Triangle` 的实现。关键误区是认为抽象类不能作为指针或智能指针的静态类型。

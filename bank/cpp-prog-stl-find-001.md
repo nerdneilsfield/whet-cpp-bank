@@ -23,3 +23,6 @@ std::vector<int> top_k_frequent(const std::vector<int>& nums, int k);
 ## 提示
 - 不要修改 tests/ 下的文件
 - 在 skeleton/solution.hpp 中实现函数
+
+## 解析
+先用 `unordered_map<int,int>` 统计每个数字出现次数，再把不同元素收集到数组中排序。比较器应先按频率降序，频率相同再按数值升序，这样结果顺序符合题意。最后取前 `k` 个元素即可；约束保证 `k` 不超过不同元素数，但实现时仍可用边界检查防御异常输入。

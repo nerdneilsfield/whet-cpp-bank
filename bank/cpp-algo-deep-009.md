@@ -21,22 +21,6 @@ B. 跳过部分偶数（如 4 不会被删），因为 `erase` 使后续元素�
 C. 编译错误
 D. 删除后 `v` 变空
 
----
+## 解析
 
-**解析：**
-
-`vector::erase(it)` 让 `it` 指向**被删元素的下一个**，紧接的 `++it` 又跳过一格，导致原本紧跟在被删偶数后的偶数被漏掉。例如删 2 后 it 指向 3，再 ++ 指向 4 时，4 没被检查到的位置错位。
-
-正确写法：使用返回值控制迭代器：
-
-```cpp
-for (auto it = v.begin(); it != v.end(); ) {
-    if (*it % 2 == 0) it = v.erase(it);
-    else ++it;
-}
-// 或直接：
-v.erase(std::remove_if(v.begin(), v.end(),
-        [](int x){return x%2==0;}), v.end());
-// C++20:
-std::erase_if(v, [](int x){return x%2==0;});
-```
+正确答案是 B：vector::erase 会使被删位置及其后的迭代器失效，并返回下一个有效迭代器。题中忽略返回值且循环末尾继续 ++it，会跳过元素，甚至有迭代器失效风险。正确写法是在删除时令 it = v.erase(it)，否则才 ++it，或直接用 erase-remove/erase_if。

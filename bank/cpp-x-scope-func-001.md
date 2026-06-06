@@ -28,7 +28,7 @@ D. 链接成功，`call_from_a()` 返回 1，`call_from_b()` 返回 2（各自�
 
 ---
 
-**解析：**
+## 解析
 
 **ODR 对 inline 函数的特殊规则**（[basic.def.odr]/6）：
 

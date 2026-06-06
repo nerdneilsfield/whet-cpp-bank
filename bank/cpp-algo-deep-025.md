@@ -21,16 +21,6 @@ B. `lower_bound` 必须使用**与排序时相同的比较器**，否则结果�
 C. `std::sort` 不能用 lambda
 D. `std::abs` 不能用于 int
 
----
+## 解析
 
-**解析：**
-
-二分搜索族（`lower_bound` / `upper_bound` / `equal_range` / `binary_search`）的**前提条件**是序列已按**同一比较器**有序（"is partitioned w.r.t. predicate"）。若排序用 `cmp`，搜索也必须传 `cmp`，否则前提不成立，结果未定义（不一定崩溃，可能返回错误位置）。
-
-正确写法：
-
-```cpp
-auto it = std::lower_bound(v.begin(), v.end(), 4, cmp);
-```
-
-`std::map<K,V>::find` 也是基于其内部 `Compare`，所以自定义比较器的 `set/map` 不能用 `std::find`（用成员 `find`，O(log n)）。
+正确答案是 B：二分搜索族要求范围已经按同一个比较器排序或至少满足对应分区条件。这里 sort 使用 abs 比较器，lower_bound 却使用默认 <，算法前提被破坏，结果不可靠。正确做法是 lower_bound 也传入同一个 cmp，并让 value 的比较语义一致。

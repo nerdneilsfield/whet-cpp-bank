@@ -20,13 +20,6 @@ B. `auto p = std::lower_bound(v.begin(), v.end(), 3);`
 C. `auto p = std::equal_range(v.begin(), v.end(), 3);` 返回 `pair<iter, iter>`
 D. `auto p = std::find(v.begin(), v.end(), 3);` — O(log n)
 
----
+## 解析
 
-**解析：**
-
-- `lower_bound`：返回**不小于** value 的第一个位置（值 3 的左边界，可插入处）
-- `upper_bound`：返回**严格大于** value 的第一个位置（值 3 的右边界后）
-- `equal_range`：返回 `pair{lower_bound, upper_bound}`，即等于 value 的整个连续区间
-- `binary_search`：只返回 `bool`，不告知位置
-
-`std::equal_range` 一次完成两件事，比分别调 lower/upper 略快（共享路径）。`std::find` 是 O(n)。在 `std::multiset` 上也常用 `equal_range` 取所有等值元素。
+正确答案是 C：equal_range 返回 pair<lower_bound, upper_bound>，正好表示所有等于 3 的半开区间。binary_search 只给 bool，lower_bound 只有左边界，find 又是线性查找。前提是序列已按同一比较器排序。

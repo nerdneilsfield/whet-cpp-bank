@@ -25,4 +25,4 @@ D. 方式 B 创建的 `shared_ptr` 不支持 `weak_ptr`
 
 ## 解析
 
-`shared_ptr<T>(new T(...))` 先分配 `T` 对象，再分配 `shared_ptr` 的控制块（引用计数等），共两次堆分配。`make_shared<T>(...)` 将两者合并为一次分配，减少分配次数和内存碎片，是推荐用法。
+正确答案是 B，直接 `shared_ptr<int>(new int(1))` 通常先分配 `int`，再为控制块分配内存。`make_shared<int>(1)` 通常把对象和控制块合并为一次分配，减少开销并改善局部性。两者语义同为共享所有权，也都支持配合 `weak_ptr` 使用。

@@ -38,7 +38,7 @@ D. (1) UB，(2)(3) 合法
 
 ---
 
-**解析：**
+## 解析
 
 C++ 的 strict aliasing 规则（[basic.lval]）规定：通过类型 T 的左值访问一个实际动态类型为 U 的对象，仅在 T 与 U 满足兼容关系（同类型、cv 变体、有符号/无符号变体、`char`/`unsigned char`/`std::byte`、基类等）时合法。
 

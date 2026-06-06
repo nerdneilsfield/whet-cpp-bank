@@ -21,7 +21,7 @@ D. 应该用 strcat
 
 ---
 
-**解析：**
+## 解析
 
 `std::string operator+` 是普通的二元运算符。表达式 `"Hello, " + title + " " + name + ", welcome!"` 等价于：
 

@@ -34,3 +34,7 @@ std::is_same_v<T2, T3>  // = ____
 - `std::is_same_v<T2, T3>` = **true**（`std::true_type` 就是 `integral_constant<bool, true>`）
 
 `integral_constant` 是 type traits 的底层积木：`is_integral<int>` 继承自 `integral_constant<bool, true>`，因此 `is_integral<int>::value` = `true`。
+
+## 解析
+
+填入 `42`，因为题目要求的是该规则下的精确表达或标准名称。模板题要区分编译期实例化、类型推导、特化/重载匹配和 SFINAE/约束；不要把模板当作运行时多态。 常见误区是写出近似说法、旧式写法或省略必要的命名空间/符号，导致与答案含义不完全一致。

@@ -14,12 +14,6 @@ B. `std::any_of(empty)` 返回 `false`
 C. `std::min_element(empty)` 返回 `nullptr`
 D. `std::accumulate(first, first, init)` 返回 `init`
 
----
+## 解析
 
-**解析：**
-
-- A ✅、B ✅：空范围的逻辑量化默认值（vacuous）。
-- C ❌：返回的是 `last`（即 `end`），**不是 nullptr**。调用方必须用 `it == v.end()` 检查，**不要解引用**。
-- D ✅：accumulate / reduce / inner_product 对空范围返回初值；transform / for_each / copy 等对空范围是空操作（no-op）。
-
-边界条件意识对算法正确使用至关重要，尤其在范围由其他算法（如 `lower_bound`）的返回值切出来时，常出现空区间。
+正确选项是 A、B、D。空范围上 all_of 为 true、any_of 为 false，这是逻辑量化的默认值；accumulate(first, first, init) 直接返回 init。min_element 找不到时返回 last/end，不是 nullptr，也不能解引用。

@@ -21,3 +21,6 @@ std::vector<int> elem_add(const std::vector<int>& a, const std::vector<int>& b);
 ## 提示
 - 不要修改 tests/ 下的文件
 - 在 skeleton/solution.hpp 中实现函数
+
+## 解析
+先比较两个向量长度，不相等立即抛出 `std::invalid_argument`。相等时预先创建同长度结果数组，用 `std::transform(a.begin(), a.end(), b.begin(), out.begin(), ...)` 逐项相加。空向量也是合法等长输入，应返回空结果。

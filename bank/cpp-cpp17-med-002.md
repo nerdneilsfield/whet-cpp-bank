@@ -68,3 +68,7 @@ int main() { k(42); }
 B 和 D 的 discarded branch 在实例化时被丢弃，不产生编译错误。C 中的 `static_assert` 在 if constexpr 外部，必然触发。
 
 核心规则：discarded branch **不参与模板实例化**，但**必须语法合法且名字查找成功**。
+
+## 解析
+
+正确答案是 A。`auto` 按模板实参推导规则工作，常会丢弃顶层 `const` 和引用，除非显式写成 `auto&`。选项 A 的表述“｀｀｀cpp template<typename T> void f(T v) { if constexpr (std::is_same_v<T, int>) { std::cout << v; } else { v.size(); // 对 int 调用 .size() } } int main() { f(42); } ｀｀｀”正好符合该规则。B、C、D 的问题通常在于把相近概念混同、忽略默认行为，或把运行期现象误认为编译期/标准规定。

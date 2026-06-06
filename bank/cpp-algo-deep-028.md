@@ -20,14 +20,6 @@ B. `auto it = s.find(key); // O(log n)`
 C. `auto it = std::binary_search(s.begin(), s.end(), key); // 返回 iterator`
 D. 两种都一样快，`std::find` 在 set 上会自动用二分
 
----
+## 解析
 
-**解析：**
-
-`std::find` 是**通用线性搜索** O(n)，不会因为容器是 `set` 而切换为二分——它只看迭代器类别。
-
-`std::set::find` 是成员函数，利用内部红黑树结构，O(log n)。同理 `map::find`、`unordered_set::find`（O(1) 平均）应**优先用成员函数**。
-
-`std::binary_search` 返回 `bool` 不返回迭代器；C 写法编译错误。
-
-C++20 起 `std::ranges::contains`（C++23 实际加入）提供更便利的语法，但对关联容器仍应优先成员函数。
+正确答案是 B：std::set::find 会利用红黑树结构，时间复杂度 O(log n)。通用 std::find 只做线性扫描，不会自动利用 set 的有序结构。binary_search 返回 bool 而不是迭代器，也不是最优成员查找方式。

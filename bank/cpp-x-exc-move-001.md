@@ -32,7 +32,7 @@ D. 只要 `Container` 有复制构造函数，就一定能回滚
 
 ---
 
-**解析：**
+## 解析
 
 [vector.modifiers]/1：`vector` 在重新分配时使用移动构造函数，**当且仅当**移动构造函数是无异常声明（`noexcept` 或 `noexcept(true)`）时。
 

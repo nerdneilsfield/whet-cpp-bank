@@ -15,20 +15,6 @@ auto sq = v | _______([](int x){ return x * x; });
 
 请补全所用 view 适配器（含命名空间）。
 
----
+## 解析
 
-**解析：**
-
-`std::views::transform`（或 `std::ranges::views::transform`）：对底层 range 的每个元素应用一元函数，返回一个**惰性视图**：
-
-```cpp
-auto sq = v | std::views::transform([](int x){ return x*x; });
-for (int y : sq) std::cout << y << " ";  // 元素按需计算
-```
-
-特性：
-- 零分配（无中间容器）
-- 元素类型 = 函数返回类型
-- 迭代器类别 ≤ 底层迭代器类别
-
-可与其它 view 链式组合，如 `views::filter`、`views::take`、`views::drop`、`views::reverse` 等。C++23 起可用 `std::ranges::to<std::vector>()` 物化。
+答案是 std::views::transform。它是 C++20 ranges 的 view 适配器，返回惰性视图，只有遍历结果时才对元素应用平方函数，不会立刻生成新容器。误区是把 views 管道当作 eager 计算；若需要 vector 等容器，还需要额外物化。

@@ -33,7 +33,7 @@ D. (3)(6) 编译失败；其余合法
 
 ---
 
-**解析：**
+## 解析
 
 `enum class`（**scoped enumeration**，C++11 引入）与传统 `enum`（unscoped enum）的核心差异：
 

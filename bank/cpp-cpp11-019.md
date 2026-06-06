@@ -33,3 +33,7 @@ D.
 ```cpp
 int d = North;  // 无作用域限定
 ```
+
+## 解析
+
+正确答案是 B、C。`enum class` 是有作用域、强类型枚举，枚举器需用枚举名限定且不会隐式转为整数。 A 错误：｀｀｀cpp int d = Dir::North; ｀｀｀；B 正确：｀｀｀cpp Dir d = Dir::North; ｀｀｀；C 正确：｀｀｀cpp if (Dir::North == Dir::North) {} ｀｀｀；D 错误：｀｀｀cpp int d = North; // 无作用域限定 ｀｀｀。常见误区是只记住术语名称，而忽略每个选项中的限定条件、生命周期、同步关系或复杂度前提。

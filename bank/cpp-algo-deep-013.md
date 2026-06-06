@@ -19,10 +19,6 @@ B. `std::count_if(v.begin(), v.end(), [](int x){return x > 0;});`
 C. `std::accumulate(v.begin(), v.end(), 0, [](int s, int x){return x > 0 ? s+x : s;});`
 D. `std::find_if(v.begin(), v.end(), [](int x){return x > 0;}) - v.begin();`
 
----
+## 解析
 
-**解析：**
-
-`count_if` 直接返回满足谓词的元素**个数**，复杂度 O(n)，语义最清晰，返回类型 `iterator::difference_type`。
-
-A 求的是元素之和，不是个数；C 用 accumulate 做计数可行但语义不直接，且若改成 `s+1` 才是计数；D 只能找到第一个满足者的位置，不是总数。选择算法时应优先匹配语义。
+正确答案是 B：std::count_if 直接统计满足谓词 x > 0 的元素个数，语义最清楚。accumulate 默认求和，不是计数；若用它计数也要写成满足条件时 s+1，表达反而绕。find_if 只能找到第一个正数的位置，不能给出所有正数的总数。

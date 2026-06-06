@@ -25,7 +25,7 @@ D. 它们必须配合 RTTI，关闭 RTTI 后无法工作
 
 ---
 
-**解析：**
+## 解析
 
 **Type erasure** 是 C++ 用值语义实现"任意类型多态"的关键技术。`std::function`、`std::any`、`std::any_invocable`、`std::move_only_function`（C++23）都是它的应用。
 

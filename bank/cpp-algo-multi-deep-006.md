@@ -14,13 +14,6 @@ B. `std::accumulate` 是严格左折叠，结果对**浮点求和**确定可复�
 C. `std::reduce` 要求 binary_op 满足结合律（典型实现还假定交换律），可并行
 D. `std::reduce` 是 `std::accumulate` 的别名
 
----
+## 解析
 
-**解析：**
-
-- A ❌：仅 accumulate 顺序确定；reduce 顺序未指定。
-- B ✅：accumulate 总按 `((((init+v0)+v1)+v2)+...)`，浮点结果可复现。
-- C ✅：reduce 可重排，因此 binary_op 必须结合；多线程实现还要求局部归约可任意排列（交换律），可加 `std::execution::par` 等策略。
-- D ❌：完全不同；reduce 引入了"可并行"的契约。
-
-并行加和首选 `std::reduce(std::execution::par, ..., 0.0)`；要可复现的浮点求和用 accumulate 或 Kahan 算法。
+正确选项是 B、C。accumulate 是严格左折叠，因此浮点求和顺序固定，虽然有舍入误差但结果可复现。reduce 允许重排以支持并行，所以要求操作满足结合律，实际实现还常依赖交换性。它不是 accumulate 的别名，结果顺序语义不同。

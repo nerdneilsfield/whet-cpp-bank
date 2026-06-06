@@ -21,15 +21,6 @@ B. `bool`，是否完全相等
 C. `std::pair<iterator, iterator>`，分别指向两序列第一次不相等处
 D. `std::vector<int>`，所有不匹配的元素
 
----
+## 解析
 
-**解析：**
-
-`std::mismatch` 返回 `std::pair<It1, It2>`：
-
-- `r.first` 指向第一序列第一处不匹配
-- `r.second` 指向第二序列对应位置
-
-本例 `r.first` 指 `a[2] (=3)`，`r.second` 指 `b[2] (=9)`。若全相等，两个迭代器分别等于 `last1` 和 `b.begin()+(last1-first1)`。
-
-同样有三参数与四参数版本的对称问题，C++14 起推荐四参数版避免越界。
+正确答案是 C：std::mismatch 返回一对迭代器，分别指向两个序列第一次不相等的位置。本例会指向 a[2] 的 3 和 b[2] 的 9。误区是把 mismatch 当作返回 bool 或下标的算法；若全相等，返回位置会到达相应末尾。

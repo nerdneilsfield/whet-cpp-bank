@@ -20,15 +20,6 @@ B. `1 2 3` 在前，之后元素**顺序未指定**
 C. `1 2 3 5 8 9 7 4 6`（保持原相对顺序）
 D. 仅 v[2] 是第 3 小，其他不变
 
----
+## 解析
 
-**解析：**
-
-`std::partial_sort(first, middle, last)` 保证：
-
-- `[first, middle)` 是整个 `[first, last)` 中**最小的 `middle - first` 个**元素，且**已升序排列**
-- `[middle, last)` 中元素**顺序未指定**
-
-复杂度 O(n log k)，k = middle − first。当 k ≪ n 时显著快于 `std::sort` 的 O(n log n)。常用于"取前 K 名"。
-
-若只想求**第 k 小**而不要前 k 个有序，用 `nth_element`，平均 O(n) 更快。
+正确答案是 B：partial_sort 保证前 k 个位置放置全局最小的 k 个元素，并且这 k 个元素内部已经排序。middle 之后的元素仍然存在，但顺序未指定，也不保证保持原相对顺序。误区是把 partial_sort 当成完整 sort，期待整个 vector 都有序。

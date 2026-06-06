@@ -32,3 +32,7 @@ D. `lower_bound` 要求容器排序，`binary_search` 不要求
 `lower_bound` 是更基础的原语，可推出 `binary_search`、`equal_range`、`insert` 的插入位置等。性能上两者数量级相同，但 `binary_search` 在某些实现里会调用 `lower_bound` 然后比较一次，常数稍大。
 
 实战中，如果只是"判断在不在"，写 `binary_search` 表意更清；如果要"找出位置以便插入或读取关联值"（典型的有序 `vector<pair>` 当作 map 用），用 `lower_bound`。常见 bug：忘了 `it != end()` 的判空，对 `*end()` 解引用是 UB。
+
+## 解析
+
+正确答案为 B，因为“`binary_search` 返回 `bool`，只回答"在不在"；`lower_bound` 返回**位置**——第一个不小于 `x` 的迭代器，可能等于 `end()`，等于 `end()` 或 `*it != x` 都表示"不在"”符合题干所问的 C++ 规则或代码执行结果。A、C、D 项分别混淆了相近概念、错误语法或不会发生的执行路径。常见误区是凭直觉看关键字，而没有按标准规则和代码顺序逐步判断。STL 算法通常只操作迭代器区间，前置条件、返回值和是否改变容器大小要分开判断。

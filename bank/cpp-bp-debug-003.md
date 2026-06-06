@@ -32,7 +32,7 @@ D. NDEBUG 下 assert 改为抛异常
 
 ---
 
-**解析：**
+## 解析
 
 C 标准库 `<cassert>` 的 `assert` 宏定义大致是：
 

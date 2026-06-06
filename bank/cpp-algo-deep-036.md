@@ -21,15 +21,6 @@ B. `std::push_heap(v.begin(), v.end());` 仅 O(log n) 上浮新元素
 C. `std::sort_heap(v.begin(), v.end());`
 D. `std::pop_heap(v.begin(), v.end());`
 
----
+## 解析
 
-**解析：**
-
-堆算法 4 件套（最大堆，默认 `std::less`）：
-
-- `make_heap`：把整个区间建堆，O(n)
-- `push_heap`：要求 `[first, last-1)` 已是堆，且 `*(last-1)` 是新插入元素，上浮调整，O(log n)
-- `pop_heap`：把堆顶（`*first`，最大值）和 `*(last-1)` 交换，然后对 `[first, last-1)` 下沉重新成堆，**不真正删除**，需自己 `v.pop_back()`，O(log n)
-- `sort_heap`：反复 pop_heap 把堆变排序数组，O(n log n)
-
-`std::priority_queue<T>` 默认用 `vector<T>` + `std::less<T>` 构成 **max-heap**，与上述算法一致；想要 min-heap 传 `std::greater<T>`。
+正确答案是 B：push_back 新元素后，原来的 [begin,end-1) 已是堆，std::push_heap 只需把新尾元素上浮，复杂度 O(log n)。重新 make_heap 虽正确但多做 O(n) 工作。sort_heap 会把堆排序，pop_heap 是弹出堆顶的准备动作，都不是插入。

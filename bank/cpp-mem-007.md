@@ -17,3 +17,7 @@ D. 将 `unique_ptr` 转换为可拷贝的指针
 weak_ptr 不增加引用计数，用于观察 shared_ptr 管理的对象，
 打破 A→B、B→A 的循环引用。答案 A。
 -->
+
+## 解析
+
+正确答案是 A，`weak_ptr` 观察 `shared_ptr` 管理的对象但不增加强引用计数，因此可打破循环引用。若两个对象互相用 `shared_ptr` 持有，对方都会让自己的计数无法归零。访问 `weak_ptr` 指向的对象时应调用 `lock()` 得到临时 `shared_ptr`，而不是直接解引用。

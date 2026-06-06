@@ -34,3 +34,7 @@ D. ① 和 ② 都抛 `std::bad_cast`
 这是为引用语义服务的设计：引用一旦存在就必须绑定合法对象，无法用哨兵值表示失败。因此 ① 中 `pd == nullptr`，② 中 `dynamic_cast<Derived&>` 会抛出 `std::bad_cast`（定义于 `<typeinfo>`）。
 
 实践上：检查指针 cast 用 `if (auto* d = dynamic_cast<Derived*>(pb))`，检查引用 cast 用 `try/catch(std::bad_cast&)`。
+
+## 解析
+
+正确答案为 C，因为“① 返回 `nullptr`，② 抛 `std::bad_cast`”符合题干所问的 C++ 规则或代码执行结果。A、B、D 项分别混淆了相近概念、错误语法或不会发生的执行路径。常见误区是凭直觉看关键字，而没有按标准规则和代码顺序逐步判断。类型转换题要区分编译期转换、运行期检查、cv 限定和底层位模式重解释。

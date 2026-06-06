@@ -21,10 +21,6 @@ B. `if (it == v.end()) std::cout << "none"; else std::cout << *it;`
 C. `if (*it == 0) std::cout << "none"; else std::cout << *it;`
 D. `if (it < 0) std::cout << "none"; else std::cout << *it;`
 
----
+## 解析
 
-**解析：**
-
-`std::find_if` 找不到时返回 `last`（即 `end()`）迭代器，**不是 nullptr**，且解引用 `end()` 是 UB。正确检测必须用 `it == v.end()`。
-
-`find` / `find_if` / `find_if_not` / `adjacent_find` / `search` 等所有"找不到返回 end"的算法都需要这种判断。C++20 的 `std::ranges::find_if` 行为相同。
+正确答案是 B：std::find_if 找不到时返回 last，也就是这里的 v.end()。end() 不是 nullptr，也不能解引用；必须先比较 it == v.end()，确认找到后才能访问 *it。误区是把迭代器当裸指针，或把未找到状态误认为某个特殊元素值。

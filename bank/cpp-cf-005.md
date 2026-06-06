@@ -26,3 +26,7 @@ A. A
 B. ABC
 C. AB
 D. ABCD
+
+## 解析
+
+正确答案是 B。`n` 匹配 `case 1` 后输出 `A`，但该分支没有 `break`，会继续向下执行 `case 2` 和 `case 3`，依次输出 `B`、`C`。`case 3` 后的 `break` 阻止进入 `default`。

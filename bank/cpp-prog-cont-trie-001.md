@@ -35,3 +35,6 @@ private:
 ## 提示
 - 不要修改 tests/ 下的文件
 - 在 skeleton/solution.hpp 中实现函数
+
+## 解析
+Trie 的每个节点保存 26 个子节点和一个单词结束标记。插入时按字符下标创建缺失节点，最后把 `end` 置为 true；查找前缀时只要路径存在即可。`search` 与 `starts_with` 的区别是前者还要求最后节点的 `end` 为 true，空串边界按测试期望处理根节点即可。

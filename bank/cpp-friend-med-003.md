@@ -57,3 +57,7 @@ class Wrapper {
 ```cpp
 template<typename U> friend bool operator==(Wrapper<U>, Wrapper<U>);
 ```
+
+## 解析
+
+正确答案是 C，对应“cpp template<typename T> class Wrapper { template<typename U> friend bool operator==(Wrapper<U> a, Wrapper<U> b); }; ”。本题考查友元声明的访问权限规则，关键是友元只授予特定函数或类访问权，不会自动成为成员。其他选项容易混淆相关概念：A 项“cpp template<typename T> class Wrapper { friend bool operator==(Wrapper a, Wrapper b); }; ”不满足题干要求；B 项“cpp template<typename T> class Wrapper { friend bool operator==<T>(Wrapper a, Wrapper b); }; ”不满足题干要求；D 项“cpp template<typename T> class Wrapper { friend auto operator==(Wrapper a, Wrapper b) -> bool; }; ”不满足题干要求。常见误区是只凭关键字判断，而没有结合完整声明、表达式求值结果或 C++ 语义限制。

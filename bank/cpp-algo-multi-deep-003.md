@@ -18,13 +18,6 @@ B. 标准要求实现必须使用 OS 线程（如 pthread）
 C. 可调用对象抛出未捕获的异常会导致 `std::terminate` 被调用
 D. `par_unseq` 还要求可调用对象内部不可调用同步原语（mutex、I/O 等）
 
----
+## 解析
 
-**解析：**
-
-- A ✅：并行规范不提供同步，谓词必须无数据竞争。
-- B ❌：标准只描述行为，可基于线程池、纤程、GPU offload 等任意实现。GCC 的 par 实现基于 TBB。
-- C ✅：从并行算法用户代码逃逸的异常调用 `std::terminate`（[algorithms.parallel.exceptions]）。
-- D ✅：`par_unseq` 允许矢量化交错执行，谓词需 "vectorization-safe"，禁止同步操作。
-
-实际效果：选 par 还是 par_unseq 取决于谓词是否完全 lock-free。无策略版（串行）异常正常传播。
+正确选项是 A、C、D。并行算法不会替用户同步，共享状态造成数据竞争就是未定义行为。标准不规定必须用 OS 线程；而并行策略下用户函数异常逃逸会调用 terminate，par_unseq 还要求函数体适合向量化，不能使用同步原语或 I/O。
