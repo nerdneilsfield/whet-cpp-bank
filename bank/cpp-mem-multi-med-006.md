@@ -1,0 +1,33 @@
+---
+qid: cpp-mem-multi-med-006
+type: multi
+kp: [cpp-arrays-pointers]
+difficulty: medium
+answer_key: [A, B, D]
+---
+关于指针算术的合法性，**哪些说法是正确的**？（多选）
+
+```cpp
+int arr[5] = {0, 1, 2, 3, 4};
+int* p = arr;         // 指向 arr[0]
+void* vp = arr;
+int* p2 = arr + 5;    // (1)
+int* p3 = arr - 1;    // (2)
+int* p4 = arr + 100;  // (3)
+int x = *arr;         // (4)
+int y = *(arr + 1);   // (5)
+```
+
+A. (1) `p2` 是合法指针（尾后指针），可参与比较，但不能解引用
+B. (2) `p3` 是未定义行为：指针算术不能越过数组**首元素之前**
+C. `void*` 不支持 `++` 或 `+ n` 算术操作，需要 `static_cast<T*>` 为具体类型后再运算
+D. (4)(5) 都是合法访问；`arr[i]` 等价于 `*(arr + i)`
+
+---
+
+**解析：**
+
+A 正确：标准明确允许"尾后指针"（one-past-the-last），可以比较和做指针减法，但解引用是 UB。
+B 正确：尾后可以，但**头部之前一个**不行。`arr - 1` 越过了分配的数组对象边界，是 UB。
+C 正确：C++ 中 `void*` 表示未知类型的地址，没有 size 信息，不能参与算术。需先转回 `int*`。
+D 正确：C/C++ 基本定律。但注意 `arr[5]`（等于 `*(arr + 5)`）解引用的是尾后一位置，仍是 UB。
