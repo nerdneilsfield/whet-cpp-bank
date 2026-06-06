@@ -26,7 +26,7 @@
 uv tool install anvil-whet
 
 # 在你的 exam repo 里注册本题库
-whet repo add cpp https://github.com/<your>/whet-cpp-bank
+whet repo add cpp https://github.com/nerdneilsfield/whet-cpp-bank
 whet repo sync
 
 # 从本题库抽题
@@ -205,7 +205,7 @@ cpp-memory-mgmt        cpp-move-semantics                          cpp-templates
 ## 校验
 
 ```bash
-git clone https://github.com/<your>/whet-cpp-bank && cd whet-cpp-bank
+git clone https://github.com/nerdneilsfield/whet-cpp-bank && cd whet-cpp-bank
 whet bank validate --path . --json
 # {"total": 2083, "errors": [], "warnings": []}
 ```
