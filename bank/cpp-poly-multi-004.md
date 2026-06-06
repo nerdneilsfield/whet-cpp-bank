@@ -1,0 +1,22 @@
+---
+qid: cpp-poly-multi-004
+type: multi
+kp: [cpp-polymorphism]
+difficulty: medium
+answer_key: [A, B]
+---
+关于 `dynamic_cast` 的正确使用前提，**哪些是必须满足的**？（多选）
+
+A. 操作的类型必须至少含有一个虚函数（使类具有多态性）。
+B. `dynamic_cast` 向下转型时必须通过指针或引用（不能是值类型）。
+C. `dynamic_cast` 要求 RTTI 必须在编译时启用，且类定义必须可见。
+D. `dynamic_cast<void*>` 可用于任何非多态类型。
+
+---
+
+**解析：**
+
+A 正确：多态性通过 vtable 存储 RTTI 信息，无虚函数则无法 `dynamic_cast`。
+B 正确：值类型会导致切片，无法转型；必须用指针或引用。
+C 错误：类定义翻译单元可见性不是核心要求，但类必须有虚函数且 RTTI 开启。
+D 错误：`dynamic_cast<void*>` 也要求操作数是多态类型。

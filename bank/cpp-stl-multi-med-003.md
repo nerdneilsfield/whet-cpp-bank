@@ -1,0 +1,22 @@
+---
+qid: cpp-stl-multi-med-003
+type: multi
+kp: [cpp-stl-basics]
+difficulty: medium
+answer_key: [A, C]
+---
+关于 `std::string` 操作的代价，**哪些说法是正确的**？（多选）
+
+A. 按值传递 `std::string` 会存在拷贝（或移动）开销。
+B. 对 `std::string` 调用 `c_str()` 是 O(n) 操作。
+C. `s[0]` 是 O(1) 的常量时间操作。
+D. `s.find(c)` 总是使用 O(n) 朴素匹配算法。
+
+---
+
+**解析：**
+
+A 正确：按值传递会触发拷贝构造或移动构造。
+B 错误：`c_str()` 返回内部指针（或 NUL 结尾地址），O(1)。
+C 正确：连续内存上的下标访问 O(1)。
+D 错误：C++ 标准未指定算法，许多实现使用 SIMD 优化或 BMH 等子线性算法；但最坏情况仍为 O(n)。

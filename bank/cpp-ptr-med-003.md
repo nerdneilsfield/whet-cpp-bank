@@ -1,0 +1,26 @@
+---
+qid: cpp-ptr-med-003
+type: single
+kp: [cpp-arrays-pointers]
+difficulty: medium
+answer_key: B
+---
+下列声明哪一个是合法的？
+
+```cpp
+int a = 1, b = 2, c = 3;
+int& r1[3] = {a, b, c};               // (1)
+int* p1[3] = {&a, &b, &c};            // (2)
+std::array<std::reference_wrapper<int>, 3> r2{a, b, c}; // (3)
+```
+
+A. (1) 与 (2)
+B. (2) 与 (3)
+C. (1) 与 (3)
+D. 三者都合法
+
+---
+
+**解析：**
+
+C++ 标准明确禁止“引用的数组”：`int& r1[3]` 是非法的。原因之一是引用不是对象，没有独立存储，不能像 `int` 那样按下标组织成数组。要表达“一组引用”，常见做法有两种：用指针数组 `int* p1[3]`（合法，指针是普通对象）；或者借助 `std::reference_wrapper<T>` 把引用“包装”成可拷贝的对象，再放进容器/数组（合法）。这是引用与指针差异的经典考点。

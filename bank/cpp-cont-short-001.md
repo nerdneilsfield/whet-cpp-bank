@@ -1,0 +1,19 @@
+---
+qid: cpp-cont-short-001
+type: short
+kp: [cpp-containers]
+difficulty: medium
+rubric:
+  - 对比顺序容器（vector/list/deque）的存储特性（连续 vs 链式 vs 分段连续）
+  - 指出 vector 随机访问 O(1)、尾部插入摊销 O(1)、中间插入 O(n)
+  - 指出 list 任意位置插入/删除 O(1)，但无随机访问、缓存不友好
+  - 提到 deque 头尾插入 O(1)、随机访问近似 O(1)，但中间插入慢
+  - 给出选择建议（默认 vector）
+---
+请对比 `std::vector`、`std::list` 和 `std::deque` 在存储结构、访问及插入复杂度上的差异。
+
+---
+
+**参考答案：**
+
+`std::vector` 使用连续内存数组，随机访问 O(1)、尾部追加摊销 O(1)，但任意中间位置插入/删除是 O(n)，且扩容时会触发重新分配与元素迁移。`std::list` 是双向链表，任意位置 O(1) 插入/删除，但不支持随机访问（只能顺序前进），且每个节点单独分配，缓存极不友好。`std::deque` 是分段连续的双端队列，头尾插入 O(1)、随机访问近似 O(1)，但中间插入 O(n)，且内存布局比 vector 略复杂。一般默认用 vector，确实需要频繁中间插入用 list，需要双端 push_front 用 deque。

@@ -1,0 +1,19 @@
+---
+qid: cpp-func-med-003
+type: single
+kp: [cpp-functions]
+difficulty: medium
+answer_key: B
+---
+关于 `inline` 函数与一处定义原则（ODR），下列说法正确的是？
+
+A. `inline` 函数只能定义一次，否则违反 ODR
+B. `inline` 函数允许在多个翻译单元出现相同的定义，链接器会合并
+C. `inline` 关键字保证函数被内联展开
+D. 头文件中定义普通（非 `inline`）函数不会违反 ODR
+
+---
+
+**解析：**
+
+C++ 中 `inline` 的真正语义是“放宽 ODR 约束”：允许同一函数在多个翻译单元提供**完全相同**的定义，链接器选其一即可；这正是为何头文件里的函数定义要标 `inline`（C++17 之后变量也可 `inline`）。它**不**强制编译器做内联展开（那是优化器的决定）。普通非 `inline` 函数若在头文件定义并被多处 include，每个翻译单元都会得到一份外部链接的定义，链接时多重定义即违反 ODR。

@@ -1,0 +1,18 @@
+---
+qid: cpp-exc-short-002
+type: short
+kp: [cpp-exceptions]
+difficulty: medium
+rubric:
+  - 解释 `noexcept` 承诺函数不会从内部抛出异常（若抛则调 terminate）
+  - 说明编译器可据此优化（不用生成栈展开相关的元数据）
+  - 指出将移动构造/析构/ swap 等标记为 noexcept 是标准库容器使用的前提
+  - 提到按惯例 noexcept 是接口契约、由调用方信任
+---
+请解释 `noexcept` 关键字的作用，以及它为编译器带来了哪些优化空间。
+
+---
+
+**参考答案：**
+
+`noexcept` 标记一个函数承诺不会抛出异常。如果 `noexcept` 函数仍抛出异常，程序直接调用 `std::terminate` 结束（而非栈展开）。编译器可以借此省略运行时所需的异常处理元数据（助解表和着陆板代码），减小代码体积，并解放一些优化路径（如下沉或合并内存操作）。对移动构造、移动赋值、析构、`swap` 等函数标记 `noexcept` 更有实际意义——因为 `std::vector` 等容器只有在 move 是 noexcept 时才使用移动语义，否则回退到拷贝以保证异常安全。

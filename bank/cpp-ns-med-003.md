@@ -1,0 +1,27 @@
+---
+qid: cpp-ns-med-003
+type: single
+kp: [cpp-preprocessor]
+difficulty: medium
+answer_key: D
+---
+
+传统的头文件多重包含防护（header guard）和 `#pragma once` 各有利弊。以下哪条表述**正确**？
+
+A. 传统 header guard 必须使用 `__` 前缀来避免名字冲突
+B. `#pragma once` 是 C++ 标准规定的，所有编译器都支持
+C. 两种方式在大型项目中都会导致明显的预处理器开销
+D. `#pragma once` 是编译器扩展（非标准），比 header guard 更简洁且能避免宏名冲突，但需要考虑编译器兼容性
+
+---
+
+**解析：**
+
+关于多重包含防护的各点澄清：
+
+- A 错：使用 `__` 前缀的标识符是**保留给实现的**（标准保留）。用户定义的 header guard 不应该使用双下划线或 `_`+大写字母开头。正确做法是使用项目特有的宏名如 `MYLIB_FOO_H`。
+- B 错：`#pragma once` 不是 C++ 标准的一部分，它是编译器扩展。几乎所有现代编译器（GCC、Clang、MSVC）都支持，但某些嵌入式或老旧编译器可能不支持。
+- C 错：传统 header guard 的预处理器开销可以忽略不计——预处理器维护一个"已定义宏"的表，第二次遇到 `#ifndef GUARD` 时能快速判断且跳过整个文件。`#pragma once` 也类似，编译器以文件 inode 或路径标识来判断。
+- D 正确。
+
+实际工程中，`#pragma once` 是更推荐的做法（简洁、无冲突风险、大多数编译器支持），除非需要严格的标准合规性。

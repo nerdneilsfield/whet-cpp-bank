@@ -1,0 +1,22 @@
+---
+qid: cpp-algo-multi-002
+type: multi
+kp: [cpp-algorithms]
+difficulty: medium
+answer_key: [A, B, D]
+---
+关于「就地修改算法」与「写到新容器的算法」，**哪些说法是正确的**？（多选）
+
+A. `std::sort` 是就地排序，不分配额外容器。
+B. `std::copy` 不分配输出容器，要求调用者准备好输出范围。
+C. `std::remove` 会从容器中真正删除元素，缩短大小。
+D. `std::transform` 可在原范围就地写入，也可写到新输出迭代器。
+
+---
+
+**解析：**
+
+A 正确：`sort` 是 in-place。
+B 正确：算法不管理输出容器，仅写入指定迭代器位置。
+C 错误：`std::remove` 只把保留元素前移并返回新逻辑尾迭代器，物理大小不变；通常配合容器的 `erase` 完成「erase-remove」惯用法。
+D 正确：`transform` 的输出迭代器可与输入相同。
