@@ -1,0 +1,23 @@
+---
+qid: cpp-prog-stl-binsearch-001
+type: prog
+kp: [cpp-algorithms]
+primary_kp: cpp-algorithms
+difficulty: medium
+toolchain: [make]
+tests_dir: tests/cpp-prog-stl-binsearch-001/
+---
+给定数组 nums，nums[i] != nums[i+1]，找出任意一个峰值元素的下标（峰值：严格大于相邻元素）。要求 O(log n)。两端可视为 -∞。
+
+## 函数签名
+```cpp
+// solution.hpp
+#pragma once
+#include <vector>
+
+int find_peak(const std::vector<int>& nums);
+```
+
+## 提示
+- 不要修改 tests/ 下的文件
+- 在 skeleton/solution.hpp 中实现函数
