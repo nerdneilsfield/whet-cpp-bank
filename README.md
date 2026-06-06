@@ -1,6 +1,6 @@
 # whet-cpp-bank
 
-一个 **2000+ 道题、覆盖现代 C++ 全光谱**的中文题库，给 [whet](https://github.com/dengqi935/anvil-whet) 用。
+一个 **2000+ 道题、覆盖现代 C++ 全光谱**的中文题库，给 [whet](https://github.com/nerdneilsfield/anvil-whet) 用。
 
 不是泛泛的"八股文"汇编——每道题都标注来源、难度、知识点；从入门语法、STL 用法，到 GCC/Clang 标准库源码追问、大厂面经真题、CPU 微架构性能取舍，都覆盖到了。
 
@@ -35,7 +35,7 @@ whet answer morning
 whet grade morning
 ```
 
-不熟悉 whet 的流程：看 [whet 入门教程](https://github.com/dengqi935/anvil-whet/blob/master/docs/getting-started-zh.md)（15 分钟实操）。
+不熟悉 whet 的流程：看 [whet 入门教程](https://github.com/nerdneilsfield/anvil-whet/blob/master/docs/getting-started-zh.md)（15 分钟实操）。
 
 ---
 
@@ -210,7 +210,7 @@ whet bank validate --path . --json
 # {"total": 2083, "errors": [], "warnings": []}
 ```
 
-CI 校验配置：见上游 [04-bank.md §11 CI 配置](https://github.com/dengqi935/anvil-whet/blob/master/docs/zh/04-bank.md)。
+CI 校验配置：见上游 [04-bank.md §11 CI 配置](https://github.com/nerdneilsfield/anvil-whet/blob/master/docs/zh/04-bank.md)。
 
 ---
 
