@@ -1,0 +1,35 @@
+---
+qid: cpp-algo-med-005
+type: single
+kp: [cpp-algorithms]
+difficulty: medium
+answer_key: C
+---
+
+下列代码执行 `std::unique` 后 `[v.begin(), it)` 的内容是？
+
+```cpp
+std::vector<int> v = {1, 2, 2, 3, 1, 1, 4};
+auto it = std::unique(v.begin(), v.end());
+// 看 [v.begin(), it) 中的逻辑内容
+```
+
+A. `{1, 2, 3, 4}`，所有重复元素都被移除
+B. `{1, 2, 3, 4, 1}`，保留第一次出现的 1
+C. `{1, 2, 3, 1, 4}`，`unique` 只去除**连续**相等元素；非连续的重复 `1` 仍被保留
+D. 行为未定义，`unique` 要求输入已排序
+
+---
+
+**解析：**
+
+`std::unique` 的契约：移除每一组**相邻**等价元素中的"后续副本"，保留每组的第一个。它对整个区间是否有序毫不关心，只看相邻位置。
+
+对 `{1, 2, 2, 3, 1, 1, 4}`：
+- 相邻的 `2,2` → 留一个 `2`
+- 相邻的 `1,1` → 留一个 `1`
+- 不相邻的两个 `1` 之间隔着别的元素，不会被合并
+
+逻辑结果 `{1, 2, 3, 1, 4}`，返回新逻辑末尾 `it`。和 `std::remove` 一样，`unique` 也**不**改变容器 size，`[it, v.end())` 的元素处于 valid-but-unspecified 状态，要真正缩容必须 `v.erase(it, v.end())`（erase-unique idiom）。
+
+D 错：`unique` 不要求输入有序，但**如果**你想用它做"全局去重"（得到 `{1,2,3,4}`），必须先 `std::sort` 让所有等价元素相邻，然后再 `unique`。这是 `sort+unique+erase` 三连的来历，复杂度 O(n log n)；对小数据集，或者要保留首次出现顺序的"稳定去重"，用 `unordered_set` 跟踪见过的元素更合适。
